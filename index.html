@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 総合知能テスト（簡易版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #1a6fc4;
+        --secondary-color: #1a3a5c;
+        --accent-color: #e74c3c;
+        --bg-color: #f0f4f8;
+        --text-color: #2c3e50;
+        --white: #ffffff;
+    }
+
+    body {
+        font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    .container {
+        max-width: 760px;
+        width: 100%;
+        background: var(--white);
+        padding: 36px 44px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin: 40px auto;
+        align-self: flex-start;
+        overflow: hidden;
+    }
+
+    /* ===== Welcome ===== */
+    #welcome-screen { text-align: center; animation: fadeIn 0.8s ease-out; }
+    .hero-icon {
+        font-size: 5rem; margin-bottom: 20px;
+        display: inline-block; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    .hero-title {
+        font-size: 1.9rem; color: var(--secondary-color);
+        margin-bottom: 10px; font-weight: 700;
+    }
+    .hero-subtitle { font-size: 1.05rem; color: #666; margin-bottom: 28px; }
+
+    .index-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px; margin-bottom: 28px;
+    }
+    .index-card {
+        background: #f8f9fa; padding: 14px 8px;
+        border-radius: 10px; font-size: 0.85rem;
+        border-top: 3px solid var(--primary-color);
+    }
+    .index-card strong { display: block; font-size: 1.0rem; margin-bottom: 4px; color: var(--secondary-color); }
+    .index-card small { display: block; color: #777; font-size: 0.75rem; }
+
+    .warning-box {
+        background: #fff8e1; border-left: 4px solid #ffc107;
+        padding: 10px 14px; border-radius: 6px;
+        margin: 16px 0; font-size: 0.9em; color: #5d4037;
+        text-align: left;
+    }
+
+    .cta-button {
+        display: block; width: 100%; padding: 20px;
+        background: linear-gradient(135deg, #1a6fc4 0%, #1558a0 100%);
+        color: white; border: none; border-radius: 50px;
+        font-size: 1.25rem; font-weight: bold;
+        cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3);
+    }
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 111, 196, 0.4);
+    }
+
+    /* ===== Quiz ===== */
+    h1 { text-align: center; color: #1a3a5c; margin-bottom: 16px; font-size: 1.5em; }
+    h2 { color: #1a3a5c; text-align: center; }
+
+    .quiz-header {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
+    }
+    .question-header {
+        font-size: 0.9em; color: #7f8c8d;
+    }
+    .timer-display {
+        font-size: 1.05em; font-variant-numeric: tabular-nums;
+        color: #1a6fc4; font-weight: bold;
+    }
+    .timer-display.warn  { color: #e67e22; }
+    .timer-display.danger { color: #e74c3c; animation: blink 0.7s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .progress-bar-container {
+        width: 100%; background: #e0e0e0; border-radius: 10px;
+        margin-bottom: 20px; overflow: hidden; height: 6px;
+    }
+    .progress-bar { height: 100%; background: #1a6fc4; width: 0%; transition: width 0.3s; }
+
+    .question-content {
+        font-size: 1.18em; font-weight: bold;
+        margin-bottom: 20px; text-align: center;
+        min-height: 70px;
+    }
+    .visual-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+        font-size: 1.8em; margin: 14px auto 0;
+        background: #f9f9f9; padding: 12px; border-radius: 8px;
+        max-width: 280px;
+    }
+    .visual-grid div {
+        text-align: center; padding: 8px;
+        background: #fff; border: 1px solid #eee; border-radius: 4px;
+        min-height: 40px;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .symbol-row {
+        display: block;
+        background: #f9f9f9; padding: 14px; border-radius: 8px;
+        margin-top: 12px; font-size: 1.4em;
+        letter-spacing: 0.25em; word-break: break-all;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+    .memory-numbers {
+        font-size: 2.2em; letter-spacing: 0.35em;
+        font-weight: bold; color: #1a6fc4;
+        margin: 20px 0; padding: 18px;
+        background: #e3f2fd; border-radius: 10px;
+        text-align: center;
+    }
+    .memory-text {
+        font-size: 1.25em; font-weight: bold;
+        color: #1a6fc4; line-height: 1.7;
+        margin: 20px 0; padding: 20px;
+        background: #e3f2fd; border-radius: 10px;
+        text-align: center;
+    }
+    .memory-countdown { font-size: 0.95em; color: #e74c3c; margin-top: 6px; }
+    .memory-hidden-note { font-size: 0.85em; color: #999; margin-bottom: 10px; }
+
+    .options-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        margin-bottom: 10px;
+    }
+    .option-btn {
+        background: #e0f2f1; padding: 14px 10px; border-radius: 8px;
+        cursor: pointer; transition: all 0.15s;
+        border: 2px solid transparent;
+        font-size: 0.98em; text-align: center;
+        min-height: 52px;
+        display: flex; align-items: center; justify-content: center;
+        color: #2c3e50; font-family: inherit; word-break: break-word;
+    }
+    .option-btn:hover:not(:disabled) { background: #b2dfdb; transform: translateY(-1px); }
+    .option-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .option-btn.selected {
+        background: #1a6fc4 !important; border-color: #1558a0 !important;
+        color: white; font-weight: bold;
+    }
+
+    .not-sure-btn {
+        display: block; width: 100%;
+        background: #eceff1; color: #546e7a;
+        padding: 12px; border-radius: 8px;
+        cursor: pointer; transition: all 0.15s;
+        border: 2px solid transparent;
+        font-size: 0.98em; text-align: center;
+        margin-bottom: 14px; font-family: inherit;
+    }
+    .not-sure-btn:hover:not(:disabled) { background: #cfd8dc; }
+    .not-sure-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .not-sure-btn.selected {
+        background: #78909c !important; color: white !important; border-color: #546e7a !important;
+    }
+
+    /* ===== Results ===== */
+    #result-screen { text-align: center; }
+
+    .result-table {
+        width: 100%; max-width: 620px; margin: 20px auto;
+        border-collapse: collapse; font-size: 0.92em;
+        background: #fff;
+    }
+    .result-table th {
+        background: #f5f7fa; color: #1a3a5c; padding: 10px 8px;
+        text-align: center; font-weight: 600;
+        border-bottom: 2px solid #1a6fc4;
+        font-size: 0.88em;
+    }
+    .result-table td {
+        padding: 10px 8px; border-bottom: 1px solid #eceff1;
+        text-align: center; vertical-align: middle;
+    }
+    .result-table td.label {
+        text-align: left; font-weight: 600; color: #1a3a5c;
+        padding-left: 12px;
+    }
+    .result-table td.score {
+        font-size: 1.2em; font-weight: bold; color: #1a3a5c;
+        font-variant-numeric: tabular-nums;
+    }
+    .result-table tr.fsiq-row td {
+        background: #eaf3fb; font-weight: bold;
+        border-bottom: 2px solid #1a6fc4;
+    }
+    .result-table tr.fsiq-row td.score { font-size: 1.35em; color: #1558a0; }
+    .class-pill {
+        display: inline-block; padding: 2px 8px;
+        border-radius: 10px; font-size: 0.82em;
+        font-weight: 600; margin: 1px;
+        white-space: nowrap;
+    }
+
+    .dist-box {
+        background: #f8f9fa; border-radius: 8px;
+        padding: 16px 20px; margin: 16px auto; max-width: 560px;
+        border: 1px solid #eee;
+    }
+    .dist-title { font-weight: bold; color: #1a3a5c; margin-bottom: 10px; font-size: 0.95em; }
+    .percentile-text { font-size: 0.9em; color: #546e7a; margin-top: 10px; }
+
+    .start-btn {
+        display: block; width: 100%; padding: 15px;
+        background: #1a6fc4; color: white;
+        border: none; border-radius: 8px;
+        font-size: 1.1em; cursor: pointer;
+        transition: background 0.2s; font-family: inherit;
+    }
+    .start-btn:hover { background: #1558a0; }
+
+    .disclaimer {
+        font-size: 0.78em; color: #888;
+        margin-top: 20px; padding: 12px;
+        background: #fafafa; border-radius: 6px;
+        text-align: left; line-height: 1.5;
+    }
+
+    .submit-box {
+        margin: 24px auto 0; max-width: 620px;
+        padding: 18px 20px;
+        background: #f5f9ff; border: 1px solid #d4e4f5;
+        border-radius: 10px; text-align: left;
+    }
+    .submit-title {
+        font-weight: 700; color: #1a3a5c;
+        margin-bottom: 8px; font-size: 1em;
+    }
+    .submit-desc {
+        font-size: 0.82em; color: #546e7a;
+        line-height: 1.55; margin-bottom: 12px;
+    }
+    .submit-form {
+        display: flex; gap: 8px; flex-wrap: wrap;
+        align-items: center;
+    }
+    .submit-form select {
+        flex: 1; min-width: 160px;
+        padding: 10px 12px; font-size: 0.95em;
+        border: 1px solid #c5d4e3; border-radius: 6px;
+        background: #fff; font-family: inherit;
+        color: #2c3e50;
+    }
+    .submit-btn {
+        padding: 10px 22px; font-size: 0.95em;
+        background: #1a6fc4; color: #fff;
+        border: none; border-radius: 6px;
+        cursor: pointer; font-family: inherit;
+        font-weight: 600;
+        transition: background 0.15s;
+    }
+    .submit-btn:hover:not(:disabled) { background: #1558a0; }
+    .submit-btn:disabled { background: #b0bec5; cursor: not-allowed; }
+    .submit-status {
+        font-size: 0.85em; margin-top: 10px;
+        min-height: 1.2em;
+    }
+    .submit-status.success { color: #2e7d32; }
+    .submit-status.error   { color: #c62828; }
+
+    /* ===== Participants badge (welcome) ===== */
+    .stats-badge {
+        display: inline-block;
+        padding: 8px 18px; margin: 0 0 18px;
+        background: #eef6ff; border: 1px solid #cfe2f6;
+        border-radius: 999px; font-size: 0.92em;
+        color: #1a3a5c;
+    }
+    .stats-badge strong {
+        color: #1a6fc4; font-size: 1.15em;
+        font-variant-numeric: tabular-nums;
+        margin: 0 2px;
+    }
+
+    /* ===== Ranking (result) ===== */
+    .ranking-box {
+        margin: 20px auto 0; max-width: 620px;
+        padding: 18px 20px;
+        background: #fafbfc; border: 1px solid #e4e7eb;
+        border-radius: 10px;
+    }
+    .ranking-title {
+        font-weight: 700; color: #1a3a5c;
+        margin-bottom: 10px; font-size: 1em;
+    }
+    .ranking-tabs {
+        display: flex; gap: 6px; margin-bottom: 12px;
+    }
+    .ranking-tab {
+        flex: 1; padding: 7px 8px;
+        background: #fff; border: 1px solid #c5d4e3;
+        border-radius: 6px; cursor: pointer;
+        font-size: 0.88em; color: #546e7a;
+        font-family: inherit;
+        transition: all 0.15s;
+    }
+    .ranking-tab.active {
+        background: #1a6fc4; color: #fff; border-color: #1558a0;
+        font-weight: 600;
+    }
+    .ranking-table {
+        width: 100%; border-collapse: collapse;
+        font-size: 0.9em;
+    }
+    .ranking-table th {
+        background: #f0f4f8; color: #1a3a5c;
+        padding: 7px 8px; font-weight: 600;
+        font-size: 0.85em;
+        border-bottom: 1px solid #d7dfe8;
+    }
+    .ranking-table td {
+        padding: 7px 8px; text-align: center;
+        border-bottom: 1px solid #eceff1;
+        font-variant-numeric: tabular-nums;
+    }
+    .ranking-table td.rank { font-weight: 700; color: #1a6fc4; }
+    .ranking-table td.pref { text-align: left; font-weight: 500; }
+    .ranking-table tr.user-row td {
+        background: #fff8e1; font-weight: 700;
+    }
+    .ranking-note {
+        font-size: 0.78em; color: #78909c;
+        margin-top: 8px; text-align: right;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 560px) {
+        .container { padding: 24px 18px; margin: 10px; }
+        .options-grid { grid-template-columns: 1fr; }
+        .index-grid { grid-template-columns: repeat(2, 1fr); }
+        .result-table { font-size: 0.8em; }
+        .result-table th, .result-table td { padding: 6px 4px; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ============= Welcome ============= -->
+    <div id="welcome-screen">
+        <span class="hero-icon">🧠</span>
+        <h1 class="hero-title">✨️IQテスト✨️</h1>
+        <div class="stats-badge" id="stats-badge" style="display:none;">
+            🧑‍🤝‍🧑 これまで <strong id="stats-total">0</strong> 人が参加中
+        </div>
+        <br>
+
+        <div class="index-grid">
+            <div class="index-card" style="border-top-color:#1a6fc4;">
+                <strong>VCI</strong>言語理解
+                <small>類似・単語・知識・理解</small>
+            </div>
+            <div class="index-card" style="border-top-color:#00897b;">
+                <strong>PRI</strong>知覚推理
+                <small>積み木・行列・パズル・バランス・絵</small>
+            </div>
+            <div class="index-card" style="border-top-color:#fb8c00;">
+                <strong>WMI</strong>ワーキングメモリ
+                <small>数唱・算数・語音整列</small>
+            </div>
+            <div class="index-card" style="border-top-color:#8e24aa;">
+                <strong>PSI</strong>処理速度
+                <small>記号探し・符号・絵の抹消</small>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>📊 測定について</strong><br>
+            言語理解・知覚推理・ワーキングメモリ・処理速度 の 4 つの領域について、<strong>全 45 問</strong>を出題します。
+            正答・誤答に加えて<strong>回答にかかった時間</strong>も得点に反映されます。<br><br>
+            <strong>所要時間の目安：20〜30 分</strong><br>
+            迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。
+        </div>
+
+        <button class="cta-button" onclick="startTest()">測定を開始する</button>
+        <p class="disclaimer">
+            本テストは娯楽・自己診断目的の簡易版です。正式な臨床知能検査ではないため、
+            医学的診断や就学・就労判定の根拠には使用できません。正確な知能評価が必要な場合は、
+            有資格の臨床心理士による対面のウェクスラー式検査 (WAIS-IV 等) を受検してください。
+        </p>
+    </div>
+
+    <!-- ============= Quiz ============= -->
+    <div id="quiz-screen" style="display:none;">
+        <div class="quiz-header">
+            <div class="question-header" id="question-header">問題 1 / 45</div>
+            <div class="timer-display" id="timer-display">⏱ --:--</div>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="question-content" id="question-content"></div>
+        <div class="options-grid" id="options-grid"></div>
+        <button class="not-sure-btn" id="not-sure-btn" onclick="selectAnswer('わからない', this)">わからない</button>
+    </div>
+
+    <!-- ============= Result ============= -->
+    <div id="result-screen" style="display:none;">
+        <h2>測定結果</h2>
+        <p style="color:#546e7a;font-size:0.95em;">
+            以下は各指標および全検査IQ (FSIQ) の推定結果です。
+        </p>
+
+        <table class="result-table" id="result-table">
+            <thead>
+                <tr>
+                    <th style="text-align:left;padding-left:12px;">項目</th>
+                    <th>IQ</th>
+                    <th>パーセンタイル</th>
+                    <th>信頼区間 90%</th>
+                    <th>記述分類</th>
+                </tr>
+            </thead>
+            <tbody id="result-tbody"></tbody>
+        </table>
+
+        <div class="dist-box">
+            <div class="dist-title">FSIQ の標準分布における位置</div>
+            <svg id="dist-chart" viewBox="0 0 460 155" width="100%" style="display:block;overflow:visible;"></svg>
+            <p id="percentile-text" class="percentile-text"></p>
+        </div>
+
+        <p class="disclaimer">
+            <strong>パーセンタイル</strong>は 100 人中で上から数えた位置の目安（例：84 なら同年代の上位 16% 相当）、
+            <strong>信頼区間</strong>は「真の値がこの範囲に入る可能性が高い」幅を意味します。
+            本テストは娯楽目的の簡易版です。医学的・教育的な判定には、有資格者による正式な検査を受けてください。
+        </p>
+
+        <div class="submit-box" id="submit-box">
+            <div class="submit-title">📍 都道府県別の集計に協力する（任意）</div>
+            <p class="submit-desc">
+                出身地（または現在の居住地）を選んで送信すると、都道府県別の参加者数・平均値の集計に反映されます。
+                送信される情報は <strong>都道府県名・各IQスコア・送信時刻</strong> のみで、個人を特定できる情報は一切含まれません。
+            </p>
+            <div class="submit-form">
+                <select id="prefecture-select">
+                    <option value="">― 都道府県を選択 ―</option>
+                </select>
+                <button class="submit-btn" id="submit-btn" onclick="submitResult()">送信する</button>
+            </div>
+            <p class="submit-status" id="submit-status"></p>
+        </div>
+
+        <div class="ranking-box" id="ranking-box" style="display:none;">
+            <div class="ranking-title">🏆 都道府県別ランキング</div>
+            <div class="ranking-tabs">
+                <button class="ranking-tab active" data-mode="count" onclick="switchRankingMode('count')">参加者数</button>
+                <button class="ranking-tab" data-mode="avg" onclick="switchRankingMode('avg')">平均 IQ</button>
+            </div>
+            <table class="ranking-table" id="ranking-table"></table>
+            <p class="ranking-note" id="ranking-note"></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ================================================================
+// 問題データ (15下位検査 × 3難易度 = 45問)
+// ================================================================
+const questions = [
+    // ===== VC-1 類似 =====
+    { id:"VC1E", subtest:"VC-1", subtestName:"類似", difficulty:"easy", stdTime:8,
+      q:"「リンゴ」と「バナナ」に共通するものは?",
+      options:["色が同じ","食べ物（果物）である","皮をむく必要がある","どちらも赤い","栽培が簡単","種がない"] },
+    { id:"VC1M", subtest:"VC-1", subtestName:"類似", difficulty:"medium", stdTime:12,
+      q:"「詩」と「小説」に共通するものは?",
+      options:["韻を踏む","登場人物が必ずいる","言葉で表現された作品である","必ず本になる","必ず作者が実在する","同じ長さである"] },
+    { id:"VC1H", subtest:"VC-1", subtestName:"類似", difficulty:"hard", stdTime:18,
+      q:"「正義」と「平等」に共通するものは?",
+      options:["どちらも法律である","社会的・道徳的な価値観である","目に見える物体","個人的な感情","宗教固有の概念","国家専属の概念"] },
+
+    // ===== VC-2 単語 =====
+    { id:"VC2E", subtest:"VC-2", subtestName:"単語", difficulty:"easy", stdTime:7,
+      q:"「頑丈」の意味として最も近いのは?",
+      options:["細かい","丈夫で壊れにくい","軽くて持ちやすい","透明で美しい","古くて貴重","冷たい"] },
+    { id:"VC2M", subtest:"VC-2", subtestName:"単語", difficulty:"medium", stdTime:10,
+      q:"「寛容」の意味として最も近いのは?",
+      options:["厳しく叱ること","広く受け入れる心","素早く動くこと","控えめな態度","冷静な判断","疑い深いこと"] },
+    { id:"VC2H", subtest:"VC-2", subtestName:"単語", difficulty:"hard", stdTime:15,
+      q:"「瀟洒（しょうしゃ）」の意味として最も近いのは?",
+      options:["古めかしく粗末なさま","洗練されて垢抜けているさま","騒がしく賑やかなさま","押し付けがましいさま","狭くて窮屈なさま","厳しく冷酷なさま"] },
+
+    // ===== VC-3 知識 =====
+    { id:"VC3E", subtest:"VC-3", subtestName:"知識", difficulty:"easy", stdTime:7,
+      q:"日本で最も高い山は?",
+      options:["富士山","北岳","槍ヶ岳","奥穂高岳","阿蘇山","御嶽山"] },
+    { id:"VC3M", subtest:"VC-3", subtestName:"知識", difficulty:"medium", stdTime:10,
+      q:"太陽系で太陽から3番目に近い惑星は?",
+      options:["水星","金星","地球","火星","木星","土星"] },
+    { id:"VC3H", subtest:"VC-3", subtestName:"知識", difficulty:"hard", stdTime:15,
+      q:"光の三原色（赤・緑・青）をすべて同じ強さで混ぜると何色になる?",
+      options:["白","黒","灰色","茶色","マゼンタ","シアン"] },
+
+    // ===== VC-4 理解 =====
+    { id:"VC4E", subtest:"VC-4", subtestName:"理解", difficulty:"easy", stdTime:8,
+      q:"雨の日に傘をさすのはなぜ?",
+      options:["おしゃれのため","身体が濡れないようにするため","重いものを持つため","暑さをしのぐため","音を聞くため","風を防ぐため"] },
+    { id:"VC4M", subtest:"VC-4", subtestName:"理解", difficulty:"medium", stdTime:12,
+      q:"交通信号が赤・黄・青（緑）の3色なのはなぜ?",
+      options:["作るのが安いから","3色が偶然選ばれただけ","遠くから識別でき危険度を段階的に示せるから","色覚障害者のため","電球の構造上の都合","法律で定められているだけ"] },
+    { id:"VC4H", subtest:"VC-4", subtestName:"理解", difficulty:"hard", stdTime:25,
+      q:"1 から 100 までの数字の中で、「9」という数字は何回出てくる?",
+      options:["10回","11回","19回","20回","21回","30回"] },
+
+    // ===== PR-1 積み木模様 =====
+    { id:"PR1E", subtest:"PR-1", subtestName:"積み木模様", difficulty:"easy", stdTime:10,
+      q:"2×2マスで下の模様を作るのに必要なブロックは?<div class='visual-grid' style='grid-template-columns:repeat(2,60px);max-width:140px;'><div>■</div><div>■</div><div>□</div><div>□</div></div>",
+      options:["黒2個・白2個","全て黒","全て白","黒3個・白1個","黒1個・白3個","黒白を交互"] },
+    { id:"PR1M", subtest:"PR-1", subtestName:"積み木模様", difficulty:"medium", stdTime:15,
+      q:"3×3マスで下の市松模様を作るのに必要な内訳は?<div class='visual-grid'><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div></div>",
+      options:["黒4個・白5個","黒5個・白4個","黒3個・白6個","黒6個・白3個","全て黒","全て白"] },
+    { id:"PR1H", subtest:"PR-1", subtestName:"積み木模様", difficulty:"hard", stdTime:22,
+      q:"5×5マスで、主対角線（左上→右下）と反対角線（右上→左下）の両方を黒、残りを白とする。重なるマスは1個と数えるとき、黒マスは何個?",
+      options:["5個","7個","9個","10個","13個","16個"] },
+
+    // ===== PR-2 行列推理 =====
+    { id:"PR2E", subtest:"PR-2", subtestName:"行列推理", difficulty:"easy", stdTime:8,
+      q:"「?」に入るのは?<div class='visual-grid'><div>○</div><div>○</div><div>○</div><div>△</div><div>△</div><div>△</div><div>□</div><div>□</div><div>?</div></div>",
+      options:["○","△","□","◇","☆","×"] },
+    { id:"PR2M", subtest:"PR-2", subtestName:"行列推理", difficulty:"medium", stdTime:12,
+      q:"「?」に入るのは?<div class='visual-grid'><div>○</div><div>△</div><div>□</div><div>△</div><div>□</div><div>○</div><div>□</div><div>○</div><div>?</div></div>",
+      options:["○","△","□","◇","☆","×"] },
+    { id:"PR2H", subtest:"PR-2", subtestName:"行列推理", difficulty:"hard", stdTime:18,
+      q:"次の数列の「?」に入る数字は?<div class='symbol-row'>1, 4, 9, 16, 25, ?</div>",
+      options:["30","32","36","42","49","64"] },
+
+    // ===== PR-3 パズル =====
+    { id:"PR3E", subtest:"PR-3", subtestName:"パズル", difficulty:"easy", stdTime:10,
+      q:"2個を組み合わせて「正方形」を作れるのはどれ?",
+      options:["直角二等辺三角形2個","正三角形2個","円2個","半円2個","台形2個","平行四辺形2個"] },
+    { id:"PR3M", subtest:"PR-3", subtestName:"パズル", difficulty:"medium", stdTime:15,
+      q:"円を4等分した扇形のうち3個を組み合わせた形は?",
+      options:["1/4円","半円","3/4円","円全体","楕円","星形"] },
+    { id:"PR3H", subtest:"PR-3", subtestName:"パズル", difficulty:"hard", stdTime:20,
+      q:"立方体を平面に開いた「展開図」は、回転・反転を同一視すると何種類?",
+      options:["6種類","8種類","10種類","11種類","12種類","24種類"] },
+
+    // ===== PR-4 バランス =====
+    { id:"PR4E", subtest:"PR-4", subtestName:"バランス", difficulty:"easy", stdTime:8,
+      q:"天秤の左に重さ3のおもり。右に何を乗せれば釣り合う?",
+      options:["重さ1","重さ2","重さ3","重さ4","重さ5","重さ6"] },
+    { id:"PR4M", subtest:"PR-4", subtestName:"バランス", difficulty:"medium", stdTime:12,
+      q:"天秤の左に重さ5、右に重さ2が1個。あと何を足せば釣り合う?",
+      options:["重さ1","重さ2","重さ3","重さ4","重さ5","重さ6"] },
+    { id:"PR4H", subtest:"PR-4", subtestName:"バランス", difficulty:"hard", stdTime:30,
+      q:"トランプ52枚（ジョーカーなし）から1枚引くとき、「絵札（J・Q・K）」または「スペード」である確率は?",
+      options:["3/13","1/4","11/26","12/26","13/26","25/52"] },
+
+    // ===== PR-5 絵の完成 =====
+    { id:"PR5E", subtest:"PR-5", subtestName:"絵の完成", difficulty:"easy", stdTime:10,
+      q:"腕時計の絵に「文字盤・長針・数字・リューズ・ベルト」が描かれている。時刻表示に不可欠なのに欠けているのは?",
+      options:["電池","短針","ガラス","秒針","音","針穴"] },
+    { id:"PR5M", subtest:"PR-5", subtestName:"絵の完成", difficulty:"medium", stdTime:15,
+      q:"自転車の絵に「車輪・ハンドル・サドル・フレーム・チェーン」が描かれている。走行に不可欠なのに欠けているのは?",
+      options:["鈴","ペダル","ライト","カゴ","反射板","スタンド"] },
+    { id:"PR5H", subtest:"PR-5", subtestName:"絵の完成", difficulty:"hard", stdTime:25,
+      q:"正方形の紙を「縦半分」に折り、続けて「横半分」に折る。折りたたんだ状態で<strong>右上の角</strong>を小さく三角に切り取って紙を広げると、穴は合計いくつ?",
+      options:["1個","2個","3個","4個","5個","8個"] },
+
+    // ===== WM-1 数唱 (memory display) =====
+    { id:"WM1E", subtest:"WM-1", subtestName:"数唱", difficulty:"easy", stdTime:12, memoryDisplay:3,
+      memoryContent:"3 5 8",
+      q:"先ほど表示された数字を<strong>逆順</strong>に並べたものは?",
+      options:["3 5 8","5 8 3","8 5 3","8 3 5","3 8 5","5 3 8"] },
+    { id:"WM1M", subtest:"WM-1", subtestName:"数唱", difficulty:"medium", stdTime:18, memoryDisplay:4,
+      memoryContent:"4 9 2 5 1",
+      q:"先ほど表示された数字を<strong>逆順</strong>に並べたものは?",
+      options:["4 9 2 5 1","1 5 2 9 4","1 2 4 5 9","5 2 9 4 1","9 4 5 1 2","1 2 5 9 4"] },
+    { id:"WM1H", subtest:"WM-1", subtestName:"数唱", difficulty:"hard", stdTime:25, memoryDisplay:5,
+      memoryContent:"4 7 2 9 5",
+      q:"先ほど表示された数字の<strong>合計から最小値を引く</strong>といくつ?",
+      options:["15","20","22","25","27","29"] },
+
+    // ===== WM-2 算数 (memory display) =====
+    { id:"WM2E", subtest:"WM-2", subtestName:"算数", difficulty:"easy", stdTime:12, memoryDisplay:3, memoryStyle:"text",
+      memoryContent:"12 から 4 を引き、2 を足すといくつ?",
+      q:"先ほどの問題の<strong>答え</strong>は?",
+      options:["8","9","10","11","12","14"] },
+    { id:"WM2M", subtest:"WM-2", subtestName:"算数", difficulty:"medium", stdTime:18, memoryDisplay:5, memoryStyle:"text",
+      memoryContent:"15 に 7 を足し、そこから 8 を引き、最後に 2 倍するといくつ?",
+      q:"先ほどの問題の<strong>答え</strong>は?",
+      options:["14","22","24","28","30","56"] },
+    { id:"WM2H", subtest:"WM-2", subtestName:"算数", difficulty:"hard", stdTime:30, memoryDisplay:7, memoryStyle:"text",
+      memoryContent:"池のスイレンは毎日 2 倍に増え、48 日で池全体を覆い尽くす。池のちょうど半分が覆われるのは何日目?",
+      q:"先ほどの問題の<strong>答え</strong>は?",
+      options:["24日目","32日目","44日目","46日目","47日目","48日目"] },
+
+    // ===== WM-3 語音整列 (memory display) =====
+    { id:"WM3E", subtest:"WM-3", subtestName:"語音整列", difficulty:"easy", stdTime:12, memoryDisplay:3,
+      memoryContent:"5 3 8 1 6",
+      q:"先ほど表示された数字を<strong>小さい順</strong>に並べたとき、<strong>3 番目</strong>の数字は?",
+      options:["1","3","5","6","8","判定不能"] },
+    { id:"WM3M", subtest:"WM-3", subtestName:"語音整列", difficulty:"medium", stdTime:18, memoryDisplay:4,
+      memoryContent:"9 2 7 4 6 3",
+      q:"先ほど表示された数字を<strong>大きい順</strong>に並べたとき、<strong>4 番目</strong>の数字は?",
+      options:["2","3","4","6","7","9"] },
+    { id:"WM3H", subtest:"WM-3", subtestName:"語音整列", difficulty:"hard", stdTime:25, memoryDisplay:6,
+      memoryContent:"こ 7 あ 3 え 5 う 1 お 2",
+      q:"先ほど表示されたひらがなを<strong>50音順</strong>に並べたとき、<strong>3 番目</strong>のひらがなは?",
+      options:["あ","い","う","え","お","こ"] },
+
+    // ===== PS-1 記号探し =====
+    { id:"PS1E", subtest:"PS-1", subtestName:"記号探し", difficulty:"easy", stdTime:10,
+      q:"ターゲット【<b>★</b> <b>▲</b>】 下の4行のうち、ターゲット記号を<strong>1つでも</strong>含む行はいくつ?<div class='symbol-row'>行1: ○ △ □ ◇<br>行2: △ ★ ○ ◇<br>行3: □ ○ ◇ △<br>行4: ◇ ○ ▲ □</div>",
+      options:["0行","1行","2行","3行","4行","判定不能"] },
+    { id:"PS1M", subtest:"PS-1", subtestName:"記号探し", difficulty:"medium", stdTime:15,
+      q:"ターゲット【<b>◆</b> <b>☆</b>】 下の5行のうち、ターゲット記号を<strong>1つでも</strong>含む行はいくつ?<div class='symbol-row'>行1: ○ △ ● □ ◇<br>行2: ■ ◇ ☆ ○ △<br>行3: ● ◆ ■ □ ○<br>行4: ○ △ ■ ● ◇<br>行5: ◇ ● ☆ ◆ ■</div>",
+      options:["1行","2行","3行","4行","5行","判定不能"] },
+    { id:"PS1H", subtest:"PS-1", subtestName:"記号探し", difficulty:"hard", stdTime:20,
+      q:"ターゲット【<b>◆</b> <b>□</b>】 下の6行のうち、ターゲット記号を<strong>両方とも</strong>含む行はいくつ?<div class='symbol-row'>行1: ◆ ○ □ △ ◇<br>行2: ○ □ △ ◇ ●<br>行3: ◆ □ ● ○ △<br>行4: △ ◇ ◆ ○ ■<br>行5: □ ● ◆ ◇ △<br>行6: ◆ ■ □ △ ○</div>",
+      options:["1行","2行","3行","4行","5行","6行"] },
+
+    // ===== PS-2 符号 =====
+    { id:"PS2E", subtest:"PS-2", subtestName:"符号", difficulty:"easy", stdTime:10,
+      q:"対応表 [1=●, 2=○, 3=△] のとき、「2, 1, 3」を記号に変換すると?",
+      options:["●○△","○●△","△○●","●△○","○△●","△●○"] },
+    { id:"PS2M", subtest:"PS-2", subtestName:"符号", difficulty:"medium", stdTime:15,
+      q:"対応表 [1=●, 2=○, 3=△, 4=■, 5=□] のとき、「3, 5, 1, 4, 2」を記号に変換すると?",
+      options:["△□●■○","○■●□△","△■●□○","●○△■□","□△●■○","△□●○■"] },
+    { id:"PS2H", subtest:"PS-2", subtestName:"符号", difficulty:"hard", stdTime:20,
+      q:"対応表 [A=★, B=◆, C=●, D=□, E=△, F=◇] のとき、「D C A E B F」を記号に変換すると?",
+      options:["□●★△◆◇","●□★△◆◇","□●★◆△◇","□●★△◇◆","●□★△◇◆","□●◆★△◇"] },
+
+    // ===== PS-3 絵の抹消 =====
+    { id:"PS3E", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"easy", stdTime:10,
+      q:"下の列で「<b>○</b>」は何個?<div class='symbol-row'>○ ● ○ ● ● ○ ● ○ ○ ●</div>",
+      options:["3個","4個","5個","6個","7個","10個"] },
+    { id:"PS3M", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"medium", stdTime:15,
+      q:"下の列で「<b>◆</b>」は何個?<div class='symbol-row'>◆ ◇ ◆ ◆ ◇ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◇ ◆ ◆</div>",
+      options:["6個","7個","8個","9個","10個","15個"] },
+    { id:"PS3H", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"hard", stdTime:20,
+      q:"下の列で「<b>□</b>」は何個?<div class='symbol-row'>■ □ ■ □ ■ ■ □ □ ■ □ ■ □ ■ ■ ■ □ ■ ■ ■ □</div>",
+      options:["5個","6個","7個","8個","9個","10個"] }
+];
+
+// ================================================================
+// 正解キー (問題データと分離)
+// ================================================================
+const answerKey = {
+    "VC1E":"食べ物（果物）である",
+    "VC1M":"言葉で表現された作品である",
+    "VC1H":"社会的・道徳的な価値観である",
+    "VC2E":"丈夫で壊れにくい",
+    "VC2M":"広く受け入れる心",
+    "VC2H":"洗練されて垢抜けているさま",
+    "VC3E":"富士山",
+    "VC3M":"地球",
+    "VC3H":"白",
+    "VC4E":"身体が濡れないようにするため",
+    "VC4M":"遠くから識別でき危険度を段階的に示せるから",
+    "VC4H":"20回",
+    "PR1E":"黒2個・白2個",
+    "PR1M":"黒5個・白4個",
+    "PR1H":"9個",
+    "PR2E":"□",
+    "PR2M":"△",
+    "PR2H":"36",
+    "PR3E":"直角二等辺三角形2個",
+    "PR3M":"3/4円",
+    "PR3H":"11種類",
+    "PR4E":"重さ3",
+    "PR4M":"重さ3",
+    "PR4H":"11/26",
+    "PR5E":"短針",
+    "PR5M":"ペダル",
+    "PR5H":"4個",
+    "WM1E":"8 5 3",
+    "WM1M":"1 5 2 9 4",
+    "WM1H":"25",
+    "WM2E":"10",
+    "WM2M":"28",
+    "WM2H":"47日目",
+    "WM3E":"5",
+    "WM3M":"4",
+    "WM3H":"え",
+    "PS1E":"2行",
+    "PS1M":"3行",
+    "PS1H":"4行",
+    "PS2E":"○●△",
+    "PS2M":"△□●■○",
+    "PS2H":"□●★△◆◇",
+    "PS3E":"5個",
+    "PS3M":"8個",
+    "PS3H":"8個"
+};
+
+// ================================================================
+// 指標定義
+// ================================================================
+const indexGroups = {
+    VC: ["VC-1","VC-2","VC-3","VC-4"],
+    PR: ["PR-1","PR-2","PR-3","PR-4","PR-5"],
+    WM: ["WM-1","WM-2","WM-3"],
+    PS: ["PS-1","PS-2","PS-3"]
+};
+const indexMeta = {
+    VC: { name:"VCI", fullName:"言語理解", color:"#1a6fc4" },
+    PR: { name:"PRI", fullName:"知覚推理", color:"#00897b" },
+    WM: { name:"WMI", fullName:"ワーキングメモリ", color:"#fb8c00" },
+    PS: { name:"PSI", fullName:"処理速度", color:"#8e24aa" }
+};
+const subtestMeta = {
+    "VC-1":{group:"VC",name:"類似"}, "VC-2":{group:"VC",name:"単語"},
+    "VC-3":{group:"VC",name:"知識"}, "VC-4":{group:"VC",name:"理解"},
+    "PR-1":{group:"PR",name:"積み木模様"}, "PR-2":{group:"PR",name:"行列推理"},
+    "PR-3":{group:"PR",name:"パズル"}, "PR-4":{group:"PR",name:"バランス"},
+    "PR-5":{group:"PR",name:"絵の完成"},
+    "WM-1":{group:"WM",name:"数唱"}, "WM-2":{group:"WM",name:"算数"},
+    "WM-3":{group:"WM",name:"語音整列"},
+    "PS-1":{group:"PS",name:"記号探し"}, "PS-2":{group:"PS",name:"符号"},
+    "PS-3":{group:"PS",name:"絵の抹消"}
+};
+
+// ================================================================
+// 状態
+// ================================================================
+const TOTAL_TIME_SEC = 1500; // 25分
+let currentIdx = 0;
+let userAnswers = [];
+let questionStartTime = 0;
+let countdown = TOTAL_TIME_SEC;
+let timerInterval = null;
+let memoryTimer = null;
+let quizStartTime = 0;
+let quizSubmitted = false;
+let answerLocked = false;
+
+// ================================================================
+// ユーティリティ
+// ================================================================
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+// ================================================================
+// 画面遷移・テスト開始
+// ================================================================
+function startTest() {
+    userAnswers = new Array(questions.length).fill(null);
+    currentIdx = 0;
+    countdown = TOTAL_TIME_SEC;
+    quizStartTime = Date.now();
+    quizSubmitted = false;
+
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('quiz-screen').style.display = 'block';
+
+    startCountdown();
+    renderQuestion();
+}
+
+function startCountdown() {
+    if (timerInterval) clearInterval(timerInterval);
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        countdown--;
+        updateTimerDisplay();
+        if (countdown <= 0) { clearInterval(timerInterval); submitQuiz(); }
+    }, 1000);
+}
+function updateTimerDisplay() {
+    const el = document.getElementById('timer-display');
+    const m = Math.floor(Math.max(countdown, 0) / 60);
+    const s = Math.max(countdown, 0) % 60;
+    el.innerText = `⏱ ${m}:${String(s).padStart(2, '0')}`;
+    el.classList.toggle('warn', countdown <= 180 && countdown > 60);
+    el.classList.toggle('danger', countdown <= 60);
+}
+
+// ================================================================
+// 問題表示
+// ================================================================
+function renderQuestion() {
+    answerLocked = false;
+    if (memoryTimer) { clearInterval(memoryTimer); memoryTimer = null; }
+
+    const q = questions[currentIdx];
+    const total = questions.length;
+
+    document.getElementById('question-header').innerHTML =
+        `問題 ${currentIdx + 1} / ${total}`;
+    document.getElementById('progress-bar').style.width = `${(currentIdx / total) * 100}%`;
+
+    if (q.memoryDisplay) {
+        renderMemoryPhase(q);
+    } else {
+        renderStandardQuestion(q);
+    }
+}
+
+function renderStandardQuestion(q) {
+    questionStartTime = Date.now();
+    document.getElementById('question-content').innerHTML = q.q;
+    renderOptions(q);
+    const nsBtn = document.getElementById('not-sure-btn');
+    nsBtn.style.display = 'block';
+    nsBtn.className = 'not-sure-btn';
+    nsBtn.disabled = false;
+}
+
+function renderMemoryPhase(q) {
+    // 暗記フェーズ: 内容を表示しカウントダウン、ボタンは無効化
+    answerLocked = true;
+    const memClass = q.memoryStyle === 'text' ? 'memory-text' : 'memory-numbers';
+    const memLabel = q.memoryStyle === 'text' ? '以下の問題を覚えてください' : '以下の内容を覚えてください';
+    document.getElementById('question-content').innerHTML = `
+        <div style="font-size:0.85em;color:#666;">${memLabel}</div>
+        <div class="${memClass}">${q.memoryContent}</div>
+        <div class="memory-countdown" id="memory-countdown">残り ${q.memoryDisplay} 秒</div>
+    `;
+    document.getElementById('options-grid').innerHTML = '';
+    const nsBtn = document.getElementById('not-sure-btn');
+    nsBtn.style.display = 'none';
+
+    let remaining = q.memoryDisplay;
+    memoryTimer = setInterval(() => {
+        remaining--;
+        const cd = document.getElementById('memory-countdown');
+        if (remaining <= 0) {
+            clearInterval(memoryTimer); memoryTimer = null;
+            revealMemoryAnswer(q);
+        } else if (cd) {
+            cd.innerText = `残り ${remaining} 秒`;
+        }
+    }, 1000);
+}
+
+function revealMemoryAnswer(q) {
+    questionStartTime = Date.now(); // 回答時間はここから計測
+    answerLocked = false;
+    const hiddenLabel = q.memoryStyle === 'text' ? '(問題は非表示になりました)' : '(数字は非表示になりました)';
+    document.getElementById('question-content').innerHTML =
+        `<div class="memory-hidden-note">${hiddenLabel}</div>` + q.q;
+    renderOptions(q);
+    const nsBtn = document.getElementById('not-sure-btn');
+    nsBtn.style.display = 'block';
+    nsBtn.className = 'not-sure-btn';
+    nsBtn.disabled = false;
+}
+
+function renderOptions(q) {
+    if (!q._shuffledOptions) q._shuffledOptions = shuffle(q.options);
+    const grid = document.getElementById('options-grid');
+    grid.innerHTML = '';
+    q._shuffledOptions.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = opt;
+        btn.onclick = () => selectAnswer(opt, btn);
+        grid.appendChild(btn);
+    });
+}
+
+// ================================================================
+// 回答処理
+// ================================================================
+function selectAnswer(option, buttonEl) {
+    if (answerLocked) return;
+    answerLocked = true;
+    const elapsedMs = Date.now() - questionStartTime;
+    userAnswers[currentIdx] = { answer: option, elapsedMs };
+
+    document.querySelectorAll('.option-btn, .not-sure-btn').forEach(b => b.classList.remove('selected'));
+    if (buttonEl) buttonEl.classList.add('selected');
+
+    setTimeout(() => {
+        if (currentIdx < questions.length - 1) {
+            currentIdx++;
+            renderQuestion();
+        } else {
+            submitQuiz();
+        }
+    }, 280);
+}
+
+// ================================================================
+// 採点ロジック (WAIS-IV準拠の簡易版)
+// ================================================================
+const basePointsByDiff = { easy: 1, medium: 2, hard: 3 };
+
+function scoreQuestion(q, ans) {
+    const base = basePointsByDiff[q.difficulty];
+    if (!ans || ans.answer === null) return -base * 0.1; // 未回答 = わからない扱い
+    if (ans.answer === "わからない") return -base * 0.1;
+    if (ans.answer === answerKey[q.id]) {
+        const elapsedSec = ans.elapsedMs / 1000;
+        return elapsedSec <= q.stdTime ? base : base * 0.5;
+    }
+    return -base * 0.2; // 誤答
+}
+
+// 粗点 → 評価点 (M=10, SD=3)
+// IQ100の期待粗点≈2.5、IQ115の期待粗点≈3.8。1IQ-SDあたり粗点1.5変化と仮定。
+function rawToScaled(raw) {
+    const scaled = 10 + 2.0 * (raw - 2.5);
+    return Math.max(1, Math.min(19, scaled));
+}
+
+// 下位検査の評価点群 → 指標得点 (M=100, SD=15)
+function scaledSetToIndex(scaledArr) {
+    const avg = scaledArr.reduce((a,b) => a+b, 0) / scaledArr.length;
+    return 100 + 5 * (avg - 10); // (scaled-10)/3 × 15
+}
+
+// ================================================================
+// 集計・結果表示
+// ================================================================
+function submitQuiz() {
+    if (quizSubmitted) return;
+    quizSubmitted = true;
+    clearInterval(timerInterval);
+    if (memoryTimer) clearInterval(memoryTimer);
+
+    // 下位検査ごとの粗点を集計
+    const subtestRaw = {};
+    const subtestDetail = {};
+    questions.forEach((q, i) => {
+        const ans = userAnswers[i];
+        const pts = scoreQuestion(q, ans);
+        if (!subtestRaw[q.subtest]) {
+            subtestRaw[q.subtest] = 0;
+            subtestDetail[q.subtest] = [];
+        }
+        subtestRaw[q.subtest] += pts;
+        subtestDetail[q.subtest].push({ q, ans, pts });
+    });
+
+    // 評価点
+    const subtestScaled = {};
+    Object.keys(subtestRaw).forEach(st => {
+        subtestScaled[st] = rawToScaled(subtestRaw[st]);
+    });
+
+    // 指標得点
+    const indexScores = {};
+    Object.keys(indexGroups).forEach(idx => {
+        const arr = indexGroups[idx].map(st => subtestScaled[st]);
+        indexScores[idx] = Math.round(scaledSetToIndex(arr));
+    });
+
+    // FSIQ (全15下位検査の平均評価点から算出)
+    const allScaled = Object.values(subtestScaled);
+    const fsiq = Math.round(scaledSetToIndex(allScaled));
+
+    displayResults(fsiq, indexScores, subtestScaled, subtestRaw);
+}
+
+// 90%信頼区間 (SEM に基づく慣用値 ≒ z1.645 × SEM)
+const confIntervals = { FIQ:5, VC:7, PR:8, WM:8, PS:8 };
+
+function classifyIQ(iq) {
+    if (iq >= 130) return { text:"非常に高い", bg:"#fff3e0", color:"#e65100" };
+    if (iq >= 120) return { text:"高い",       bg:"#ffecb3", color:"#ef6c00" };
+    if (iq >= 110) return { text:"平均の上",   bg:"#e8f5e9", color:"#2e7d32" };
+    if (iq >= 90)  return { text:"平均",       bg:"#e3f2fd", color:"#1565c0" };
+    if (iq >= 80)  return { text:"平均の下",   bg:"#f3e5f5", color:"#6a1b9a" };
+    if (iq >= 70)  return { text:"低い",       bg:"#fce4ec", color:"#ad1457" };
+    return            { text:"非常に低い",     bg:"#fafafa", color:"#616161" };
+}
+
+function percentileOf(iq) {
+    const p = normalCDF(iq, 100, 15) * 100;
+    if (p >= 99) return ">99";
+    if (p <= 1)  return "<1";
+    return Math.round(p).toString();
+}
+
+function classificationRange(low, high) {
+    const cLow = classifyIQ(low);
+    const cHigh = classifyIQ(high);
+    if (cLow.text === cHigh.text) {
+        return `<span class="class-pill" style="background:${cLow.bg};color:${cLow.color};">${cLow.text}</span>`;
+    }
+    return `<span class="class-pill" style="background:${cLow.bg};color:${cLow.color};">${cLow.text}</span>〜<span class="class-pill" style="background:${cHigh.bg};color:${cHigh.color};">${cHigh.text}</span>`;
+}
+
+function renderResultRow(labelJa, abbr, score, ciHalf, isFsiq) {
+    const ciLow = score - ciHalf;
+    const ciHigh = score + ciHalf;
+    return `
+        <tr class="${isFsiq ? 'fsiq-row' : ''}">
+            <td class="label">${labelJa} <small style="color:#78909c;font-weight:400;">(${abbr})</small></td>
+            <td class="score">${score}</td>
+            <td>${percentileOf(score)}</td>
+            <td>${ciLow}-${ciHigh}</td>
+            <td>${classificationRange(ciLow, ciHigh)}</td>
+        </tr>
+    `;
+}
+
+// 直近の結果を一時保持（送信用）
+let lastResult = null;
+
+function displayResults(fsiq, indexScores, subtestScaled, subtestRaw) {
+    document.getElementById('quiz-screen').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+
+    const tbody = document.getElementById('result-tbody');
+    let html = renderResultRow("全検査", "FIQ", fsiq, confIntervals.FIQ, true);
+    Object.keys(indexGroups).forEach(idx => {
+        const meta = indexMeta[idx];
+        html += renderResultRow(meta.fullName, idx, indexScores[idx], confIntervals[idx], false);
+    });
+    tbody.innerHTML = html;
+
+    drawDistributionChart(fsiq);
+
+    lastResult = { fiq: fsiq, vc: indexScores.VC, pr: indexScores.PR, wm: indexScores.WM, ps: indexScores.PS };
+    populatePrefectureSelect();
+
+    // ランキングを描画（キャッシュがなければ取得）
+    if (cachedStats) {
+        renderRanking();
+    } else {
+        loadStats().then(d => { if (d) renderRanking(); });
+    }
+}
+
+// ================================================================
+// 都道府県リスト送信
+// ================================================================
+const prefectures = [
+    "北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+    "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+    "新潟県","富山県","石川県","福井県","山梨県","長野県",
+    "岐阜県","静岡県","愛知県","三重県",
+    "滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
+    "鳥取県","島根県","岡山県","広島県","山口県",
+    "徳島県","香川県","愛媛県","高知県",
+    "福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"
+];
+
+function populatePrefectureSelect() {
+    const sel = document.getElementById('prefecture-select');
+    if (sel.options.length > 1) return;
+    prefectures.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p; opt.textContent = p;
+        sel.appendChild(opt);
+    });
+}
+
+// Apps Script Web App の URL（デプロイ後に差し替え）
+const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzozjHWA4r13FhmFw75KWhWYgchE8h5kx9O0gEfZJL7m3iSYLidZE3FoPO4f6OS8TTpqg/exec";
+
+async function submitResult() {
+    const sel = document.getElementById('prefecture-select');
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('submit-status');
+    const pref = sel.value;
+
+    status.className = 'submit-status';
+    status.textContent = '';
+
+    if (!pref) {
+        status.className = 'submit-status error';
+        status.textContent = '都道府県を選択してください。';
+        return;
+    }
+    if (!lastResult) {
+        status.className = 'submit-status error';
+        status.textContent = '結果データが見つかりません。';
+        return;
+    }
+    if (!SUBMIT_ENDPOINT) {
+        status.className = 'submit-status error';
+        status.textContent = '送信先が未設定です（公開準備中）。';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+
+    try {
+        await fetch(SUBMIT_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ ...lastResult, prefecture: pref, ts: new Date().toISOString() })
+        });
+        status.className = 'submit-status success';
+        status.textContent = `✓ 送信ありがとうございました（${pref}）。集計に反映されます。`;
+        sel.disabled = true;
+        btn.style.display = 'none';
+        userSubmittedPref = pref;
+        // 送信後は 1 秒ほど待ってから再取得（シート反映待ち）して順位を更新
+        setTimeout(() => { loadStats().then(renderRanking); }, 1200);
+    } catch (err) {
+        status.className = 'submit-status error';
+        status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        btn.disabled = false;
+        btn.textContent = '送信する';
+    }
+}
+
+// ================================================================
+// 統計取得 & ランキング表示
+// ================================================================
+let cachedStats = null;
+let userSubmittedPref = null;
+let rankingMode = 'count'; // 'count' or 'avg'
+
+async function loadStats() {
+    if (!SUBMIT_ENDPOINT) return null;
+    try {
+        const res = await fetch(SUBMIT_ENDPOINT + '?action=stats', { method: 'GET' });
+        const data = await res.json();
+        if (!data.ok) return null;
+        cachedStats = data;
+        // ウェルカム画面のバッジ更新
+        const badge = document.getElementById('stats-badge');
+        const total = document.getElementById('stats-total');
+        if (badge && total && typeof data.total === 'number' && data.total > 0) {
+            total.textContent = data.total.toLocaleString();
+            badge.style.display = 'inline-block';
+        }
+        return data;
+    } catch (err) {
+        return null;
+    }
+}
+
+function switchRankingMode(mode) {
+    rankingMode = mode;
+    document.querySelectorAll('.ranking-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.mode === mode);
+    });
+    renderRanking();
+}
+
+function renderRanking() {
+    const box = document.getElementById('ranking-box');
+    const table = document.getElementById('ranking-table');
+    const note = document.getElementById('ranking-note');
+    if (!box || !cachedStats || !cachedStats.byPref) return;
+
+    const entries = Object.keys(cachedStats.byPref).map(p => ({
+        pref: p,
+        count: cachedStats.byPref[p].count || 0,
+        avgFiq: cachedStats.byPref[p].avgFiq
+    }));
+    if (entries.length === 0) { box.style.display = 'none'; return; }
+    box.style.display = 'block';
+
+    // avg モードでは集計が n>=3 の県のみを対象にする（少人数だと平均が不安定なため）
+    const minCountForAvg = 3;
+    let sorted;
+    if (rankingMode === 'avg') {
+        sorted = entries
+            .filter(e => e.avgFiq !== null && e.count >= minCountForAvg)
+            .sort((a, b) => b.avgFiq - a.avgFiq);
+    } else {
+        sorted = entries.slice().sort((a, b) => b.count - a.count);
+    }
+    const topN = 10;
+    const top = sorted.slice(0, topN);
+
+    const userIdxInTop = userSubmittedPref ? top.findIndex(e => e.pref === userSubmittedPref) : -1;
+    const userEntry = userSubmittedPref ? entries.find(e => e.pref === userSubmittedPref) : null;
+    const userRankInAll = userEntry ? sorted.findIndex(e => e.pref === userSubmittedPref) + 1 : 0;
+
+    const valueLabel = rankingMode === 'count' ? '参加者数' : '平均 IQ';
+    const formatValue = (e) => rankingMode === 'count'
+        ? `${e.count.toLocaleString()}人`
+        : (e.avgFiq !== null ? e.avgFiq.toFixed(1) : '—');
+
+    let html = `<tr><th style="width:3em;">順位</th><th>都道府県</th><th style="width:7em;">${valueLabel}</th></tr>`;
+    top.forEach((e, i) => {
+        const cls = e.pref === userSubmittedPref ? ' class="user-row"' : '';
+        html += `<tr${cls}><td class="rank">${i + 1}</td><td class="pref">${e.pref}</td><td>${formatValue(e)}</td></tr>`;
+    });
+    // ユーザー県が 10 位以下なら追加表示
+    if (userEntry && userRankInAll > 0 && userIdxInTop === -1) {
+        html += `<tr><td colspan="3" style="text-align:center;color:#90a4ae;font-size:0.8em;padding:4px;">⋯</td></tr>`;
+        html += `<tr class="user-row"><td class="rank">${userRankInAll}</td><td class="pref">${userEntry.pref}</td><td>${formatValue(userEntry)}</td></tr>`;
+    }
+    table.innerHTML = html;
+
+    if (rankingMode === 'avg') {
+        note.textContent = `※平均 IQ は参加者 ${minCountForAvg} 名以上の都道府県のみ表示`;
+    } else {
+        note.textContent = `全 ${cachedStats.total.toLocaleString()} 件の送信データより集計`;
+    }
+}
+
+// ページロード時にウェルカム画面用の統計を取得
+window.addEventListener('DOMContentLoaded', () => { loadStats(); });
+
+// ================================================================
+// 分布チャート
+// ================================================================
+function erf(x) {
+    const sign = x >= 0 ? 1 : -1;
+    x = Math.abs(x);
+    const t = 1 / (1 + 0.3275911 * x);
+    const y = 1 - (((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t) * Math.exp(-x * x);
+    return sign * y;
+}
+function normalCDF(x, mean, sd) { return 0.5 * (1 + erf((x - mean) / (sd * Math.sqrt(2)))); }
+function normalPDF(x, mean, sd) { return Math.exp(-0.5 * Math.pow((x - mean) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI)); }
+
+function drawDistributionChart(iq) {
+    const svg = document.getElementById('dist-chart');
+    const mean = 100, sd = 15, xMin = 55, xMax = 145;
+    const W = 460, H = 155, pL = 10, pR = 10, pT = 22, pB = 28;
+    const cW = W - pL - pR, cH = H - pT - pB;
+
+    const toSvgX = v => pL + (v - xMin) / (xMax - xMin) * cW;
+    const toSvgY = v => pT + cH - (v / normalPDF(mean, mean, sd)) * cH;
+    const baseY = toSvgY(0);
+
+    const pts = [];
+    for (let x = xMin; x <= xMax; x += 1) pts.push([toSvgX(x), toSvgY(normalPDF(x, mean, sd))]);
+    const curvePath = 'M' + pts.map(p => p.join(',')).join(' L');
+
+    const iqClamped = Math.max(xMin, Math.min(xMax, iq));
+    const mx = toSvgX(iqClamped);
+    const percentile = Math.round(normalCDF(iq, mean, sd) * 100);
+    const topPct = 100 - percentile;
+
+    svg.innerHTML = `
+        <path d="${curvePath}" fill="#e3f2fd" stroke="#1a6fc4" stroke-width="2"/>
+        <line x1="${pL}" y1="${baseY}" x2="${W - pR}" y2="${baseY}" stroke="#ccc" stroke-width="1"/>
+        <line x1="${toSvgX(100)}" y1="${pT}" x2="${toSvgX(100)}" y2="${baseY}" stroke="#bbb" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="${toSvgX(100)}" y="${baseY + 14}" text-anchor="middle" font-size="10" fill="#888">100</text>
+        <text x="${toSvgX(85)}"  y="${baseY + 14}" text-anchor="middle" font-size="10" fill="#888">85</text>
+        <text x="${toSvgX(115)}" y="${baseY + 14}" text-anchor="middle" font-size="10" fill="#888">115</text>
+        <text x="${toSvgX(70)}"  y="${baseY + 14}" text-anchor="middle" font-size="10" fill="#888">70</text>
+        <text x="${toSvgX(130)}" y="${baseY + 14}" text-anchor="middle" font-size="10" fill="#888">130</text>
+        <line x1="${mx}" y1="${pT}" x2="${mx}" y2="${baseY}" stroke="#e74c3c" stroke-width="2" stroke-dasharray="4,3"/>
+        <circle cx="${mx}" cy="${toSvgY(normalPDF(iqClamped, mean, sd))}" r="5" fill="#e74c3c"/>
+        <text x="${mx}" y="${pT - 5}" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="bold">IQ ${iq}</text>
+    `;
+    document.getElementById('percentile-text').innerHTML =
+        `赤線はあなたの FSIQ の位置。同年齢集団のうち上位 <strong>${topPct}%</strong> に相当します。`;
+}
+</script>
+</body>
+</html>

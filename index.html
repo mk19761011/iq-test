@@ -466,7 +466,7 @@
     <div id="result-screen" style="display:none;">
         <h2 id="result-h2">測定結果</h2>
         <p id="result-desc" style="color:#546e7a;font-size:0.95em;">
-            以下は各指標および全検査IQ (FSIQ) の推定結果です。
+            以下は各指標および全検査IQ の推定結果です。
         </p>
         <div class="gate-message" id="gate-message" style="display:none;">
             <strong>📨 結果はもう少し先です</strong><br>
@@ -480,7 +480,7 @@
                     <th style="text-align:left;padding-left:12px;">項目</th>
                     <th>IQ</th>
                     <th>パーセンタイル</th>
-                    <th>信頼区間 90%</th>
+                    <th>目安範囲 90%</th>
                     <th>記述分類</th>
                 </tr>
             </thead>
@@ -488,21 +488,21 @@
         </table>
 
         <div class="dist-box">
-            <div class="dist-title">FSIQ の標準分布における位置</div>
+            <div class="dist-title">全検査IQの標準分布における位置</div>
             <svg id="dist-chart" viewBox="0 0 460 155" width="100%" style="display:block;overflow:visible;"></svg>
             <p id="percentile-text" class="percentile-text"></p>
         </div>
 
         <p class="disclaimer" id="result-disclaimer">
-            <strong>パーセンタイル</strong>は 100 人中で上から数えた位置の目安（例：84 なら同年代の上位 16% 相当）、
-            <strong>信頼区間</strong>は「真の値がこの範囲に入る可能性が高い」幅を意味します。
+            <strong>パーセンタイル</strong>は同年代100人中で下から何人目の位置かを示す値（例：84 なら下から84番目 = 上位 16% 相当）、
+            <strong>目安範囲</strong>はスコアの誤差幅を考慮した推定の幅を意味します。
             本テストは娯楽目的の簡易版です。医学的・教育的な判定には、有資格者による正式な検査を受けてください。
         </p>
 
         <div class="submit-box" id="submit-box">
-            <div class="submit-title">📍 都道府県別の集計に協力する（任意）</div>
+            <div class="submit-title">📍 都道府県を送信して結果を表示する</div>
             <p class="submit-desc">
-                出身地（または現在の居住地）を選んで送信すると、都道府県別の参加者数・平均値の集計に反映されます。
+                送信した都道府県は参加者数・平均値の集計に使用されます。結果の表示には送信が必要です。
                 送信される情報は <strong>都道府県名・各IQスコア・送信時刻</strong> のみで、個人を特定できる情報は一切含まれません。
             </p>
             <div class="submit-form">
@@ -567,7 +567,7 @@ const questions = [
     { id:"VC3M", subtest:"VC-3", subtestName:"一般常識", difficulty:"medium", stdTime:10,
       q:"太陽系で太陽から3番目に近い惑星は?",
       options:["水星","金星","地球","火星","木星","土星"] },
-    { id:"VC3H", subtest:"VC-3", subtestName:"一般常識", difficulty:"hard", stdTime:15,
+    { id:"VC3H", subtest:"VC-3", subtestName:"一般常識", difficulty:"hard", stdTime:10,
       q:"光の三原色（赤・緑・青）をすべて同じ強さで混ぜると何色になる?",
       options:["白","黒","灰色","茶色","マゼンタ","シアン"] },
 
@@ -674,7 +674,7 @@ const questions = [
       memoryContent:"9 2 7 4 6 3",
       q:"先ほど表示された数字を<strong>大きい順</strong>に並べたとき、<strong>4 番目</strong>の数字は?",
       options:["2","3","4","6","7","9"] },
-    { id:"WM3H", subtest:"WM-3", subtestName:"順序整理", difficulty:"hard", stdTime:25, memoryDisplay:9,
+    { id:"WM3H", subtest:"WM-3", subtestName:"順序整理", difficulty:"hard", stdTime:25, memoryDisplay:10,
       memoryContent:"こ 7 あ 3 え 5 う 1 お 2",
       q:"先ほど表示されたひらがなを<strong>50音順</strong>に並べたとき、<strong>3 番目</strong>のひらがなは?",
       options:["あ","い","う","え","お","こ"] },
@@ -774,10 +774,10 @@ const indexGroups = {
     PS: ["PS-1","PS-2","PS-3"]
 };
 const indexMeta = {
-    VC: { name:"VC", fullName:"言語思考力",        color:"#1a6fc4" },
-    PR: { name:"PR", fullName:"空間・パターン認識", color:"#00897b" },
-    WM: { name:"WM", fullName:"記憶と処理",        color:"#fb8c00" },
-    PS: { name:"PS", fullName:"スピード認知",      color:"#8e24aa" }
+    VC: { name:"VC", fullName:"言語思考力",        abbr:"言語", color:"#1a6fc4" },
+    PR: { name:"PR", fullName:"空間・パターン認識", abbr:"空間", color:"#00897b" },
+    WM: { name:"WM", fullName:"記憶と処理",        abbr:"記憶", color:"#fb8c00" },
+    PS: { name:"PS", fullName:"スピード認知",      abbr:"速度", color:"#8e24aa" }
 };
 const subtestMeta = {
     "VC-1":{group:"VC",name:"言葉の共通点"}, "VC-2":{group:"VC",name:"語彙の意味"},
@@ -1041,14 +1041,14 @@ function submitQuiz() {
         indexScores[idx] = Math.round(scaledSetToIndex(arr));
     });
 
-    // FSIQ (全15下位検査の平均評価点から算出)
+    // 全検査IQ（全15下位検査の平均評価点から算出）
     const allScaled = Object.values(subtestScaled);
     const fsiq = Math.round(scaledSetToIndex(allScaled));
 
     displayResults(fsiq, indexScores, subtestScaled, subtestRaw);
 }
 
-// 90%信頼区間 (SEM に基づく慣用値 ≒ z1.645 × SEM)
+// 90%目安範囲
 const confIntervals = { FIQ:5, VC:7, PR:8, WM:8, PS:8 };
 
 function classifyIQ(iq) {
@@ -1102,10 +1102,10 @@ function displayResults(fsiq, indexScores, subtestScaled, subtestRaw) {
 
     // 結果テーブルとチャートはあらかじめ仕込んでおき、ゲート解除時に瞬時に表示
     const tbody = document.getElementById('result-tbody');
-    let html = renderResultRow("全検査", "FIQ", fsiq, confIntervals.FIQ, true);
+    let html = renderResultRow("全検査", "総合", fsiq, confIntervals.FIQ, true);
     Object.keys(indexGroups).forEach(idx => {
         const meta = indexMeta[idx];
-        html += renderResultRow(meta.fullName, idx, indexScores[idx], confIntervals[idx], false);
+        html += renderResultRow(meta.fullName, meta.abbr, indexScores[idx], confIntervals[idx], false);
     });
     tbody.innerHTML = html;
     drawDistributionChart(fsiq);
@@ -1138,7 +1138,7 @@ function revealFullResults() {
     const screen = document.getElementById('result-screen');
     screen.classList.remove('result-gated');
     document.getElementById('result-h2').textContent = '測定結果';
-    document.getElementById('result-desc').textContent = '以下は各指標および全検査IQ (FSIQ) の推定結果です。';
+    document.getElementById('result-desc').textContent = '以下は各指標および全検査IQ の推定結果です。';
     const gate = document.getElementById('gate-message');
     if (gate) gate.style.display = 'none';
 }
@@ -1364,7 +1364,7 @@ function drawDistributionChart(iq) {
         <text x="${mx}" y="${pT - 5}" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="bold">IQ ${iq}</text>
     `;
     document.getElementById('percentile-text').innerHTML =
-        `赤線はあなたの FSIQ の位置。同年齢集団のうち上位 <strong>${topPct}%</strong> に相当します。`;
+        `赤線はあなたの全検査IQの位置。同年齢集団のうち上位 <strong>${topPct}%</strong> に相当します。`;
 }
 </script>
 </body>

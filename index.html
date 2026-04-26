@@ -146,13 +146,32 @@
         text-align: center;
     }
     .memory-text {
-        font-size: 1.25em; font-weight: bold;
+        font-size: 1.4em; font-weight: bold;
         color: #1a6fc4; line-height: 1.7;
         margin: 20px 0; padding: 20px;
         background: #e3f2fd; border-radius: 10px;
         text-align: center;
     }
-    .memory-countdown { font-size: 0.95em; color: #e74c3c; margin-top: 6px; }
+
+    /* ===== Result gating (送信前は結果を伏せる) ===== */
+    #result-screen.result-gated #result-table,
+    #result-screen.result-gated .dist-box,
+    #result-screen.result-gated #ranking-box,
+    #result-screen.result-gated #result-disclaimer { display: none; }
+    .gate-message {
+        margin: 16px auto 8px; max-width: 560px;
+        padding: 18px 22px; background: #fff8e1;
+        border: 1px solid #ffe082; border-radius: 10px;
+        font-size: 0.95em; color: #5d4037;
+        line-height: 1.7; text-align: left;
+    }
+    .gate-message strong { color: #e65100; }
+    .memory-countdown {
+        font-size: 1.4em; font-weight: 700;
+        color: #e74c3c; margin-top: 16px;
+        letter-spacing: 0.05em;
+        font-variant-numeric: tabular-nums;
+    }
     .memory-hidden-note { font-size: 0.85em; color: #999; margin-bottom: 10px; }
 
     .options-grid {
@@ -358,6 +377,15 @@
         font-size: 0.78em; color: #78909c;
         margin-top: 8px; text-align: right;
     }
+    .ranking-teaser {
+        padding: 24px 16px; text-align: center;
+        color: #546e7a; font-size: 0.92em;
+        line-height: 1.8;
+        background: #f7f9fc;
+        border-radius: 8px;
+        border: 1px dashed #c5d4e3;
+    }
+    .ranking-teaser strong { color: #1a6fc4; }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
@@ -387,26 +415,26 @@
 
         <div class="index-grid">
             <div class="index-card" style="border-top-color:#1a6fc4;">
-                <strong>VCI</strong>言語理解
-                <small>類似・単語・知識・理解</small>
+                <strong>言語思考力</strong>
+                <small>言葉の理解と表現</small>
             </div>
             <div class="index-card" style="border-top-color:#00897b;">
-                <strong>PRI</strong>知覚推理
-                <small>積み木・行列・パズル・バランス・絵</small>
+                <strong>空間・パターン認識</strong>
+                <small>図形と規則の発見</small>
             </div>
             <div class="index-card" style="border-top-color:#fb8c00;">
-                <strong>WMI</strong>ワーキングメモリ
-                <small>数唱・算数・語音整列</small>
+                <strong>記憶と処理</strong>
+                <small>情報の保持と操作</small>
             </div>
             <div class="index-card" style="border-top-color:#8e24aa;">
-                <strong>PSI</strong>処理速度
-                <small>記号探し・符号・絵の抹消</small>
+                <strong>スピード認知</strong>
+                <small>素早い識別と判断</small>
             </div>
         </div>
 
         <div class="warning-box">
             <strong>📊 測定について</strong><br>
-            言語理解・知覚推理・ワーキングメモリ・処理速度 の 4 つの領域について、<strong>全 45 問</strong>を出題します。
+            言語思考力・空間/パターン認識・記憶と処理・スピード認知 の 4 領域について、<strong>全 45 問</strong>を出題します。
             正答・誤答に加えて<strong>回答にかかった時間</strong>も得点に反映されます。<br><br>
             <strong>所要時間の目安：20〜30 分</strong><br>
             迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。
@@ -416,7 +444,7 @@
         <p class="disclaimer">
             本テストは娯楽・自己診断目的の簡易版です。正式な臨床知能検査ではないため、
             医学的診断や就学・就労判定の根拠には使用できません。正確な知能評価が必要な場合は、
-            有資格の臨床心理士による対面のウェクスラー式検査 (WAIS-IV 等) を受検してください。
+            有資格の臨床心理士による対面の専門的な知能検査を受検してください。
         </p>
     </div>
 
@@ -436,10 +464,15 @@
 
     <!-- ============= Result ============= -->
     <div id="result-screen" style="display:none;">
-        <h2>測定結果</h2>
-        <p style="color:#546e7a;font-size:0.95em;">
+        <h2 id="result-h2">測定結果</h2>
+        <p id="result-desc" style="color:#546e7a;font-size:0.95em;">
             以下は各指標および全検査IQ (FSIQ) の推定結果です。
         </p>
+        <div class="gate-message" id="gate-message" style="display:none;">
+            <strong>📨 結果はもう少し先です</strong><br>
+            お疲れさまでした。集計協力のお願いとして、<strong>下の都道府県を選んで送信</strong>すると、
+            あなたの IQ・パーセンタイル・都道府県別ランキングがすべて表示されます。
+        </div>
 
         <table class="result-table" id="result-table">
             <thead>
@@ -460,7 +493,7 @@
             <p id="percentile-text" class="percentile-text"></p>
         </div>
 
-        <p class="disclaimer">
+        <p class="disclaimer" id="result-disclaimer">
             <strong>パーセンタイル</strong>は 100 人中で上から数えた位置の目安（例：84 なら同年代の上位 16% 相当）、
             <strong>信頼区間</strong>は「真の値がこの範囲に入る可能性が高い」幅を意味します。
             本テストは娯楽目的の簡易版です。医学的・教育的な判定には、有資格者による正式な検査を受けてください。
@@ -481,14 +514,20 @@
             <p class="submit-status" id="submit-status"></p>
         </div>
 
-        <div class="ranking-box" id="ranking-box" style="display:none;">
+        <div class="ranking-box" id="ranking-box">
             <div class="ranking-title">🏆 都道府県別ランキング</div>
-            <div class="ranking-tabs">
-                <button class="ranking-tab active" data-mode="count" onclick="switchRankingMode('count')">参加者数</button>
-                <button class="ranking-tab" data-mode="avg" onclick="switchRankingMode('avg')">平均 IQ</button>
+            <div class="ranking-teaser" id="ranking-teaser">
+                🔒 上の送信フォームから都道府県を送信すると、<br>
+                全国の<strong>都道府県別ランキング</strong>が表示されます。
             </div>
-            <table class="ranking-table" id="ranking-table"></table>
-            <p class="ranking-note" id="ranking-note"></p>
+            <div class="ranking-content" id="ranking-content" style="display:none;">
+                <div class="ranking-tabs">
+                    <button class="ranking-tab active" data-mode="count" onclick="switchRankingMode('count')">参加者数</button>
+                    <button class="ranking-tab" data-mode="avg" onclick="switchRankingMode('avg')">平均 IQ</button>
+                </div>
+                <table class="ranking-table" id="ranking-table"></table>
+                <p class="ranking-note" id="ranking-note"></p>
+            </div>
         </div>
     </div>
 
@@ -499,179 +538,179 @@
 // 問題データ (15下位検査 × 3難易度 = 45問)
 // ================================================================
 const questions = [
-    // ===== VC-1 類似 =====
-    { id:"VC1E", subtest:"VC-1", subtestName:"類似", difficulty:"easy", stdTime:8,
+    // ===== VC-1 言葉の共通点 =====
+    { id:"VC1E", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"easy", stdTime:8,
       q:"「リンゴ」と「バナナ」に共通するものは?",
       options:["色が同じ","食べ物（果物）である","皮をむく必要がある","どちらも赤い","栽培が簡単","種がない"] },
-    { id:"VC1M", subtest:"VC-1", subtestName:"類似", difficulty:"medium", stdTime:12,
+    { id:"VC1M", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"medium", stdTime:12,
       q:"「詩」と「小説」に共通するものは?",
       options:["韻を踏む","登場人物が必ずいる","言葉で表現された作品である","必ず本になる","必ず作者が実在する","同じ長さである"] },
-    { id:"VC1H", subtest:"VC-1", subtestName:"類似", difficulty:"hard", stdTime:18,
+    { id:"VC1H", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"hard", stdTime:18,
       q:"「正義」と「平等」に共通するものは?",
       options:["どちらも法律である","社会的・道徳的な価値観である","目に見える物体","個人的な感情","宗教固有の概念","国家専属の概念"] },
 
-    // ===== VC-2 単語 =====
-    { id:"VC2E", subtest:"VC-2", subtestName:"単語", difficulty:"easy", stdTime:7,
+    // ===== VC-2 語彙の意味 =====
+    { id:"VC2E", subtest:"VC-2", subtestName:"語彙の意味", difficulty:"easy", stdTime:7,
       q:"「頑丈」の意味として最も近いのは?",
       options:["細かい","丈夫で壊れにくい","軽くて持ちやすい","透明で美しい","古くて貴重","冷たい"] },
-    { id:"VC2M", subtest:"VC-2", subtestName:"単語", difficulty:"medium", stdTime:10,
+    { id:"VC2M", subtest:"VC-2", subtestName:"語彙の意味", difficulty:"medium", stdTime:10,
       q:"「寛容」の意味として最も近いのは?",
       options:["厳しく叱ること","広く受け入れる心","素早く動くこと","控えめな態度","冷静な判断","疑い深いこと"] },
-    { id:"VC2H", subtest:"VC-2", subtestName:"単語", difficulty:"hard", stdTime:15,
+    { id:"VC2H", subtest:"VC-2", subtestName:"語彙の意味", difficulty:"hard", stdTime:15,
       q:"「瀟洒（しょうしゃ）」の意味として最も近いのは?",
       options:["古めかしく粗末なさま","洗練されて垢抜けているさま","騒がしく賑やかなさま","押し付けがましいさま","狭くて窮屈なさま","厳しく冷酷なさま"] },
 
-    // ===== VC-3 知識 =====
-    { id:"VC3E", subtest:"VC-3", subtestName:"知識", difficulty:"easy", stdTime:7,
+    // ===== VC-3 一般常識 =====
+    { id:"VC3E", subtest:"VC-3", subtestName:"一般常識", difficulty:"easy", stdTime:7,
       q:"日本で最も高い山は?",
       options:["富士山","北岳","槍ヶ岳","奥穂高岳","阿蘇山","御嶽山"] },
-    { id:"VC3M", subtest:"VC-3", subtestName:"知識", difficulty:"medium", stdTime:10,
+    { id:"VC3M", subtest:"VC-3", subtestName:"一般常識", difficulty:"medium", stdTime:10,
       q:"太陽系で太陽から3番目に近い惑星は?",
       options:["水星","金星","地球","火星","木星","土星"] },
-    { id:"VC3H", subtest:"VC-3", subtestName:"知識", difficulty:"hard", stdTime:15,
+    { id:"VC3H", subtest:"VC-3", subtestName:"一般常識", difficulty:"hard", stdTime:15,
       q:"光の三原色（赤・緑・青）をすべて同じ強さで混ぜると何色になる?",
       options:["白","黒","灰色","茶色","マゼンタ","シアン"] },
 
-    // ===== VC-4 理解 =====
-    { id:"VC4E", subtest:"VC-4", subtestName:"理解", difficulty:"easy", stdTime:8,
+    // ===== VC-4 場面の判断 =====
+    { id:"VC4E", subtest:"VC-4", subtestName:"場面の判断", difficulty:"easy", stdTime:8,
       q:"雨の日に傘をさすのはなぜ?",
       options:["おしゃれのため","身体が濡れないようにするため","重いものを持つため","暑さをしのぐため","音を聞くため","風を防ぐため"] },
-    { id:"VC4M", subtest:"VC-4", subtestName:"理解", difficulty:"medium", stdTime:12,
+    { id:"VC4M", subtest:"VC-4", subtestName:"場面の判断", difficulty:"medium", stdTime:12,
       q:"交通信号が赤・黄・青（緑）の3色なのはなぜ?",
       options:["作るのが安いから","3色が偶然選ばれただけ","遠くから識別でき危険度を段階的に示せるから","色覚障害者のため","電球の構造上の都合","法律で定められているだけ"] },
-    { id:"VC4H", subtest:"VC-4", subtestName:"理解", difficulty:"hard", stdTime:25,
+    { id:"VC4H", subtest:"VC-4", subtestName:"場面の判断", difficulty:"hard", stdTime:25,
       q:"1 から 100 までの数字の中で、「9」という数字は何回出てくる?",
       options:["10回","11回","19回","20回","21回","30回"] },
 
-    // ===== PR-1 積み木模様 =====
-    { id:"PR1E", subtest:"PR-1", subtestName:"積み木模様", difficulty:"easy", stdTime:10,
-      q:"2×2マスで下の模様を作るのに必要なブロックは?<div class='visual-grid' style='grid-template-columns:repeat(2,60px);max-width:140px;'><div>■</div><div>■</div><div>□</div><div>□</div></div>",
-      options:["黒2個・白2個","全て黒","全て白","黒3個・白1個","黒1個・白3個","黒白を交互"] },
-    { id:"PR1M", subtest:"PR-1", subtestName:"積み木模様", difficulty:"medium", stdTime:15,
-      q:"3×3マスで下の市松模様を作るのに必要な内訳は?<div class='visual-grid'><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div><div>□</div><div>■</div></div>",
-      options:["黒4個・白5個","黒5個・白4個","黒3個・白6個","黒6個・白3個","全て黒","全て白"] },
-    { id:"PR1H", subtest:"PR-1", subtestName:"積み木模様", difficulty:"hard", stdTime:22,
-      q:"5×5マスで、主対角線（左上→右下）と反対角線（右上→左下）の両方を黒、残りを白とする。重なるマスは1個と数えるとき、黒マスは何個?",
-      options:["5個","7個","9個","10個","13個","16個"] },
+    // ===== PR-1 立体把握（言葉から空間を再構築） =====
+    { id:"PR1E", subtest:"PR-1", subtestName:"立体把握", difficulty:"easy", stdTime:12,
+      q:"立方体（サイコロのような形）を 1 つ机の上に置き、真上から見下ろした。見える形はどれ?",
+      options:["正方形","長方形","ひし形","三角形","円","正六角形"] },
+    { id:"PR1M", subtest:"PR-1", subtestName:"立体把握", difficulty:"medium", stdTime:20,
+      q:"標準的な西洋式のサイコロを <strong>1 の面が上、2 の面が手前</strong> になるように置く。このとき右側面に出る数字は?（向かい合う面の数の和は 7）",
+      options:["1","2","3","4","5","6"] },
+    { id:"PR1H", subtest:"PR-1", subtestName:"立体把握", difficulty:"hard", stdTime:30,
+      q:"立方体の 6 つの面の<strong>中心点</strong>に印を打ち、隣り合う面どうしの中心点を直線で結んでいく。すべて結び終えるとできあがる立体はどれ?",
+      options:["正四面体","立方体（正六面体）","正八面体","正十二面体","正二十面体","球体"] },
 
-    // ===== PR-2 行列推理 =====
-    { id:"PR2E", subtest:"PR-2", subtestName:"行列推理", difficulty:"easy", stdTime:8,
+    // ===== PR-2 図形規則 =====
+    { id:"PR2E", subtest:"PR-2", subtestName:"図形規則", difficulty:"easy", stdTime:8,
       q:"「?」に入るのは?<div class='visual-grid'><div>○</div><div>○</div><div>○</div><div>△</div><div>△</div><div>△</div><div>□</div><div>□</div><div>?</div></div>",
       options:["○","△","□","◇","☆","×"] },
-    { id:"PR2M", subtest:"PR-2", subtestName:"行列推理", difficulty:"medium", stdTime:12,
+    { id:"PR2M", subtest:"PR-2", subtestName:"図形規則", difficulty:"medium", stdTime:12,
       q:"「?」に入るのは?<div class='visual-grid'><div>○</div><div>△</div><div>□</div><div>△</div><div>□</div><div>○</div><div>□</div><div>○</div><div>?</div></div>",
       options:["○","△","□","◇","☆","×"] },
-    { id:"PR2H", subtest:"PR-2", subtestName:"行列推理", difficulty:"hard", stdTime:18,
+    { id:"PR2H", subtest:"PR-2", subtestName:"図形規則", difficulty:"hard", stdTime:18,
       q:"次の数列の「?」に入る数字は?<div class='symbol-row'>1, 4, 9, 16, 25, ?</div>",
       options:["30","32","36","42","49","64"] },
 
-    // ===== PR-3 パズル =====
-    { id:"PR3E", subtest:"PR-3", subtestName:"パズル", difficulty:"easy", stdTime:10,
+    // ===== PR-3 図形合成 =====
+    { id:"PR3E", subtest:"PR-3", subtestName:"図形合成", difficulty:"easy", stdTime:10,
       q:"2個を組み合わせて「正方形」を作れるのはどれ?",
       options:["直角二等辺三角形2個","正三角形2個","円2個","半円2個","台形2個","平行四辺形2個"] },
-    { id:"PR3M", subtest:"PR-3", subtestName:"パズル", difficulty:"medium", stdTime:15,
+    { id:"PR3M", subtest:"PR-3", subtestName:"図形合成", difficulty:"medium", stdTime:15,
       q:"円を4等分した扇形のうち3個を組み合わせた形は?",
       options:["1/4円","半円","3/4円","円全体","楕円","星形"] },
-    { id:"PR3H", subtest:"PR-3", subtestName:"パズル", difficulty:"hard", stdTime:20,
+    { id:"PR3H", subtest:"PR-3", subtestName:"図形合成", difficulty:"hard", stdTime:20,
       q:"立方体を平面に開いた「展開図」は、回転・反転を同一視すると何種類?",
       options:["6種類","8種類","10種類","11種類","12種類","24種類"] },
 
-    // ===== PR-4 バランス =====
-    { id:"PR4E", subtest:"PR-4", subtestName:"バランス", difficulty:"easy", stdTime:8,
+    // ===== PR-4 重さの推理 =====
+    { id:"PR4E", subtest:"PR-4", subtestName:"重さの推理", difficulty:"easy", stdTime:8,
       q:"天秤の左に重さ3のおもり。右に何を乗せれば釣り合う?",
       options:["重さ1","重さ2","重さ3","重さ4","重さ5","重さ6"] },
-    { id:"PR4M", subtest:"PR-4", subtestName:"バランス", difficulty:"medium", stdTime:12,
+    { id:"PR4M", subtest:"PR-4", subtestName:"重さの推理", difficulty:"medium", stdTime:12,
       q:"天秤の左に重さ5、右に重さ2が1個。あと何を足せば釣り合う?",
       options:["重さ1","重さ2","重さ3","重さ4","重さ5","重さ6"] },
-    { id:"PR4H", subtest:"PR-4", subtestName:"バランス", difficulty:"hard", stdTime:30,
+    { id:"PR4H", subtest:"PR-4", subtestName:"重さの推理", difficulty:"hard", stdTime:30,
       q:"トランプ52枚（ジョーカーなし）から1枚引くとき、「絵札（J・Q・K）」または「スペード」である確率は?",
       options:["3/13","1/4","11/26","12/26","13/26","25/52"] },
 
     // ===== PR-5 絵の完成 =====
-    { id:"PR5E", subtest:"PR-5", subtestName:"絵の完成", difficulty:"easy", stdTime:10,
+    { id:"PR5E", subtest:"PR-5", subtestName:"欠けた部分", difficulty:"easy", stdTime:10,
       q:"腕時計の絵に「文字盤・長針・数字・リューズ・ベルト」が描かれている。時刻表示に不可欠なのに欠けているのは?",
       options:["電池","短針","ガラス","秒針","音","針穴"] },
-    { id:"PR5M", subtest:"PR-5", subtestName:"絵の完成", difficulty:"medium", stdTime:15,
+    { id:"PR5M", subtest:"PR-5", subtestName:"欠けた部分", difficulty:"medium", stdTime:15,
       q:"自転車の絵に「車輪・ハンドル・サドル・フレーム・チェーン」が描かれている。走行に不可欠なのに欠けているのは?",
       options:["鈴","ペダル","ライト","カゴ","反射板","スタンド"] },
-    { id:"PR5H", subtest:"PR-5", subtestName:"絵の完成", difficulty:"hard", stdTime:25,
+    { id:"PR5H", subtest:"PR-5", subtestName:"欠けた部分", difficulty:"hard", stdTime:25,
       q:"正方形の紙を「縦半分」に折り、続けて「横半分」に折る。折りたたんだ状態で<strong>右上の角</strong>を小さく三角に切り取って紙を広げると、穴は合計いくつ?",
       options:["1個","2個","3個","4個","5個","8個"] },
 
-    // ===== WM-1 数唱 (memory display) =====
-    { id:"WM1E", subtest:"WM-1", subtestName:"数唱", difficulty:"easy", stdTime:12, memoryDisplay:3,
+    // ===== WM-1 数の記憶 (memory display) =====
+    { id:"WM1E", subtest:"WM-1", subtestName:"数の記憶", difficulty:"easy", stdTime:12, memoryDisplay:3,
       memoryContent:"3 5 8",
-      q:"先ほど表示された数字を<strong>逆順</strong>に並べたものは?",
-      options:["3 5 8","5 8 3","8 5 3","8 3 5","3 8 5","5 3 8"] },
-    { id:"WM1M", subtest:"WM-1", subtestName:"数唱", difficulty:"medium", stdTime:18, memoryDisplay:4,
+      q:"先ほど表示された数字の<strong>合計</strong>はいくつ?",
+      options:["10","14","15","16","18","20"] },
+    { id:"WM1M", subtest:"WM-1", subtestName:"数の記憶", difficulty:"medium", stdTime:20, memoryDisplay:5,
       memoryContent:"4 9 2 5 1",
-      q:"先ほど表示された数字を<strong>逆順</strong>に並べたものは?",
-      options:["4 9 2 5 1","1 5 2 9 4","1 2 4 5 9","5 2 9 4 1","9 4 5 1 2","1 2 5 9 4"] },
-    { id:"WM1H", subtest:"WM-1", subtestName:"数唱", difficulty:"hard", stdTime:25, memoryDisplay:5,
+      q:"先ほど表示された数字の<strong>合計から最大値を引く</strong>といくつ?",
+      options:["9","10","12","14","15","18"] },
+    { id:"WM1H", subtest:"WM-1", subtestName:"数の記憶", difficulty:"hard", stdTime:25, memoryDisplay:6,
       memoryContent:"4 7 2 9 5",
       q:"先ほど表示された数字の<strong>合計から最小値を引く</strong>といくつ?",
       options:["15","20","22","25","27","29"] },
 
-    // ===== WM-2 算数 (memory display) =====
-    { id:"WM2E", subtest:"WM-2", subtestName:"算数", difficulty:"easy", stdTime:12, memoryDisplay:3, memoryStyle:"text",
+    // ===== WM-2 計算記憶 (memory display) =====
+    { id:"WM2E", subtest:"WM-2", subtestName:"計算記憶", difficulty:"easy", stdTime:12, memoryDisplay:5, memoryStyle:"text",
       memoryContent:"12 から 4 を引き、2 を足すといくつ?",
       q:"先ほどの問題の<strong>答え</strong>は?",
       options:["8","9","10","11","12","14"] },
-    { id:"WM2M", subtest:"WM-2", subtestName:"算数", difficulty:"medium", stdTime:18, memoryDisplay:5, memoryStyle:"text",
+    { id:"WM2M", subtest:"WM-2", subtestName:"計算記憶", difficulty:"medium", stdTime:20, memoryDisplay:10, memoryStyle:"text",
       memoryContent:"15 に 7 を足し、そこから 8 を引き、最後に 2 倍するといくつ?",
       q:"先ほどの問題の<strong>答え</strong>は?",
       options:["14","22","24","28","30","56"] },
-    { id:"WM2H", subtest:"WM-2", subtestName:"算数", difficulty:"hard", stdTime:30, memoryDisplay:7, memoryStyle:"text",
+    { id:"WM2H", subtest:"WM-2", subtestName:"計算記憶", difficulty:"hard", stdTime:30, memoryDisplay:15, memoryStyle:"text",
       memoryContent:"池のスイレンは毎日 2 倍に増え、48 日で池全体を覆い尽くす。池のちょうど半分が覆われるのは何日目?",
       q:"先ほどの問題の<strong>答え</strong>は?",
       options:["24日目","32日目","44日目","46日目","47日目","48日目"] },
 
-    // ===== WM-3 語音整列 (memory display) =====
-    { id:"WM3E", subtest:"WM-3", subtestName:"語音整列", difficulty:"easy", stdTime:12, memoryDisplay:3,
+    // ===== WM-3 順序整理 (memory display) =====
+    { id:"WM3E", subtest:"WM-3", subtestName:"順序整理", difficulty:"easy", stdTime:12, memoryDisplay:4,
       memoryContent:"5 3 8 1 6",
       q:"先ほど表示された数字を<strong>小さい順</strong>に並べたとき、<strong>3 番目</strong>の数字は?",
       options:["1","3","5","6","8","判定不能"] },
-    { id:"WM3M", subtest:"WM-3", subtestName:"語音整列", difficulty:"medium", stdTime:18, memoryDisplay:4,
+    { id:"WM3M", subtest:"WM-3", subtestName:"順序整理", difficulty:"medium", stdTime:18, memoryDisplay:6,
       memoryContent:"9 2 7 4 6 3",
       q:"先ほど表示された数字を<strong>大きい順</strong>に並べたとき、<strong>4 番目</strong>の数字は?",
       options:["2","3","4","6","7","9"] },
-    { id:"WM3H", subtest:"WM-3", subtestName:"語音整列", difficulty:"hard", stdTime:25, memoryDisplay:6,
+    { id:"WM3H", subtest:"WM-3", subtestName:"順序整理", difficulty:"hard", stdTime:25, memoryDisplay:9,
       memoryContent:"こ 7 あ 3 え 5 う 1 お 2",
       q:"先ほど表示されたひらがなを<strong>50音順</strong>に並べたとき、<strong>3 番目</strong>のひらがなは?",
       options:["あ","い","う","え","お","こ"] },
 
-    // ===== PS-1 記号探し =====
-    { id:"PS1E", subtest:"PS-1", subtestName:"記号探し", difficulty:"easy", stdTime:10,
+    // ===== PS-1 記号照合 =====
+    { id:"PS1E", subtest:"PS-1", subtestName:"記号照合", difficulty:"easy", stdTime:10,
       q:"ターゲット【<b>★</b> <b>▲</b>】 下の4行のうち、ターゲット記号を<strong>1つでも</strong>含む行はいくつ?<div class='symbol-row'>行1: ○ △ □ ◇<br>行2: △ ★ ○ ◇<br>行3: □ ○ ◇ △<br>行4: ◇ ○ ▲ □</div>",
       options:["0行","1行","2行","3行","4行","判定不能"] },
-    { id:"PS1M", subtest:"PS-1", subtestName:"記号探し", difficulty:"medium", stdTime:15,
+    { id:"PS1M", subtest:"PS-1", subtestName:"記号照合", difficulty:"medium", stdTime:15,
       q:"ターゲット【<b>◆</b> <b>☆</b>】 下の5行のうち、ターゲット記号を<strong>1つでも</strong>含む行はいくつ?<div class='symbol-row'>行1: ○ △ ● □ ◇<br>行2: ■ ◇ ☆ ○ △<br>行3: ● ◆ ■ □ ○<br>行4: ○ △ ■ ● ◇<br>行5: ◇ ● ☆ ◆ ■</div>",
       options:["1行","2行","3行","4行","5行","判定不能"] },
-    { id:"PS1H", subtest:"PS-1", subtestName:"記号探し", difficulty:"hard", stdTime:20,
+    { id:"PS1H", subtest:"PS-1", subtestName:"記号照合", difficulty:"hard", stdTime:20,
       q:"ターゲット【<b>◆</b> <b>□</b>】 下の6行のうち、ターゲット記号を<strong>両方とも</strong>含む行はいくつ?<div class='symbol-row'>行1: ◆ ○ □ △ ◇<br>行2: ○ □ △ ◇ ●<br>行3: ◆ □ ● ○ △<br>行4: △ ◇ ◆ ○ ■<br>行5: □ ● ◆ ◇ △<br>行6: ◆ ■ □ △ ○</div>",
       options:["1行","2行","3行","4行","5行","6行"] },
 
-    // ===== PS-2 符号 =====
-    { id:"PS2E", subtest:"PS-2", subtestName:"符号", difficulty:"easy", stdTime:10,
+    // ===== PS-2 記号変換 =====
+    { id:"PS2E", subtest:"PS-2", subtestName:"記号変換", difficulty:"easy", stdTime:10,
       q:"対応表 [1=●, 2=○, 3=△] のとき、「2, 1, 3」を記号に変換すると?",
       options:["●○△","○●△","△○●","●△○","○△●","△●○"] },
-    { id:"PS2M", subtest:"PS-2", subtestName:"符号", difficulty:"medium", stdTime:15,
+    { id:"PS2M", subtest:"PS-2", subtestName:"記号変換", difficulty:"medium", stdTime:15,
       q:"対応表 [1=●, 2=○, 3=△, 4=■, 5=□] のとき、「3, 5, 1, 4, 2」を記号に変換すると?",
       options:["△□●■○","○■●□△","△■●□○","●○△■□","□△●■○","△□●○■"] },
-    { id:"PS2H", subtest:"PS-2", subtestName:"符号", difficulty:"hard", stdTime:20,
+    { id:"PS2H", subtest:"PS-2", subtestName:"記号変換", difficulty:"hard", stdTime:20,
       q:"対応表 [A=★, B=◆, C=●, D=□, E=△, F=◇] のとき、「D C A E B F」を記号に変換すると?",
       options:["□●★△◆◇","●□★△◆◇","□●★◆△◇","□●★△◇◆","●□★△◇◆","□●◆★△◇"] },
 
-    // ===== PS-3 絵の抹消 =====
-    { id:"PS3E", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"easy", stdTime:10,
-      q:"下の列で「<b>○</b>」は何個?<div class='symbol-row'>○ ● ○ ● ● ○ ● ○ ○ ●</div>",
-      options:["3個","4個","5個","6個","7個","10個"] },
-    { id:"PS3M", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"medium", stdTime:15,
-      q:"下の列で「<b>◆</b>」は何個?<div class='symbol-row'>◆ ◇ ◆ ◆ ◇ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◇ ◆ ◆</div>",
-      options:["6個","7個","8個","9個","10個","15個"] },
-    { id:"PS3H", subtest:"PS-3", subtestName:"絵の抹消", difficulty:"hard", stdTime:20,
-      q:"下の列で「<b>□</b>」は何個?<div class='symbol-row'>■ □ ■ □ ■ ■ □ □ ■ □ ■ □ ■ ■ ■ □ ■ ■ ■ □</div>",
-      options:["5個","6個","7個","8個","9個","10個"] }
+    // ===== PS-3 パターン識別 =====
+    { id:"PS3E", subtest:"PS-3", subtestName:"パターン識別", difficulty:"easy", stdTime:10,
+      q:"次の図形のうち、<strong>性質が他と異なる（仲間はずれの）</strong>ものはどれ?<div class='symbol-row'>三角形・四角形・五角形・六角形・八角形・円</div>",
+      options:["三角形","四角形","五角形","六角形","八角形","円"] },
+    { id:"PS3M", subtest:"PS-3", subtestName:"パターン識別", difficulty:"medium", stdTime:15,
+      q:"次の英大文字 6 文字 【<b>S, N, B, H, Z, A</b>】 のうち、<strong>180° 回転させても元と同じ形に見える</strong>文字はいくつ?",
+      options:["1個","2個","3個","4個","5個","6個"] },
+    { id:"PS3H", subtest:"PS-3", subtestName:"パターン識別", difficulty:"hard", stdTime:20,
+      q:"次のペアのうち、<strong>左右反転（左右の鏡映）の関係になっていない</strong>ペアはどれ?",
+      options:["b と d","p と q","◀ と ▶","< と >","（ と ）","6 と 9"] }
 ];
 
 // ================================================================
@@ -690,9 +729,9 @@ const answerKey = {
     "VC4E":"身体が濡れないようにするため",
     "VC4M":"遠くから識別でき危険度を段階的に示せるから",
     "VC4H":"20回",
-    "PR1E":"黒2個・白2個",
-    "PR1M":"黒5個・白4個",
-    "PR1H":"9個",
+    "PR1E":"正方形",
+    "PR1M":"3",
+    "PR1H":"正八面体",
     "PR2E":"□",
     "PR2M":"△",
     "PR2H":"36",
@@ -705,8 +744,8 @@ const answerKey = {
     "PR5E":"短針",
     "PR5M":"ペダル",
     "PR5H":"4個",
-    "WM1E":"8 5 3",
-    "WM1M":"1 5 2 9 4",
+    "WM1E":"16",
+    "WM1M":"12",
     "WM1H":"25",
     "WM2E":"10",
     "WM2M":"28",
@@ -720,9 +759,9 @@ const answerKey = {
     "PS2E":"○●△",
     "PS2M":"△□●■○",
     "PS2H":"□●★△◆◇",
-    "PS3E":"5個",
-    "PS3M":"8個",
-    "PS3H":"8個"
+    "PS3E":"円",
+    "PS3M":"4個",
+    "PS3H":"6 と 9"
 };
 
 // ================================================================
@@ -735,21 +774,21 @@ const indexGroups = {
     PS: ["PS-1","PS-2","PS-3"]
 };
 const indexMeta = {
-    VC: { name:"VCI", fullName:"言語理解", color:"#1a6fc4" },
-    PR: { name:"PRI", fullName:"知覚推理", color:"#00897b" },
-    WM: { name:"WMI", fullName:"ワーキングメモリ", color:"#fb8c00" },
-    PS: { name:"PSI", fullName:"処理速度", color:"#8e24aa" }
+    VC: { name:"VC", fullName:"言語思考力",        color:"#1a6fc4" },
+    PR: { name:"PR", fullName:"空間・パターン認識", color:"#00897b" },
+    WM: { name:"WM", fullName:"記憶と処理",        color:"#fb8c00" },
+    PS: { name:"PS", fullName:"スピード認知",      color:"#8e24aa" }
 };
 const subtestMeta = {
-    "VC-1":{group:"VC",name:"類似"}, "VC-2":{group:"VC",name:"単語"},
-    "VC-3":{group:"VC",name:"知識"}, "VC-4":{group:"VC",name:"理解"},
-    "PR-1":{group:"PR",name:"積み木模様"}, "PR-2":{group:"PR",name:"行列推理"},
-    "PR-3":{group:"PR",name:"パズル"}, "PR-4":{group:"PR",name:"バランス"},
-    "PR-5":{group:"PR",name:"絵の完成"},
-    "WM-1":{group:"WM",name:"数唱"}, "WM-2":{group:"WM",name:"算数"},
-    "WM-3":{group:"WM",name:"語音整列"},
-    "PS-1":{group:"PS",name:"記号探し"}, "PS-2":{group:"PS",name:"符号"},
-    "PS-3":{group:"PS",name:"絵の抹消"}
+    "VC-1":{group:"VC",name:"言葉の共通点"}, "VC-2":{group:"VC",name:"語彙の意味"},
+    "VC-3":{group:"VC",name:"一般常識"}, "VC-4":{group:"VC",name:"場面の判断"},
+    "PR-1":{group:"PR",name:"立体把握"}, "PR-2":{group:"PR",name:"図形規則"},
+    "PR-3":{group:"PR",name:"図形合成"}, "PR-4":{group:"PR",name:"重さの推理"},
+    "PR-5":{group:"PR",name:"欠けた部分"},
+    "WM-1":{group:"WM",name:"数の記憶"}, "WM-2":{group:"WM",name:"計算記憶"},
+    "WM-3":{group:"WM",name:"順序整理"},
+    "PS-1":{group:"PS",name:"記号照合"}, "PS-2":{group:"PS",name:"記号変換"},
+    "PS-3":{group:"PS",name:"パターン識別"}
 };
 
 // ================================================================
@@ -765,6 +804,7 @@ let memoryTimer = null;
 let quizStartTime = 0;
 let quizSubmitted = false;
 let answerLocked = false;
+let quizQuestions = []; // 実際の出題順（難易度ブロック内でシャッフル）
 
 // ================================================================
 // ユーティリティ
@@ -777,11 +817,29 @@ function shuffle(arr) {
     }
     return a;
 }
+
+// 出題順は固定。難易度を E/M/H で散らしつつ、各下位検査の 3 レベルが
+// 1/3 ずつ前半・中盤・後半に均等に分かれるよう設計（下位検査どうしも
+// VC→PR→WM→PS と毎回入れ替わるよう交互配置）。
+const QUESTION_DISPLAY_ORDER = [
+    "VC1E","PR1M","WM1H","PS1M","VC2H","PR2E","WM2H","PS2E","VC3M","PR3E","WM3M","PS3H","VC4M","PR4H","PR5E",
+    "VC1M","PR1H","WM1E","PS1H","VC2E","PR2M","WM2E","PS2M","VC3H","PR3M","WM3H","PS3E","VC4H","PR4E","PR5M",
+    "VC1H","PR1E","WM1M","PS1E","VC2M","PR2H","WM2M","PS2H","VC3E","PR3H","WM3E","PS3M","VC4E","PR4M","PR5H"
+];
+
+function buildQuizOrder() {
+    const byId = {};
+    questions.forEach(q => { byId[q.id] = q; });
+    return QUESTION_DISPLAY_ORDER.map(id => byId[id]).filter(Boolean);
+}
 // ================================================================
 // 画面遷移・テスト開始
 // ================================================================
 function startTest() {
-    userAnswers = new Array(questions.length).fill(null);
+    // 選択肢キャッシュをリセット（再受験対応）
+    questions.forEach(q => { delete q._shuffledOptions; });
+    quizQuestions = buildQuizOrder();
+    userAnswers = new Array(quizQuestions.length).fill(null);
     currentIdx = 0;
     countdown = TOTAL_TIME_SEC;
     quizStartTime = Date.now();
@@ -819,8 +877,8 @@ function renderQuestion() {
     answerLocked = false;
     if (memoryTimer) { clearInterval(memoryTimer); memoryTimer = null; }
 
-    const q = questions[currentIdx];
-    const total = questions.length;
+    const q = quizQuestions[currentIdx];
+    const total = quizQuestions.length;
 
     document.getElementById('question-header').innerHTML =
         `問題 ${currentIdx + 1} / ${total}`;
@@ -909,7 +967,7 @@ function selectAnswer(option, buttonEl) {
     if (buttonEl) buttonEl.classList.add('selected');
 
     setTimeout(() => {
-        if (currentIdx < questions.length - 1) {
+        if (currentIdx < quizQuestions.length - 1) {
             currentIdx++;
             renderQuestion();
         } else {
@@ -919,7 +977,7 @@ function selectAnswer(option, buttonEl) {
 }
 
 // ================================================================
-// 採点ロジック (WAIS-IV準拠の簡易版)
+// 採点ロジック
 // ================================================================
 const basePointsByDiff = { easy: 1, medium: 2, hard: 3 };
 
@@ -959,7 +1017,7 @@ function submitQuiz() {
     // 下位検査ごとの粗点を集計
     const subtestRaw = {};
     const subtestDetail = {};
-    questions.forEach((q, i) => {
+    quizQuestions.forEach((q, i) => {
         const ans = userAnswers[i];
         const pts = scoreQuestion(q, ans);
         if (!subtestRaw[q.subtest]) {
@@ -1038,9 +1096,11 @@ let lastResult = null;
 
 function displayResults(fsiq, indexScores, subtestScaled, subtestRaw) {
     document.getElementById('quiz-screen').style.display = 'none';
-    document.getElementById('result-screen').style.display = 'block';
+    const screen = document.getElementById('result-screen');
+    screen.style.display = 'block';
     window.scrollTo(0, 0);
 
+    // 結果テーブルとチャートはあらかじめ仕込んでおき、ゲート解除時に瞬時に表示
     const tbody = document.getElementById('result-tbody');
     let html = renderResultRow("全検査", "FIQ", fsiq, confIntervals.FIQ, true);
     Object.keys(indexGroups).forEach(idx => {
@@ -1048,18 +1108,39 @@ function displayResults(fsiq, indexScores, subtestScaled, subtestRaw) {
         html += renderResultRow(meta.fullName, idx, indexScores[idx], confIntervals[idx], false);
     });
     tbody.innerHTML = html;
-
     drawDistributionChart(fsiq);
 
     lastResult = { fiq: fsiq, vc: indexScores.VC, pr: indexScores.PR, wm: indexScores.WM, ps: indexScores.PS };
     populatePrefectureSelect();
 
-    // ランキングを描画（キャッシュがなければ取得）
-    if (cachedStats) {
-        renderRanking();
+    // 都道府県を未送信なら結果はゲート（伏せた状態）にする
+    if (!userSubmittedPref) {
+        screen.classList.add('result-gated');
+        document.getElementById('result-h2').textContent = '測定完了';
+        document.getElementById('result-desc').textContent = 'お疲れさまでした。下のフォームから都道府県を送信すると、結果が表示されます。';
+        document.getElementById('gate-message').style.display = 'block';
     } else {
-        loadStats().then(d => { if (d) renderRanking(); });
+        revealFullResults();
     }
+
+    // ランキング部分（送信後に解禁）
+    const teaser = document.getElementById('ranking-teaser');
+    const content = document.getElementById('ranking-content');
+    if (teaser && content) {
+        teaser.style.display = userSubmittedPref ? 'none' : 'block';
+        content.style.display = userSubmittedPref ? 'block' : 'none';
+    }
+    if (!cachedStats) loadStats();
+    if (userSubmittedPref && cachedStats) renderRanking();
+}
+
+function revealFullResults() {
+    const screen = document.getElementById('result-screen');
+    screen.classList.remove('result-gated');
+    document.getElementById('result-h2').textContent = '測定結果';
+    document.getElementById('result-desc').textContent = '以下は各指標および全検査IQ (FSIQ) の推定結果です。';
+    const gate = document.getElementById('gate-message');
+    if (gate) gate.style.display = 'none';
 }
 
 // ================================================================
@@ -1124,11 +1205,17 @@ async function submitResult() {
             body: JSON.stringify({ ...lastResult, prefecture: pref, ts: new Date().toISOString() })
         });
         status.className = 'submit-status success';
-        status.textContent = `✓ 送信ありがとうございました（${pref}）。集計に反映されます。`;
+        status.textContent = `✓ 送信ありがとうございました（${pref}）。結果を表示します。`;
         sel.disabled = true;
         btn.style.display = 'none';
         userSubmittedPref = pref;
-        // 送信後は 1 秒ほど待ってから再取得（シート反映待ち）して順位を更新
+        // 伏せていた結果テーブル・分布図・ランキング枠を一気に解禁
+        revealFullResults();
+        const teaser = document.getElementById('ranking-teaser');
+        const content = document.getElementById('ranking-content');
+        if (teaser) teaser.style.display = 'none';
+        if (content) content.style.display = 'block';
+        // シート反映待ちで 1.2 秒後に再取得 → 描画
         setTimeout(() => { loadStats().then(renderRanking); }, 1200);
     } catch (err) {
         status.className = 'submit-status error';

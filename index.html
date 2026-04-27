@@ -437,7 +437,8 @@
             言語思考力・空間/パターン認識・記憶と処理・スピード認知 の 4 領域について、<strong>全 45 問</strong>を出題します。
             正答・誤答に加えて<strong>回答にかかった時間</strong>も得点に反映されます。<br><br>
             <strong>所要時間の目安：20〜30 分</strong><br>
-            迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。
+            迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。<br><br>
+            <small style="color:#8d6e63;">※ページを更新すると最初からやり直しになります。テスト中はブラウザを閉じたり更新しないようにご注意ください。</small>
         </div>
 
         <button class="cta-button" onclick="startTest()">測定を開始する</button>
@@ -469,7 +470,7 @@
             以下は各指標および全検査IQ の推定結果です。
         </p>
         <div class="gate-message" id="gate-message" style="display:none;">
-            <strong>📨 結果はもう少し先です</strong><br>
+            <strong>📨 結果表示まであと一歩です！</strong><br>
             お疲れさまでした。集計協力のお願いとして、<strong>下の都道府県を選んで送信</strong>すると、
             あなたの IQ・パーセンタイル・都道府県別ランキングがすべて表示されます。
         </div>
@@ -521,10 +522,6 @@
                 全国の<strong>都道府県別ランキング</strong>が表示されます。
             </div>
             <div class="ranking-content" id="ranking-content" style="display:none;">
-                <div class="ranking-tabs">
-                    <button class="ranking-tab active" data-mode="count" onclick="switchRankingMode('count')">参加者数</button>
-                    <button class="ranking-tab" data-mode="avg" onclick="switchRankingMode('avg')">平均 IQ</button>
-                </div>
                 <table class="ranking-table" id="ranking-table"></table>
                 <p class="ranking-note" id="ranking-note"></p>
             </div>
@@ -545,9 +542,9 @@ const questions = [
     { id:"VC1M", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"medium", stdTime:12,
       q:"「詩」と「小説」に共通するものは?",
       options:["韻を踏む","登場人物が必ずいる","言葉で表現された作品である","必ず本になる","必ず作者が実在する","同じ長さである"] },
-    { id:"VC1H", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"hard", stdTime:18,
-      q:"「正義」と「平等」に共通するものは?",
-      options:["どちらも法律である","社会的・道徳的な価値観である","目に見える物体","個人的な感情","宗教固有の概念","国家専属の概念"] },
+    { id:"VC1H", subtest:"VC-1", subtestName:"言葉の共通点", difficulty:"hard", stdTime:20,
+      q:"「アイロニー（皮肉）」と「逆説（パラドックス）」に共通するものは?",
+      options:["どちらも喜劇専用の技法","表面上の意味と深層の意味が異なる、または矛盾を含む言語・論理的な技法","文法的に誤った表現","詩にしか使えない","どちらも批判を意味する","数学・論理学専用の概念"] },
 
     // ===== VC-2 語彙の意味 =====
     { id:"VC2E", subtest:"VC-2", subtestName:"語彙の意味", difficulty:"easy", stdTime:7,
@@ -572,9 +569,9 @@ const questions = [
       options:["白","黒","灰色","茶色","マゼンタ","シアン"] },
 
     // ===== VC-4 場面の判断 =====
-    { id:"VC4E", subtest:"VC-4", subtestName:"場面の判断", difficulty:"easy", stdTime:8,
-      q:"雨の日に傘をさすのはなぜ?",
-      options:["おしゃれのため","身体が濡れないようにするため","重いものを持つため","暑さをしのぐため","音を聞くため","風を防ぐため"] },
+    { id:"VC4E", subtest:"VC-4", subtestName:"場面の判断", difficulty:"easy", stdTime:10,
+      q:"夜間に自転車のライトを点灯させるのはなぜ?",
+      options:["おしゃれのため","自分が道を見やすくし、かつ他者に自分の存在を知らせるため","バッテリーの充電のため","速度を上げるため","法律で点灯が義務付けられているだけ","転倒を防ぐため"] },
     { id:"VC4M", subtest:"VC-4", subtestName:"場面の判断", difficulty:"medium", stdTime:12,
       q:"交通信号が赤・黄・青（緑）の3色なのはなぜ?",
       options:["作るのが安いから","3色が偶然選ばれただけ","遠くから識別でき危険度を段階的に示せるから","色覚障害者のため","電球の構造上の都合","法律で定められているだけ"] },
@@ -587,11 +584,11 @@ const questions = [
       q:"立方体（サイコロのような形）を 1 つ机の上に置き、真上から見下ろした。見える形はどれ?",
       options:["正方形","長方形","ひし形","三角形","円","正六角形"] },
     { id:"PR1M", subtest:"PR-1", subtestName:"立体把握", difficulty:"medium", stdTime:20,
-      q:"標準的な西洋式のサイコロを <strong>1 の面が上、2 の面が手前</strong> になるように置く。このとき右側面に出る数字は?（向かい合う面の数の和は 7）",
-      options:["1","2","3","4","5","6"] },
+      q:"立方体の 6 面にそれぞれ異なる記号（●▲■★◆◇）が 1 つずつ描かれている。ある向きに置いたとき、<strong>上の面が「●」、手前の面が「▲」</strong>だった。右の面にくる記号はどれか?",
+      options:["●","▲","■","★","◆","判定不能"] },
     { id:"PR1H", subtest:"PR-1", subtestName:"立体把握", difficulty:"hard", stdTime:30,
-      q:"立方体の 6 つの面の<strong>中心点</strong>に印を打ち、隣り合う面どうしの中心点を直線で結んでいく。すべて結び終えるとできあがる立体はどれ?",
-      options:["正四面体","立方体（正六面体）","正八面体","正十二面体","正二十面体","球体"] },
+      q:"全面を塗装した<strong>1辺3の立方体</strong>を、1辺1の小立方体 27 個に切り分ける。塗装面が<strong>ちょうど 2 面</strong>の小立方体はいくつ?",
+      options:["4個","6個","8個","10個","12個","16個"] },
 
     // ===== PR-2 図形規則 =====
     { id:"PR2E", subtest:"PR-2", subtestName:"図形規則", difficulty:"easy", stdTime:8,
@@ -612,8 +609,8 @@ const questions = [
       q:"円を4等分した扇形のうち3個を組み合わせた形は?",
       options:["1/4円","半円","3/4円","円全体","楕円","星形"] },
     { id:"PR3H", subtest:"PR-3", subtestName:"図形合成", difficulty:"hard", stdTime:20,
-      q:"立方体を平面に開いた「展開図」は、回転・反転を同一視すると何種類?",
-      options:["6種類","8種類","10種類","11種類","12種類","24種類"] },
+      q:"縦 3 cm・横 4 cm の<strong>長方形のタイル</strong>を隙間なく敷き詰めて、できる限り小さな<strong>正方形</strong>を作りたい。正方形の 1 辺は何 cm?",
+      options:["4cm","6cm","8cm","12cm","24cm","36cm"] },
 
     // ===== PR-4 重さの推理 =====
     { id:"PR4E", subtest:"PR-4", subtestName:"重さの推理", difficulty:"easy", stdTime:8,
@@ -631,8 +628,16 @@ const questions = [
       q:"腕時計の絵に「文字盤・長針・数字・リューズ・ベルト」が描かれている。時刻表示に不可欠なのに欠けているのは?",
       options:["電池","短針","ガラス","秒針","音","針穴"] },
     { id:"PR5M", subtest:"PR-5", subtestName:"欠けた部分", difficulty:"medium", stdTime:15,
-      q:"自転車の絵に「車輪・ハンドル・サドル・フレーム・チェーン」が描かれている。走行に不可欠なのに欠けているのは?",
-      options:["鈴","ペダル","ライト","カゴ","反射板","スタンド"] },
+      q:"次の大きなグリッドの <strong>?</strong> に当てはまる図はどれ?<div style='text-align:center;margin:8px 0'><svg viewBox='0 0 240 165' style='max-width:360px;width:100%;display:inline-block;border:1px solid #ddd;border-radius:6px;background:#fff;'><rect x='12' y='12' width='216' height='144' fill='#f8f8f8'/><path d='M12,12H228 M12,30H228 M12,48H228 M12,66H228 M12,84H228 M12,102H228 M12,120H228 M12,138H228 M12,156H228 M12,12V156 M30,12V156 M48,12V156 M66,12V156 M84,12V156 M102,12V156 M120,12V156 M138,12V156 M156,12V156 M174,12V156 M192,12V156 M210,12V156 M228,12V156' stroke='#888' stroke-width='0.8' fill='none'/><rect x='174' y='102' width='54' height='54' fill='#ddeeff' stroke='#1a6fc4' stroke-width='2.5'/><text x='201' y='140' text-anchor='middle' font-size='30' font-weight='bold' fill='#1a6fc4'>?</text></svg></div>",
+      options:["match","slant","diamond","coarse","tall","wide"],
+      optionDisplays:[
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,20H60 M0,40H60 M0,60H60 M0,0V60 M20,0V60 M40,0V60 M60,0V60' stroke='#777' stroke-width='0.9' fill='none'/></svg>",
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,20H60 M0,40H60 M0,60H60 M0,0V60 M60,0V60 M8,0L0,60 M28,0L20,60 M48,0L40,60' stroke='#777' stroke-width='0.9' fill='none'/></svg>",
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,60H60 M0,0V60 M60,0V60 M0,0L60,60 M0,20L40,60 M20,0L60,40 M0,40L20,60 M40,0L60,20 M0,60L60,0 M0,40L40,0 M20,60L60,20 M0,20L20,0 M40,60L60,40' stroke='#777' stroke-width='0.9' fill='none'/></svg>",
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,30H60 M0,60H60 M0,0V60 M30,0V60 M60,0V60' stroke='#777' stroke-width='0.9' fill='none'/></svg>",
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,15H60 M0,30H60 M0,45H60 M0,60H60 M0,0V60 M20,0V60 M40,0V60 M60,0V60' stroke='#777' stroke-width='0.9' fill='none'/></svg>",
+        "<svg viewBox='0 0 60 60' width='54' height='54' style='display:block'><rect width='60' height='60' fill='#f8f8f8'/><path d='M0,0H60 M0,20H60 M0,40H60 M0,60H60 M0,0V60 M15,0V60 M30,0V60 M45,0V60 M60,0V60' stroke='#777' stroke-width='0.9' fill='none'/></svg>"
+      ] },
     { id:"PR5H", subtest:"PR-5", subtestName:"欠けた部分", difficulty:"hard", stdTime:25,
       q:"正方形の紙を「縦半分」に折り、続けて「横半分」に折る。折りたたんだ状態で<strong>右上の角</strong>を小さく三角に切り取って紙を広げると、穴は合計いくつ?",
       options:["1個","2個","3個","4個","5個","8個"] },
@@ -660,20 +665,19 @@ const questions = [
       memoryContent:"15 に 7 を足し、そこから 8 を引き、最後に 2 倍するといくつ?",
       q:"先ほどの問題の<strong>答え</strong>は?",
       options:["14","22","24","28","30","56"] },
-    { id:"WM2H", subtest:"WM-2", subtestName:"計算記憶", difficulty:"hard", stdTime:30, memoryDisplay:15, memoryStyle:"text",
-      memoryContent:"池のスイレンは毎日 2 倍に増え、48 日で池全体を覆い尽くす。池のちょうど半分が覆われるのは何日目?",
-      q:"先ほどの問題の<strong>答え</strong>は?",
+    { id:"WM2H", subtest:"WM-2", subtestName:"計算記憶", difficulty:"hard", stdTime:30,
+      q:"池のスイレンは毎日 2 倍に増え、48 日で池全体を覆い尽くす。池のちょうど半分が覆われるのは何日目?",
       options:["24日目","32日目","44日目","46日目","47日目","48日目"] },
 
     // ===== WM-3 順序整理 (memory display) =====
     { id:"WM3E", subtest:"WM-3", subtestName:"順序整理", difficulty:"easy", stdTime:12, memoryDisplay:4,
       memoryContent:"5 3 8 1 6",
       q:"先ほど表示された数字を<strong>小さい順</strong>に並べたとき、<strong>3 番目</strong>の数字は?",
-      options:["1","3","5","6","8","判定不能"] },
+      options:["2","3","5","6","7","判定不能"] },
     { id:"WM3M", subtest:"WM-3", subtestName:"順序整理", difficulty:"medium", stdTime:18, memoryDisplay:6,
       memoryContent:"9 2 7 4 6 3",
       q:"先ほど表示された数字を<strong>大きい順</strong>に並べたとき、<strong>4 番目</strong>の数字は?",
-      options:["2","3","4","6","7","9"] },
+      options:["2","3","4","5","6","7"] },
     { id:"WM3H", subtest:"WM-3", subtestName:"順序整理", difficulty:"hard", stdTime:25, memoryDisplay:10,
       memoryContent:"こ 7 あ 3 え 5 う 1 お 2",
       q:"先ほど表示されたひらがなを<strong>50音順</strong>に並べたとき、<strong>3 番目</strong>のひらがなは?",
@@ -703,14 +707,14 @@ const questions = [
 
     // ===== PS-3 パターン識別 =====
     { id:"PS3E", subtest:"PS-3", subtestName:"パターン識別", difficulty:"easy", stdTime:10,
-      q:"次の図形のうち、<strong>性質が他と異なる（仲間はずれの）</strong>ものはどれ?<div class='symbol-row'>三角形・四角形・五角形・六角形・八角形・円</div>",
+      q:"次の図形のうち、<strong>多角形ではない</strong>ものはどれ?<div class='symbol-row'>三角形・四角形・五角形・六角形・八角形・円</div>",
       options:["三角形","四角形","五角形","六角形","八角形","円"] },
     { id:"PS3M", subtest:"PS-3", subtestName:"パターン識別", difficulty:"medium", stdTime:15,
       q:"次の英大文字 6 文字 【<b>S, N, B, H, Z, A</b>】 のうち、<strong>180° 回転させても元と同じ形に見える</strong>文字はいくつ?",
       options:["1個","2個","3個","4個","5個","6個"] },
     { id:"PS3H", subtest:"PS-3", subtestName:"パターン識別", difficulty:"hard", stdTime:20,
       q:"次のペアのうち、<strong>左右反転（左右の鏡映）の関係になっていない</strong>ペアはどれ?",
-      options:["b と d","p と q","◀ と ▶","< と >","（ と ）","6 と 9"] }
+      options:["b と d","p と q","◀ と ▶","< と >","（ と ）","▲ と ▼"] }
 ];
 
 // ================================================================
@@ -719,30 +723,30 @@ const questions = [
 const answerKey = {
     "VC1E":"食べ物（果物）である",
     "VC1M":"言葉で表現された作品である",
-    "VC1H":"社会的・道徳的な価値観である",
+    "VC1H":"表面上の意味と深層の意味が異なる、または矛盾を含む言語・論理的な技法",
     "VC2E":"丈夫で壊れにくい",
     "VC2M":"広く受け入れる心",
     "VC2H":"洗練されて垢抜けているさま",
     "VC3E":"富士山",
     "VC3M":"地球",
     "VC3H":"白",
-    "VC4E":"身体が濡れないようにするため",
+    "VC4E":"自分が道を見やすくし、かつ他者に自分の存在を知らせるため",
     "VC4M":"遠くから識別でき危険度を段階的に示せるから",
     "VC4H":"20回",
     "PR1E":"正方形",
-    "PR1M":"3",
-    "PR1H":"正八面体",
+    "PR1M":"判定不能",
+    "PR1H":"12個",
     "PR2E":"□",
     "PR2M":"△",
     "PR2H":"36",
     "PR3E":"直角二等辺三角形2個",
     "PR3M":"3/4円",
-    "PR3H":"11種類",
+    "PR3H":"12cm",
     "PR4E":"重さ3",
     "PR4M":"重さ3",
     "PR4H":"11/26",
     "PR5E":"短針",
-    "PR5M":"ペダル",
+    "PR5M":"match",
     "PR5H":"4個",
     "WM1E":"16",
     "WM1M":"12",
@@ -761,7 +765,7 @@ const answerKey = {
     "PS2H":"□●★△◆◇",
     "PS3E":"円",
     "PS3M":"4個",
-    "PS3H":"6 と 9"
+    "PS3H":"▲ と ▼"
 };
 
 // ================================================================
@@ -837,7 +841,7 @@ function buildQuizOrder() {
 // ================================================================
 function startTest() {
     // 選択肢キャッシュをリセット（再受験対応）
-    questions.forEach(q => { delete q._shuffledOptions; });
+    questions.forEach(q => { delete q._shuffledOptions; delete q._shuffledDisplays; });
     quizQuestions = buildQuizOrder();
     userAnswers = new Array(quizQuestions.length).fill(null);
     currentIdx = 0;
@@ -942,13 +946,22 @@ function revealMemoryAnswer(q) {
 }
 
 function renderOptions(q) {
-    if (!q._shuffledOptions) q._shuffledOptions = shuffle(q.options);
+    if (!q._shuffledOptions) {
+        if (q.optionDisplays) {
+            const pairs = q.options.map((v, i) => [v, q.optionDisplays[i]]);
+            const shuffled = shuffle(pairs);
+            q._shuffledOptions = shuffled.map(p => p[0]);
+            q._shuffledDisplays = shuffled.map(p => p[1]);
+        } else {
+            q._shuffledOptions = shuffle(q.options);
+        }
+    }
     const grid = document.getElementById('options-grid');
     grid.innerHTML = '';
-    q._shuffledOptions.forEach(opt => {
+    q._shuffledOptions.forEach((opt, i) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
-        btn.innerHTML = opt;
+        btn.innerHTML = q._shuffledDisplays ? q._shuffledDisplays[i] : opt;
         btn.onclick = () => selectAnswer(opt, btn);
         grid.appendChild(btn);
     });
@@ -1252,14 +1265,6 @@ async function loadStats() {
     }
 }
 
-function switchRankingMode(mode) {
-    rankingMode = mode;
-    document.querySelectorAll('.ranking-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.mode === mode);
-    });
-    renderRanking();
-}
-
 function renderRanking() {
     const box = document.getElementById('ranking-box');
     const table = document.getElementById('ranking-table');
@@ -1274,16 +1279,8 @@ function renderRanking() {
     if (entries.length === 0) { box.style.display = 'none'; return; }
     box.style.display = 'block';
 
-    // avg モードでは集計が n>=3 の県のみを対象にする（少人数だと平均が不安定なため）
     const minCountForAvg = 3;
-    let sorted;
-    if (rankingMode === 'avg') {
-        sorted = entries
-            .filter(e => e.avgFiq !== null && e.count >= minCountForAvg)
-            .sort((a, b) => b.avgFiq - a.avgFiq);
-    } else {
-        sorted = entries.slice().sort((a, b) => b.count - a.count);
-    }
+    const sorted = entries.slice().sort((a, b) => b.count - a.count);
     const topN = 10;
     const top = sorted.slice(0, topN);
 
@@ -1291,28 +1288,19 @@ function renderRanking() {
     const userEntry = userSubmittedPref ? entries.find(e => e.pref === userSubmittedPref) : null;
     const userRankInAll = userEntry ? sorted.findIndex(e => e.pref === userSubmittedPref) + 1 : 0;
 
-    const valueLabel = rankingMode === 'count' ? '参加者数' : '平均 IQ';
-    const formatValue = (e) => rankingMode === 'count'
-        ? `${e.count.toLocaleString()}人`
-        : (e.avgFiq !== null ? e.avgFiq.toFixed(1) : '—');
-
-    let html = `<tr><th style="width:3em;">順位</th><th>都道府県</th><th style="width:7em;">${valueLabel}</th></tr>`;
+    let html = `<tr><th style="width:3em;">順位</th><th>都道府県</th><th style="width:6em;">参加者数</th><th style="width:6em;">平均IQ</th></tr>`;
     top.forEach((e, i) => {
         const cls = e.pref === userSubmittedPref ? ' class="user-row"' : '';
-        html += `<tr${cls}><td class="rank">${i + 1}</td><td class="pref">${e.pref}</td><td>${formatValue(e)}</td></tr>`;
+        const avgDisplay = (e.avgFiq !== null && e.count >= minCountForAvg) ? e.avgFiq.toFixed(1) : '—';
+        html += `<tr${cls}><td class="rank">${i + 1}</td><td class="pref">${e.pref}</td><td>${e.count.toLocaleString()}人</td><td>${avgDisplay}</td></tr>`;
     });
-    // ユーザー県が 10 位以下なら追加表示
     if (userEntry && userRankInAll > 0 && userIdxInTop === -1) {
-        html += `<tr><td colspan="3" style="text-align:center;color:#90a4ae;font-size:0.8em;padding:4px;">⋯</td></tr>`;
-        html += `<tr class="user-row"><td class="rank">${userRankInAll}</td><td class="pref">${userEntry.pref}</td><td>${formatValue(userEntry)}</td></tr>`;
+        html += `<tr><td colspan="4" style="text-align:center;color:#90a4ae;font-size:0.8em;padding:4px;">⋯</td></tr>`;
+        const avgDisplay = (userEntry.avgFiq !== null && userEntry.count >= minCountForAvg) ? userEntry.avgFiq.toFixed(1) : '—';
+        html += `<tr class="user-row"><td class="rank">${userRankInAll}</td><td class="pref">${userEntry.pref}</td><td>${userEntry.count.toLocaleString()}人</td><td>${avgDisplay}</td></tr>`;
     }
     table.innerHTML = html;
-
-    if (rankingMode === 'avg') {
-        note.textContent = `※平均 IQ は参加者 ${minCountForAvg} 名以上の都道府県のみ表示`;
-    } else {
-        note.textContent = `全 ${cachedStats.total.toLocaleString()} 件の送信データより集計`;
-    }
+    note.textContent = `全 ${cachedStats.total.toLocaleString()} 件の送信データより集計`;
 }
 
 // ページロード時にウェルカム画面用の統計を取得

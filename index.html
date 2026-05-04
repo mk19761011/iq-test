@@ -55,6 +55,181 @@
         margin-bottom: 10px; font-weight: 700;
     }
     .hero-subtitle { font-size: 1.05rem; color: #666; margin-bottom: 28px; }
+    .hero-lead {
+        max-width: 620px;
+        margin: 0 auto 22px;
+        font-size: 1.02rem;
+        color: #546e7a;
+        line-height: 1.9;
+    }
+    .purpose-box {
+        text-align: left;
+        background: linear-gradient(135deg, #f4f9ff 0%, #f8fcff 100%);
+        border: 1px solid #d9e7f5;
+        border-radius: 16px;
+        padding: 18px 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 24px rgba(18, 56, 96, 0.05);
+    }
+    .purpose-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1a3a5c;
+        margin-bottom: 8px;
+    }
+    .purpose-text {
+        font-size: 0.92rem;
+        color: #546e7a;
+        line-height: 1.8;
+    }
+    .entry-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 18px;
+        margin-bottom: 24px;
+        text-align: left;
+    }
+    .entry-card {
+        background: #fff;
+        border: 1px solid #e2eaf2;
+        border-radius: 18px;
+        padding: 22px 22px 20px;
+        box-shadow: 0 10px 24px rgba(18, 56, 96, 0.06);
+    }
+    .entry-card.primary {
+        background: linear-gradient(135deg, #f3fbf7 0%, #ffffff 100%);
+        border: 2px solid #9dd5b8;
+    }
+    .entry-card.secondary {
+        background: linear-gradient(135deg, #f7faff 0%, #ffffff 100%);
+    }
+    .entry-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    .entry-badge.primary { background: #dff4e7; color: #1f7a52; }
+    .entry-badge.secondary { background: #e8f1ff; color: #1a6fc4; }
+    .entry-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #1a3a5c;
+        margin-bottom: 10px;
+    }
+    .entry-text {
+        font-size: 0.92rem;
+        color: #546e7a;
+        line-height: 1.8;
+        margin-bottom: 14px;
+    }
+    .entry-points {
+        margin: 0 0 18px;
+        padding: 0;
+        list-style: none;
+    }
+    .entry-points li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 8px;
+        color: #2c3e50;
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+    .entry-points li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: 700;
+        color: #1a6fc4;
+    }
+    .sub-button {
+        display: block;
+        width: 100%;
+        padding: 15px 18px;
+        background: #fff;
+        color: #1a6fc4;
+        border: 2px solid #cfe0f5;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        box-shadow: 0 4px 12px rgba(26, 111, 196, 0.08);
+        font-family: inherit;
+    }
+    .sub-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(26, 111, 196, 0.14);
+        border-color: #1a6fc4;
+    }
+    .section-caption {
+        text-align: left;
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #1a3a5c;
+        margin: 4px 0 12px;
+    }
+    .reset-note {
+        margin-top: 14px;
+        padding: 12px 14px;
+        background: #fff8e1;
+        border: 1px solid #ffe082;
+        border-radius: 10px;
+        color: #6d4c41;
+        font-size: 0.86rem;
+        line-height: 1.7;
+        text-align: left;
+    }
+    .intro-screen {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .intro-card {
+        background: #fff;
+        border: 1px solid #e2eaf2;
+        border-radius: 18px;
+        padding: 24px 24px 22px;
+        box-shadow: 0 10px 24px rgba(18, 56, 96, 0.06);
+    }
+    .intro-card h2 {
+        margin: 0 0 12px;
+    }
+    .intro-lead {
+        color: #546e7a;
+        line-height: 1.8;
+        margin-bottom: 18px;
+        text-align: left;
+    }
+    .intro-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+    }
+    .ghost-button {
+        padding: 13px 18px;
+        background: #fff;
+        color: #546e7a;
+        border: 1px solid #cbd9e6;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s;
+    }
+    .ghost-button:hover {
+        background: #f7fafc;
+        border-color: #9fb8cf;
+    }
+    .return-home-wrap {
+        margin: 26px auto 6px;
+        text-align: center;
+    }
 
     .index-grid {
         display: grid;
@@ -87,6 +262,14 @@
     .cta-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(26, 111, 196, 0.4);
+    }
+    .cta-pulse {
+        animation: ctaPulse 2.5s infinite;
+    }
+    @keyframes ctaPulse {
+        0% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
+        50% { box-shadow: 0 4px 25px rgba(26, 111, 196, 0.6); }
+        100% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
     }
 
     /* ===== Quiz ===== */
@@ -398,6 +581,485 @@
         .index-grid { grid-template-columns: repeat(2, 1fr); }
         .result-table { font-size: 0.8em; }
         .result-table th, .result-table td { padding: 6px 4px; }
+        .entry-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Trait Check Screen ===== */
+    #trait-screen { text-align: center; }
+    .trait-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .trait-question-text {
+        font-size: 1.12em; font-weight: bold; margin: 20px 0 28px;
+        line-height: 1.75; min-height: 68px;
+    }
+    .likert-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+    .likert-btn {
+        padding: 14px 4px; background: #e0f2f1;
+        border: 2px solid transparent; border-radius: 8px;
+        cursor: pointer; font-size: 0.8em; text-align: center;
+        font-family: inherit; transition: all 0.15s;
+        display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .likert-btn:hover { background: #b2dfdb; transform: translateY(-1px); }
+    .likert-btn.selected { background: #1a6fc4; color: white; border-color: #1558a0; font-weight: bold; }
+    .likert-num { font-size: 1.4em; font-weight: bold; }
+    .likert-label { font-size: 0.76em; line-height: 1.3; }
+
+    /* ===== Trait Result Screen ===== */
+    #trait-result-screen { text-align: center; }
+    .trait-type-card {
+        background: linear-gradient(135deg, #1a6fc4 0%, #1558a0 100%);
+        color: #fff; border-radius: 14px; padding: 24px 22px;
+        margin: 16px auto; max-width: 560px; text-align: left;
+    }
+    .trait-type-label { font-size: 0.85em; opacity: 0.82; margin-bottom: 4px; }
+    .trait-type-name { font-size: 1.65em; font-weight: 700; margin-bottom: 14px; }
+    .trait-type-comment { font-size: 0.9em; line-height: 1.78; }
+    .radar-container { margin: 20px auto; max-width: 380px; }
+    .cluster-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 14px 0; }
+    .cluster-badge { padding: 6px 14px; border-radius: 20px; font-size: 0.8em; font-weight: 600; }
+    .trait-section-title { font-weight: 700; color: #1a3a5c; margin: 20px 0 12px; font-size: 1em; }
+    .trait-cat-list { margin: 0 auto; max-width: 560px; }
+    .trait-cat-card {
+        background: #f8f9fa; border-radius: 8px; padding: 12px 16px;
+        text-align: left; border-left: 4px solid #ccc; margin-bottom: 10px;
+    }
+    .trait-cat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .trait-cat-name { font-weight: 700; color: #1a3a5c; font-size: 0.9em; }
+    .trait-cat-score { font-size: 0.82em; color: #78909c; font-variant-numeric: tabular-nums; }
+    .trait-bar-bg { height: 6px; background: #e0e0e0; border-radius: 3px; margin-bottom: 8px; }
+    .trait-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+    .trait-cat-comment { font-size: 0.83em; color: #546e7a; line-height: 1.6; }
+    .iq-integration-card {
+        background: #fff8e1; border: 1px solid #ffe082; border-radius: 10px;
+        padding: 16px 20px; margin: 16px auto; max-width: 560px; text-align: left;
+    }
+    .iq-integration-title { font-weight: 700; color: #5d4037; margin-bottom: 8px; font-size: 0.95em; }
+    .iq-integration-body { font-size: 0.88em; color: #5d4037; line-height: 1.72; }
+
+    @media (max-width: 480px) {
+        .likert-grid { gap: 4px; }
+        .likert-btn { padding: 10px 2px; font-size: 0.72em; }
+        .likert-num { font-size: 1.2em; }
+    }
+
+    /* ===== Tips (① おすすめ対策) ===== */
+    .tips-section { margin: 20px auto; max-width: 560px; }
+    .tips-section-title { font-weight: 700; color: #1a3a5c; margin-bottom: 12px; font-size: 1em; }
+    .tip-cat-card {
+        background: #f0faf7; border-left: 4px solid #00897b;
+        border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;
+    }
+    .tip-cat-name { font-weight: 700; font-size: 0.88em; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
+    .tip-list { list-style: none; padding: 0; margin: 0; }
+    .tip-list li { font-size: 0.85em; color: #2c3e50; padding: 5px 0 5px 20px; position: relative; line-height: 1.55; border-bottom: 1px solid #e8f5f2; }
+    .tip-list li:last-child { border-bottom: none; }
+    .tip-list li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; }
+    .tip-detail-btn { font-size: 0.78em; cursor: pointer; padding: 3px 10px; border-radius: 12px; border: 1px solid currentColor; background: transparent; font-family: inherit; opacity: 0.8; transition: opacity 0.15s; }
+    .tip-detail-btn:hover { opacity: 1; }
+
+    /* ===== Posts (② 短冊投稿) ===== */
+    .posts-section { margin: 20px auto; max-width: 560px; }
+    .posts-section-title { font-weight: 700; color: #1a3a5c; margin-bottom: 10px; font-size: 1em; }
+    .post-form-card { background: #f5f9ff; border: 1px solid #d4e4f5; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .post-form-label { font-weight: 700; color: #1a3a5c; font-size: 0.9em; margin-bottom: 8px; }
+    .post-textarea { width: 100%; padding: 10px; font-size: 0.9em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; resize: none; box-sizing: border-box; line-height: 1.5; }
+    .post-textarea:focus { outline: none; border-color: #1a6fc4; }
+    .post-char-count { font-size: 0.76em; color: #90a4ae; text-align: right; margin-top: 3px; }
+    .post-form-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+    .post-cat-select { flex: 1; min-width: 130px; padding: 8px 10px; font-size: 0.85em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; background: #fff; }
+    .post-submit-btn { padding: 9px 20px; background: #1a6fc4; color: #fff; border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
+    .post-submit-btn:hover:not(:disabled) { background: #1558a0; }
+    .post-submit-btn:disabled { background: #b0bec5; cursor: not-allowed; }
+    .post-status { font-size: 0.82em; margin-top: 6px; min-height: 1.1em; }
+    .post-status.ok  { color: #2e7d32; }
+    .post-status.err { color: #c62828; }
+    .post-list { display: flex; flex-direction: column; gap: 20px; }
+    .post-card { background: #fff; border: 1px solid #e8edf2; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: box-shadow 0.2s, transform 0.15s; }
+    .post-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); transform: translateY(-1px); }
+    .post-card-cat { display: inline-block; font-size: 0.71em; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; }
+    .post-card-text { font-size: 0.9em; color: #2c3e50; line-height: 1.75; margin-bottom: 10px; word-break: break-word; }
+    .post-card-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .post-card-time { font-size: 0.73em; color: #bdbdbd; flex-shrink: 0; }
+    .post-card-actions { display: flex; align-items: center; gap: 8px; }
+    .post-card-actions { display: flex; align-items: center; gap: 6px; }
+    .like-btn { background: none; border: 1px solid #e0e0e0; border-radius: 20px; padding: 5px 14px; cursor: pointer; font-size: 0.82em; font-weight: 500; color: #78909c; font-family: inherit; transition: all 0.2s; display: flex; align-items: center; gap: 5px; }
+    .like-btn:hover  { background: #fff3e0; border-color: #fb8c00; color: #e65100; transform: scale(1.05); }
+    .like-btn.liked  { background: #fff3e0; border-color: #fb8c00; color: #e65100; font-weight: 700; }
+    .like-btn.pop { animation: likePop 0.35s ease-out; }
+    @keyframes likePop { 0% { transform:scale(1); } 40% { transform:scale(1.35); } 100% { transform:scale(1); } }
+    .post-card.new-post { animation: newPostHL 1.8s ease-out forwards; }
+    @keyframes newPostHL { 0% { background:#fff9e6; box-shadow:0 0 0 3px #ffd54f; } 50% { background:#fff9e6; box-shadow:0 0 0 3px #ffd54f; } 100% { background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.08); } }
+    .post-menu { position:relative; }
+    .post-menu-btn { background:none; border:none; font-size:1.2em; color:#90a4ae; cursor:pointer; padding:2px 4px; font-family:inherit; transition:color 0.15s; }
+    .post-menu-btn:hover { color:#546e7a; }
+    .post-menu-items { position:absolute; top:100%; right:0; background:#fff; border:1px solid #e0e0e0; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); z-index:100; min-width:180px; }
+    .post-menu-item { display:block; width:100%; text-align:left; background:none; border:none; padding:9px 14px; font-size:0.85em; color:#546e7a; font-family:inherit; cursor:pointer; transition:background 0.15s; }
+    .post-menu-item:hover { background:#f5f5f5; }
+    .post-menu-item.reported { color:#e57373; cursor:default; font-weight:600; }
+    .posts-empty {
+        text-align: center;
+        font-size: 0.9em;
+        color: #78909c;
+        padding: 26px 18px;
+        background: linear-gradient(180deg, #fbfdff 0%, #f5f9fd 100%);
+        border: 1px dashed #c8d8e8;
+        border-radius: 14px;
+    }
+    .posts-loading { text-align: center; font-size: 0.85em; color: #90a4ae; padding: 16px 0; }
+    .sort-toggle { display:flex; gap:6px; margin-bottom:14px; }
+    .sort-btn { padding:5px 16px; background:#f5f5f5; border:1px solid #e0e0e0; border-radius:20px; cursor:pointer; font-size:0.82em; color:#546e7a; font-family:inherit; transition:all 0.15s; }
+    .sort-btn.active { background:#1a6fc4; border-color:#1a6fc4; color:#fff; font-weight:600; }
+    .action-cat-group { margin-bottom:22px; }
+    .action-cat-heading { font-weight:600; font-size:0.82em; color:#90a4ae; padding-bottom:5px; border-bottom:2px solid; margin-bottom:10px; display:flex; justify-content:space-between; }
+    .action-cat-count { font-weight:400; font-size:0.85em; }
+
+    /* ===== Category Page (③ カテゴリページ) ===== */
+    #category-screen { text-align: left; }
+    .cat-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .back-btn { background: #fff; border: 1px solid #c5d4e3; border-radius: 6px; padding: 7px 14px; font-size: 0.85em; color: #546e7a; cursor: pointer; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
+    .back-btn:hover { background: #f0f4f8; border-color: #aec4d8; }
+    .cat-page-title { font-size: 1.25em; font-weight: 700; color: #1a3a5c; }
+    .cat-desc-card {
+        background: linear-gradient(135deg, #f8fbff 0%, #f4f8fc 100%);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 20px;
+        font-size: 0.96em;
+        color: #445b72;
+        line-height: 1.95;
+        border-left: 5px solid #1a6fc4;
+        box-shadow: 0 6px 18px rgba(21, 53, 89, 0.05);
+    }
+    .cat-content-card {
+        background: #fff;
+        border: 1px solid #e1e8f0;
+        border-radius: 16px;
+        padding: 18px 18px 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 24px rgba(18, 56, 96, 0.05);
+    }
+    .cat-tips-list { list-style: none; padding: 0; margin: 0; }
+    .cat-tips-list li {
+        padding: 14px 0 14px 28px;
+        position: relative;
+        font-size: 0.96em;
+        color: #2c3e50;
+        line-height: 1.75;
+        border-bottom: 1px solid #edf2f7;
+    }
+    .cat-tips-list li:last-child { border-bottom: none; }
+    .cat-tips-list li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: #00897b; }
+
+    /* ===== カテゴリカードのクリック導線 ===== */
+    .cat-name-link { background: none; border: none; font-size: inherit; font-weight: 700; color: inherit; cursor: pointer; font-family: inherit; padding: 0; text-align: left; text-decoration: underline dotted; }
+    .cat-name-link:hover { opacity: 0.75; }
+
+    /* ===== スムーズスクロール ===== */
+    html { scroll-behavior: smooth; }
+
+    /* ===== カテゴリページ（タブ廃止・線形レイアウト）===== */
+    .cat-section-label {
+        font-weight: 700;
+        font-size: 1.05em;
+        color: #1a3a5c;
+        margin: 0 0 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e6edf5;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .cat-section-intro {
+        font-size: 0.9em;
+        color: #60758a;
+        line-height: 1.75;
+        margin-bottom: 16px;
+    }
+
+    /* ===== ウェルカム改善アクション掲示板 ===== */
+    .popular-actions-section {
+        margin-top: 32px;
+        padding: 24px;
+        border: 1px solid #e1e8f0;
+        border-radius: 18px;
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+        box-shadow: 0 10px 30px rgba(18, 56, 96, 0.06);
+        text-align: left;
+    }
+    .popular-actions-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+    .popular-actions-title {
+        font-weight: 700;
+        color: #1a3a5c;
+        margin-bottom: 6px;
+        font-size: 1.2em;
+    }
+    .popular-actions-desc {
+        font-size: 0.9em;
+        color: #60758a;
+        line-height: 1.7;
+    }
+    .popular-actions-layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+    }
+    .popular-actions-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .popular-menu-btn {
+        width: 100%;
+        border: 1px solid #d9e4ef;
+        background: #fff;
+        border-radius: 12px;
+        padding: 12px 14px;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.18s ease;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .popular-menu-btn:hover {
+        transform: translateX(2px);
+        border-color: #b9cde1;
+        background: #f9fbfd;
+    }
+    .popular-menu-btn.active {
+        color: #fff;
+        border-color: transparent;
+        box-shadow: 0 8px 18px rgba(26, 111, 196, 0.22);
+    }
+    .popular-menu-btn:not(.active) {
+        position: relative;
+    }
+    .popular-menu-btn:not(.active)::after {
+        content: "→";
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ab0c4;
+        font-size: 0.95em;
+        font-weight: 700;
+    }
+    .popular-menu-title {
+        display: block;
+        font-size: 0.93em;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .popular-menu-meta {
+        display: block;
+        font-size: 0.75em;
+        opacity: 0.82;
+    }
+    .popular-actions-panel {
+        min-width: 0;
+        background: #fff;
+        border: 2px solid #d7e5f2;
+        border-radius: 16px;
+        padding: 18px 18px 16px;
+        box-shadow: 0 12px 26px rgba(18, 56, 96, 0.07), inset 0 1px 0 rgba(255,255,255,0.8);
+        position: relative;
+    }
+    .popular-actions-panel::before {
+        content: "選択中のカテゴリ";
+        position: absolute;
+        top: -12px;
+        left: 18px;
+        background: #fff;
+        color: #6b86a0;
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 0 8px;
+    }
+    .popular-panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #eef3f8;
+    }
+    .popular-panel-title {
+        font-size: 1.02em;
+        font-weight: 700;
+    }
+    .popular-panel-desc {
+        font-size: 0.84em;
+        color: #60758a;
+        line-height: 1.65;
+        margin-bottom: 14px;
+    }
+    .popular-more-btn {
+        font-size: 0.8em;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: underline;
+        padding: 0;
+        opacity: 0.88;
+        transition: opacity 0.15s;
+        white-space: nowrap;
+    }
+    .popular-more-btn:hover { opacity: 1; }
+    .popular-post-mini {
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+        border: 1px solid #d9e5f2;
+        border-left: 4px solid #8bb8e8;
+        border-radius: 12px;
+        padding: 12px 14px 12px 16px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 12px rgba(18, 56, 96, 0.07);
+    }
+    .popular-post-label {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: #eef5fd;
+        color: #49739b;
+        font-size: 0.72em;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+    .popular-post-mini .post-card-text {
+        font-size: 1em;
+        font-weight: 600;
+        color: #20364c;
+        margin-bottom: 8px;
+        line-height: 1.8;
+    }
+    .popular-post-mini .post-card-footer { font-size: 0.76em; }
+    .popular-empty-state {
+        padding: 28px 16px;
+        text-align: center;
+        color: #90a4ae;
+        font-size: 0.9em;
+        background: #f9fbfd;
+        border: 1px dashed #d8e2ec;
+        border-radius: 12px;
+    }
+    .popular-empty-state strong {
+        display: block;
+        color: #4d6a86;
+        font-size: 1em;
+        margin-bottom: 6px;
+    }
+    .popular-inline-form {
+        margin-top: 22px;
+    }
+    @media (max-width: 820px) {
+        .popular-actions-layout { grid-template-columns: 1fr; }
+        .popular-actions-menu { display: grid; grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+        .popular-actions-section { padding: 18px 16px; }
+        .popular-actions-header { display: block; }
+        .popular-actions-menu { grid-template-columns: 1fr; }
+        .popular-panel-head { display: block; }
+        .popular-more-btn { margin-top: 6px; }
+    }
+
+    /* ===== 管理者パネル（⑪）===== */
+    #admin-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:10000; overflow-y:auto; padding:20px; box-sizing:border-box; }
+    .admin-inner { background:#fff; border-radius:12px; max-width:620px; margin:0 auto; padding:20px; }
+    .admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #eee; padding-bottom:10px; }
+    .admin-close-btn { background:#546e7a; color:#fff; border:none; border-radius:6px; padding:5px 14px; cursor:pointer; font-size:0.85em; font-family:inherit; }
+    .admin-post-row { display:flex; gap:8px; align-items:flex-start; padding:8px 0; border-bottom:1px solid #f0f0f0; }
+    .admin-post-row:last-child { border-bottom:none; }
+    .admin-post-info { flex:1; font-size:0.82em; line-height:1.55; color:#37474f; }
+    .admin-post-meta { font-size:0.75em; color:#90a4ae; margin-bottom:2px; }
+    .admin-del-btn { background:#c62828; color:#fff; border:none; border-radius:5px; padding:4px 10px; cursor:pointer; font-size:0.78em; white-space:nowrap; font-family:inherit; transition:background 0.15s; }
+    .admin-del-btn:hover { background:#e53935; }
+
+    /* ===== 次のステップセクション ===== */
+    .next-step-section {
+        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        border: 2px solid #1a6fc4;
+        border-radius: 14px;
+        padding: 28px 24px;
+        margin: 24px auto;
+        max-width: 620px;
+        text-align: center;
+    }
+    .next-step-header {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: #1a3a5c;
+        margin-bottom: 14px;
+    }
+    .next-step-desc {
+        font-size: 0.95em;
+        color: #546e7a;
+        line-height: 1.75;
+        margin-bottom: 20px;
+    }
+    .next-step-benefits {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+    .benefit-item {
+        background: #fff;
+        padding: 14px 12px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #e0e7ff;
+    }
+    .benefit-icon {
+        font-size: 1.8em;
+    }
+    .benefit-text {
+        font-size: 0.82em;
+        color: #2c3e50;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+    .next-step-btn {
+        display: block;
+        width: 100%;
+        padding: 18px 20px;
+        background: linear-gradient(135deg, #1a6fc4 0%, #1558a0 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.15em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3);
+        font-family: inherit;
+    }
+    .next-step-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 111, 196, 0.4);
+    }
+    .next-step-btn:active {
+        transform: translateY(0);
+    }
+    .next-step-pulse {
+        animation: buttonPulse 2s infinite;
+    }
+    @keyframes buttonPulse {
+        0% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
+        50% { box-shadow: 0 4px 25px rgba(26, 111, 196, 0.6); }
+        100% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
     }
 </style>
 </head>
@@ -407,46 +1069,109 @@
     <!-- ============= Welcome ============= -->
     <div id="welcome-screen">
         <span class="hero-icon">🧠</span>
-        <h1 class="hero-title">✨️IQテスト✨️</h1>
+        <h1 class="hero-title">自己分析と改善アクションのためのチェックサイト</h1>
+        <p class="hero-lead">
+            生活や対人面の特性を知り、自分に合う工夫や改善アクションを見つけるためのサイトです。
+            IQテストは認知の得意・不得意を知る補助分析として使えます。
+        </p>
         <div class="stats-badge" id="stats-badge" style="display:none;">
             🧑‍🤝‍🧑 これまで <strong id="stats-total">0</strong> 人が参加中
         </div>
-        <br>
-
-        <div class="index-grid">
-            <div class="index-card" style="border-top-color:#1a6fc4;">
-                <strong>言語思考力</strong>
-                <small>言葉の理解と表現</small>
+        <div class="purpose-box">
+            <div class="purpose-title">このサイトでできること</div>
+            <div class="purpose-text">
+                まずは特性チェックで、注意・衝動・対人・感覚などの傾向を知り、改善アクションやみんなの投稿を参考にできます。
+                IQテストは、言語思考力・空間認識・記憶と処理・スピード認知のバランスを知るための補助分析です。
             </div>
-            <div class="index-card" style="border-top-color:#00897b;">
-                <strong>空間・パターン認識</strong>
-                <small>図形と規則の発見</small>
-            </div>
-            <div class="index-card" style="border-top-color:#fb8c00;">
-                <strong>記憶と処理</strong>
-                <small>情報の保持と操作</small>
-            </div>
-            <div class="index-card" style="border-top-color:#8e24aa;">
-                <strong>スピード認知</strong>
-                <small>素早い識別と判断</small>
+            <div class="reset-note">
+                ログイン機能や個人記録機能はありませんので安心してご利用ください。ただし、ページを更新すると、途中経過や結果は保持されず最初の画面に戻りますので、その点にはご注意ください。
             </div>
         </div>
 
-        <div class="warning-box">
-            <strong>📊 測定について</strong><br>
-            言語思考力・空間/パターン認識・記憶と処理・スピード認知 の 4 領域について、<strong>全 45 問</strong>を出題します。
-            正答・誤答に加えて<strong>回答にかかった時間</strong>も得点に反映されます。<br><br>
-            <strong>所要時間の目安：20〜30 分</strong><br>
-            迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。<br><br>
-            <small style="color:#8d6e63;">※ページを更新すると最初からやり直しになります。テスト中はブラウザを閉じたり更新しないようにご注意ください。</small>
+        <div class="entry-grid">
+            <div class="entry-card primary">
+                <div class="entry-badge primary">おすすめの入口</div>
+                <div class="entry-title">特性チェックから始める</div>
+                <div class="entry-text">
+                    日常生活や対人面での傾向を確認し、自分に合う対策や、同じ悩みを持つ人の改善アクションまでつなげられます。
+                </div>
+                <ul class="entry-points">
+                    <li>18問で特性の傾向をチェック</li>
+                    <li>結果ページで改善ヒントを確認</li>
+                    <li>カテゴリ別の投稿を読んだり、自分でも投稿できる</li>
+                </ul>
+                <button class="cta-button cta-pulse" onclick="startTraitCheck()">特性チェックを始める</button>
+            </div>
+
+            <div class="entry-card secondary">
+                <div class="entry-badge secondary">補助分析</div>
+                <div class="entry-title">IQテストを受ける</div>
+                <div class="entry-text">
+                    認知の得意・不得意を 4 領域で把握できます。特性チェックと組み合わせると、自己理解がより深まります。
+                </div>
+                <ul class="entry-points">
+                    <li>全45問、20〜30分の簡易版</li>
+                    <li>言語・空間・記憶・速度の4指標を推定</li>
+                    <li>認知面のバランスを知る補助材料</li>
+                </ul>
+                <button class="sub-button" onclick="startTest()">IQテストを受ける</button>
+            </div>
         </div>
 
-        <button class="cta-button" onclick="startTest()">測定を開始する</button>
         <p class="disclaimer">
-            本テストは娯楽・自己診断目的の簡易版です。正式な臨床知能検査ではないため、
-            医学的診断や就学・就労判定の根拠には使用できません。正確な知能評価が必要な場合は、
-            有資格の臨床心理士による対面の専門的な知能検査を受検してください。
+            特性チェック・IQテストともに娯楽・自己分析目的の簡易版です。医学的診断や就学・就労判定の根拠には使用できません。
+            正確な評価や支援が必要な場合は、専門機関や有資格者への相談をご検討ください。
         </p>
+        <div class="section-caption">特性チェック後に役立つ、みんなの改善アクション</div>
+        <!-- 改善アクション掲示板 -->
+        <div class="popular-actions-section" id="popular-actions" style="display:none;"></div>
+    </div>
+
+    <!-- ============= IQ Intro ============= -->
+    <div id="iq-intro-screen" class="intro-screen">
+        <div class="intro-card">
+            <h2>IQテストの案内</h2>
+            <div class="intro-lead">
+                IQテストでは、言語思考力・空間/パターン認識・記憶と処理・スピード認知の 4 領域を簡易的に確認します。
+                特性チェックとは別に、認知面の得意・不得意を知るための補助分析として使えます。
+            </div>
+
+            <div class="section-caption">IQテストで分かる4つの認知指標</div>
+            <div class="index-grid">
+                <div class="index-card" style="border-top-color:#1a6fc4;">
+                    <strong>言語思考力</strong>
+                    <small>言葉の理解と表現</small>
+                </div>
+                <div class="index-card" style="border-top-color:#00897b;">
+                    <strong>空間・パターン認識</strong>
+                    <small>図形と規則の発見</small>
+                </div>
+                <div class="index-card" style="border-top-color:#fb8c00;">
+                    <strong>記憶と処理</strong>
+                    <small>情報の保持と操作</small>
+                </div>
+                <div class="index-card" style="border-top-color:#8e24aa;">
+                    <strong>スピード認知</strong>
+                    <small>素早い識別と判断</small>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>📊 IQテストについて</strong><br>
+                4 領域について、<strong>全 45 問</strong>を出題します。正答・誤答に加えて<strong>回答にかかった時間</strong>も得点に反映されます。<br><br>
+                <strong>所要時間の目安：20〜30 分</strong><br>
+                迷った場合は「わからない」を選択してください。当てずっぽうの誤答より減点が小さくなります。
+            </div>
+
+            <div class="reset-note">
+                ログイン機能や個人記録機能はありません。ページを更新すると、テスト中でも最初の画面からやり直しになります。
+            </div>
+
+            <div class="intro-actions">
+                <button class="cta-button cta-pulse" onclick="beginIqTest()">このままIQテストを始める</button>
+                <button class="ghost-button" onclick="backToWelcome()">トップに戻る</button>
+            </div>
+        </div>
     </div>
 
     <!-- ============= Quiz ============= -->
@@ -525,6 +1250,74 @@
                 <table class="ranking-table" id="ranking-table"></table>
                 <p class="ranking-note" id="ranking-note"></p>
             </div>
+        </div>
+
+        <div class="return-home-wrap">
+            <button class="ghost-button" onclick="backToWelcome()">トップページに戻る</button>
+        </div>
+
+    </div>
+
+    <!-- ============= Trait Check ============= -->
+    <div id="trait-screen" style="display:none;">
+        <div class="trait-header">
+            <div class="question-header" id="trait-q-header">特性チェック 1 / 18</div>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="trait-progress-bar"></div>
+        </div>
+        <div class="trait-question-text" id="trait-question-text"></div>
+        <div class="likert-grid" id="trait-likert-grid"></div>
+    </div>
+
+    <!-- ============= Trait Result ============= -->
+    <div id="trait-result-screen" style="display:none;">
+        <h2>特性チェック結果</h2>
+        <div id="trait-type-card-el" class="trait-type-card"></div>
+        <div class="radar-container" id="radar-container"></div>
+        <div class="cluster-row" id="cluster-row"></div>
+        <div class="trait-section-title">各カテゴリの傾向</div>
+        <div class="trait-cat-list" id="trait-cat-list"></div>
+        <div class="iq-integration-card" id="iq-integration-card"></div>
+        <!-- ① おすすめ対策 -->
+        <div class="tips-section" id="tips-section"></div>
+        <!-- ② 短冊投稿 -->
+        <div class="posts-section" id="posts-section-trait"></div>
+        <p class="disclaimer" style="margin-top:20px;">
+            この特性チェックは自己理解を深める目的の簡易版です。医療・教育的な診断には利用できません。
+            気になる特性がある場合は専門家への相談をご検討ください。
+        </p>
+        <div class="return-home-wrap">
+            <button class="ghost-button" onclick="backToWelcome()">トップページに戻る</button>
+        </div>
+    </div>
+
+    <!-- ============= ③ カテゴリページ ============= -->
+    <div id="category-screen" style="display:none;">
+        <div class="cat-nav">
+            <button class="back-btn" id="cat-back-btn" onclick="hideCategoryPage()">← 戻る</button>
+            <div class="cat-page-title" id="cat-page-title"></div>
+        </div>
+        <div class="cat-desc-card" id="cat-page-desc"></div>
+        <!-- ⑨ 線形レイアウト: 対策→投稿一覧→投稿フォーム -->
+        <div class="cat-content-card">
+            <div class="cat-section-label">💡 おすすめ対策</div>
+            <div class="cat-section-intro">この特性カテゴリでつまずきやすい場面に合わせて、今日から試しやすい行動の工夫をまとめています。</div>
+            <div id="cat-tab-tips"></div>
+        </div>
+        <div class="cat-content-card">
+            <div class="cat-section-label">📌 みんなの投稿</div>
+            <div class="cat-section-intro">同じカテゴリで悩んだ人たちの工夫や習慣です。気になった投稿は「いいね」で残せます。</div>
+            <div class="sort-toggle" style="margin-top:8px;">
+                <button class="sort-btn active" data-mode="new" onclick="setSortMode('new')">新着順</button>
+                <button class="sort-btn" data-mode="likes" onclick="setSortMode('likes')">いいね順</button>
+            </div>
+            <div class="post-list" id="cat-post-list"></div>
+        </div>
+        <div class="cat-content-card">
+            <div class="cat-section-label">✏️ 投稿する</div>
+            <div class="cat-section-intro">自分に合っていた方法や、これから試したい改善アクションを書き残せます。</div>
+            <div id="cat-post-form" style="margin-top:10px;"></div>
         </div>
     </div>
 
@@ -840,6 +1633,15 @@ function buildQuizOrder() {
 // 画面遷移・テスト開始
 // ================================================================
 function startTest() {
+    ['welcome-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    document.getElementById('iq-intro-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function beginIqTest() {
     // 選択肢キャッシュをリセット（再受験対応）
     questions.forEach(q => { delete q._shuffledOptions; delete q._shuffledDisplays; });
     quizQuestions = buildQuizOrder();
@@ -849,11 +1651,20 @@ function startTest() {
     quizStartTime = Date.now();
     quizSubmitted = false;
 
-    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('iq-intro-screen').style.display = 'none';
     document.getElementById('quiz-screen').style.display = 'block';
 
     startCountdown();
     renderQuestion();
+}
+
+function backToWelcome() {
+    ['iq-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    document.getElementById('welcome-screen').style.display = 'block';
+    window.scrollTo(0, 0);
 }
 
 function startCountdown() {
@@ -1304,7 +2115,1072 @@ function renderRanking() {
 }
 
 // ページロード時にウェルカム画面用の統計を取得
-window.addEventListener('DOMContentLoaded', () => { loadStats(); });
+window.addEventListener('DOMContentLoaded', () => { loadStats(); _initDev(); renderWelcomePopularActions(); });
+
+// ================================================================
+// 開発用ショートカット（🧠アイコンを 7回タップで起動）
+// ================================================================
+let _devTaps = 0, _devTimer = null;
+
+function _initDev() {
+    const icon = document.querySelector('.hero-icon');
+    if (!icon) return;
+    icon.addEventListener('click', () => {
+        _devTaps++;
+        if (_devTimer) clearTimeout(_devTimer);
+        _devTimer = setTimeout(() => { _devTaps = 0; }, 2500);
+        if (_devTaps >= 7) {
+            _devTaps = 0;
+            document.getElementById('dev-panel').style.display = 'block';
+        }
+    });
+}
+
+function devSkipIQ() {
+    // IQテスト全問を「正解・標準時間内」で解答した扱いにしてスキップ
+    questions.forEach(q => { delete q._shuffledOptions; delete q._shuffledDisplays; });
+    quizQuestions     = buildQuizOrder();
+    userAnswers       = quizQuestions.map(q => ({ answer: answerKey[q.id], elapsedMs: Math.round(q.stdTime * 700) }));
+    quizSubmitted     = false;
+    countdown         = TOTAL_TIME_SEC;
+    quizStartTime     = Date.now();
+    userSubmittedPref = '（開発テスト）';   // 都道府県ゲートを自動解除
+    ['welcome-screen','quiz-screen','trait-screen','trait-result-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    submitQuiz();   // lastResult が設定され result-screen が表示される
+    document.getElementById('dev-panel').style.display = 'none';
+}
+
+function devSkipTrait() {
+    // 特性チェック全問を「3（どちらでもない）」で回答した扱いにしてスキップ
+    traitAnswers = new Array(traitQuestions.length).fill(3);
+    ['welcome-screen','quiz-screen','result-screen','trait-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    calcAndDisplayTraitResults();
+    document.getElementById('dev-panel').style.display = 'none';
+}
+
+function devSkipAll() {
+    // IQテスト → 特性チェック を両方スキップして特性結果画面まで直行
+    questions.forEach(q => { delete q._shuffledOptions; delete q._shuffledDisplays; });
+    quizQuestions     = buildQuizOrder();
+    userAnswers       = quizQuestions.map(q => ({ answer: answerKey[q.id], elapsedMs: Math.round(q.stdTime * 700) }));
+    quizSubmitted     = false;
+    countdown         = TOTAL_TIME_SEC;
+    quizStartTime     = Date.now();
+    userSubmittedPref = '（開発テスト）';
+    submitQuiz();   // lastResult（IQスコア）を設定
+    // 特性結果へ
+    traitAnswers = new Array(traitQuestions.length).fill(3);
+    const rs = document.getElementById('result-screen');
+    if (rs) rs.style.display = 'none';
+    calcAndDisplayTraitResults();
+    document.getElementById('dev-panel').style.display = 'none';
+}
+
+// ================================================================
+// ① カテゴリデータ（説明・対策・UI色）
+// ================================================================
+const categoryData = {
+    attention: {
+        label:"注意のコントロール", color:"#1a6fc4", bg:"#e3f2fd",
+        desc:"意識を目的のことに向け続ける力です。外部の刺激に気を取られにくく、集中を持続させる能力に関係します。この力が低いと、作業中に気が散りやすかったり、別のことを考えてしまったりしやすくなります。",
+        tips:[
+            "作業は25分＋5分休憩の「ポモドーロ法」で区切る",
+            "スマホは別の部屋に置き、通知をすべてオフにする",
+            "「今やること」を付箋1枚に書いて目の前に貼る",
+            "BGMは歌詞のない音楽（雨音・ホワイトノイズ）にする",
+            "作業開始前に「何分やるか」を声に出して決める"
+        ]
+    },
+    impulse: {
+        label:"衝動・行動のコントロール", color:"#2196f3", bg:"#e3f2fd",
+        desc:"思いついた行動をすぐに実行せず、状況に応じて判断できる力です。感情や欲求にブレーキをかける機能で、この力が低いと後悔する行動をしやすくなる場合があります。",
+        tips:[
+            "「5秒ルール」：行動前に5秒間考える習慣をつける",
+            "衝動的な購買・発言は24時間後に再評価する",
+            "感情が高ぶったら「その場をいったん離れる」を合言葉にする",
+            "日常のルーティンを固定し、意思決定の回数自体を減らす",
+            "「やりたい」と思ったらメモするだけ。すぐ動かない"
+        ]
+    },
+    memory: {
+        label:"ワーキングメモリ", color:"#ff9800", bg:"#fff3e0",
+        desc:"情報を頭の中に一時保持しながら作業する能力です。複数の情報を同時に扱ったり、指示を記憶しながら動くのに重要で、この力が低いと指示の抜けや混乱が起きやすくなります。",
+        tips:[
+            "メモアプリやノートに「今やること」を常に書き出す",
+            "複数の指示は1つずつ確認しながら進める",
+            "手順はチェックリスト化して目で見える形にする",
+            "重要事項は声に出して復唱するか録音する",
+            "作業前に「流れ」を図や矢印で書いておく"
+        ]
+    },
+    planning: {
+        label:"計画・時間管理（実行機能）", color:"#03a9f4", bg:"#e1f5fe",
+        desc:"目標に向かって段取りを組み、順序立てて行動する力です。「やらなきゃ」を「いつ・どうやって」に変換する実行機能で、この力が低いと先延ばしや時間管理の苦手さにつながりやすいです。",
+        tips:[
+            "大きなタスクは「次の一歩」だけを書き出す",
+            "カレンダーに「作業時間」も予定として記入する",
+            "締め切りの2〜3日前に自分リマインダーを設定する",
+            "週に1回10分、翌週のToDoを整理する時間を作る",
+            "「今日やること」は3つまでに絞り込む"
+        ]
+    },
+    social: {
+        label:"対人コミュニケーション", color:"#e91e63", bg:"#fce4ec",
+        desc:"相手の意図・感情・場の空気を読み取りながら円滑にやり取りする力です。言葉の裏の意味を理解することも含まれ、この力が低いと対人場面で戸惑いやすくなります。",
+        tips:[
+            "会話中は「要約して返す」を意識する（反射せず確認）",
+            "LINEやメールは返信前に一度読み返す",
+            "わからないときは「どういう意味ですか？」と聞き返す",
+            "会話前に「今の相手の状況」を一瞬考えてみる",
+            "共感のフレーズ「それは大変でしたね」を覚えておく"
+        ]
+    },
+    rigidity: {
+        label:"こだわり・繰り返し", color:"#9c27b0", bg:"#f3e5f5",
+        desc:"特定のやり方や手順へのこだわり、繰り返しの行動パターンに関する傾向です。強いこだわりは一貫性や精密さの強みにもなりますが、変化への対応が難しくなることがあります。",
+        tips:[
+            "週に1回、意識的に「いつもと違う」ルートや方法を試す",
+            "変更が予想されるときは「もしXなら〜する」と事前プランを立てる",
+            "「こだわるべきこと」と「こだわらなくていいこと」をリスト化する",
+            "変化が起きたとき「最悪でも〜で済む」と整理してみる",
+            "柔軟な友人・同僚の判断方法を観察して参考にする"
+        ]
+    },
+    sensory: {
+        label:"感覚の特性（敏感さ・鈍麻）", color:"#673ab7", bg:"#ede7f6",
+        desc:"音・光・においなど外部刺激への反応の強さに関する傾向です。敏感すぎると疲れやすく集中が乱れ、鈍麻だと刺激に気づきにくい場合があります。環境調整が有効です。",
+        tips:[
+            "ノイズキャンセリングイヤホンで聴覚刺激を調整する",
+            "作業場所の照明の明るさ・色温度を自分好みに整える",
+            "「疲れたかも」と感じたら5分間刺激のない場所で休む",
+            "服や素材の「肌触りの好み」を把握し快適なものを選ぶ",
+            "過剰刺激になりやすい環境・シーンを事前に把握しておく"
+        ]
+    },
+    adapt: {
+        label:"日常生活の適応力", color:"#4caf50", bg:"#e8f5e9",
+        desc:"環境の変化や予期しない出来事に柔軟に対応し、新しい状況に慣れていく力です。変化へのストレス耐性も含まれ、この力が低いと切り替えに時間がかかりやすくなります。",
+        tips:[
+            "新しい環境に行く前に「どんな場所か」を事前調査する",
+            "「慣れるまでの時間」を自分で把握しておく（例：1週間）",
+            "変化が多い日はタスクを少なめにしエネルギーを温存する",
+            "「いつものルーティン」を1つ残すと安定感が増す",
+            "変化をメモして「思ったより大丈夫だった」を記録する"
+        ]
+    },
+    motor: {
+        label:"身体の不器用さ（協調運動）", color:"#795548", bg:"#efebe9",
+        desc:"手先や身体のスムーズな動きに関する力です。細かい手先の作業や、複数の動きを同時に行うことの得意・不得意に関係します。丁寧なペースと道具の工夫が助けになります。",
+        tips:[
+            "手先の作業は焦らず「ゆっくり丁寧に」を意識する",
+            "道具のサイズや重さを自分に合ったものに変える",
+            "難しい動作は分解して「コツ」を言語化してみる",
+            "手先の作業前に軽くストレッチで体をほぐす",
+            "難しい作業は1ステップずつ確認しながら進める"
+        ]
+    }
+};
+
+// NGワード（フロント簡易チェック）
+const NG_WORDS_CLIENT = ["死ね","殺","クソ","きもい","アホ","消えろ","うんこ"];
+
+// 投稿状態
+let lastPostTime = 0;
+let sortMode = 'new';
+let currentCategoryPage = null;
+let catPagePrevScreen   = null;
+let welcomeBoardCategory = null;
+
+function getActions() {
+    try { return JSON.parse(localStorage.getItem('actions') || '[]'); } catch(e) { return []; }
+}
+function saveActions(acts) {
+    localStorage.setItem('actions', JSON.stringify(acts));
+}
+
+// ================================================================
+// ① おすすめ対策 レンダリング
+// ================================================================
+function renderRecommendations(norm) {
+    const TRAIT_CATS = new Set(['sensory','rigidity']);
+    const catOrder   = ['attention','impulse','planning','social','rigidity','sensory','memory','adapt','motor'];
+
+    // "要注目度" スコア: ability系は低いほど高い, trait系は高いほど高い
+    const ranked = catOrder
+        .map(cat => ({ cat, need: TRAIT_CATS.has(cat) ? norm[cat] : (100 - norm[cat]) }))
+        .sort((a, b) => b.need - a.need)
+        .slice(0, 3);
+
+    let html = `<div class="tips-section-title">💡 あなたにおすすめの対策（上位3カテゴリ）</div>`;
+    ranked.forEach(({ cat }) => {
+        const d = categoryData[cat];
+        if (!d) return;
+        html += `
+            <div class="tip-cat-card" style="border-left-color:${d.color};">
+                <div class="tip-cat-name" style="color:${d.color};">
+                    <span>${d.label}</span>
+                    <button class="tip-detail-btn" style="color:${d.color};border-color:${d.color};"
+                        onclick="showCategoryPage('${cat}','trait-result-screen')">詳細を見る →</button>
+                </div>
+                <ul class="tip-list" style="border-top:1px solid #e8f5f2;">
+                    ${d.tips.slice(0,3).map(t => `<li style="border-color:#e0f2ec;">${t}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    });
+    document.getElementById('tips-section').innerHTML = html;
+}
+
+// ================================================================
+// ② 短冊投稿フォーム
+// ================================================================
+function buildPostForm(containerId, defaultCat) {
+    const catOpts = Object.entries(categoryData)
+        .map(([k,v]) => `<option value="${k}"${k===defaultCat?' selected':''}>${v.label}</option>`)
+        .join('');
+    const placeholders = [
+        '朝やることを3つ決める',
+        'スマホを別の部屋に置く',
+        '締切3日前にリマインド設定',
+        '夜11時に寝る習慣をつける',
+        '毎朝5分の瞑想をやる'
+    ];
+    const ph = placeholders[Math.floor(Math.random() * placeholders.length)];
+    return `
+        <div class="post-form-label">📝 改善したいことを書いてみよう</div>
+        <textarea class="post-textarea" id="post-text-${containerId}" maxlength="100" rows="2"
+            placeholder="例：${ph}（具体的な行動を5文字以上で）"
+            oninput="updateCharCount('${containerId}')"></textarea>
+        <div class="post-char-count" id="post-char-${containerId}">0 / 100</div>
+        <div class="post-form-row">
+            <select class="post-cat-select" id="post-cat-${containerId}">${catOpts}</select>
+            <button class="post-submit-btn" id="post-btn-${containerId}" onclick="submitPost('${containerId}')">投稿する</button>
+        </div>
+        <div class="post-status" id="post-status-${containerId}"></div>
+    `;
+}
+
+function updateCharCount(cid) {
+    const ta  = document.getElementById(`post-text-${cid}`);
+    const cnt = document.getElementById(`post-char-${cid}`);
+    if (ta && cnt) cnt.textContent = `${ta.value.length} / 100`;
+}
+
+function submitPost(cid) {
+    const textEl   = document.getElementById(`post-text-${cid}`);
+    const catEl    = document.getElementById(`post-cat-${cid}`);
+    const statusEl = document.getElementById(`post-status-${cid}`);
+
+    let text = (textEl?.value || '').trim();
+    const cat = catEl?.value || '';
+
+    statusEl.className = 'post-status';
+    statusEl.textContent = '';
+
+    // ① バリデーション強化
+    // scriptタグ等の危険な文字列を除去
+    text = text.replace(/<script[\s\S]*?<\/script>/gi, '')
+               .replace(/<[^>]+>/g, '')
+               .trim();
+
+    console.log('[submitPost] バリデーション開始:', { text: text.slice(0, 20), len: text.length });
+
+    if (!text) {
+        statusEl.className='post-status err'; statusEl.textContent='意味のある文章を入力してください。';
+        console.log('[submitPost] NG: 空文字列');
+        return;
+    }
+    if (text.length < 5) {
+        statusEl.className='post-status err'; statusEl.textContent='5文字以上で入力してください（具体的な行動を書くと参考になります）。';
+        console.log('[submitPost] NG: 5文字未満');
+        return;
+    }
+    if (text.length > 100) {
+        statusEl.className='post-status err'; statusEl.textContent='100文字以内で入力してください。';
+        console.log('[submitPost] NG: 100文字超過');
+        return;
+    }
+    if (/(.)\1{4,}/.test(text)) {
+        statusEl.className='post-status err'; statusEl.textContent='同じ文字の繰り返しが多すぎます。';
+        console.log('[submitPost] NG: 同一文字5連続');
+        return;
+    }
+    // 日本語チェック（正規表現修正）
+    if (!/[ぁ-んァ-ン一-龥]/.test(text)) {
+        statusEl.className='post-status err'; statusEl.textContent='日本語（ひらがな・カタカナ・漢字）を含めてください。';
+        console.log('[submitPost] NG: 日本語なし');
+        return;
+    }
+    if (NG_WORDS_CLIENT.some(w => text.includes(w))) {
+        statusEl.className='post-status err'; statusEl.textContent='不適切な表現が含まれています。';
+        console.log('[submitPost] NG: NGワード検出');
+        return;
+    }
+    const now = Date.now();
+    if (now - lastPostTime < 10000) {
+        const w = Math.ceil((10000 - (now - lastPostTime)) / 1000);
+        statusEl.className='post-status err'; statusEl.textContent=`連続投稿制限中です（あと${w}秒）`;
+        console.log('[submitPost] NG: 連投制限');
+        return;
+    }
+
+    const acts = getActions();
+    const id = now.toString(36) + Math.random().toString(36).slice(2, 6);
+    // 新しい投稿を配列の先頭に追加
+    acts.unshift({ id, text, category: cat, likes: 0, liked: false, reported: false, createdAt: now });
+    saveActions(acts);
+    lastPostTime = now;
+
+    console.log('[submitPost] OK: 投稿保存完了', { id, text: text.slice(0, 20) });
+    statusEl.className='post-status ok'; statusEl.textContent='✓ 良い投稿ありがとうございます！';
+    textEl.value = ''; updateCharCount(cid);
+    renderWelcomePopularActions();
+
+    // ⑤ 投稿後: 一覧更新 → 新カードへスクロール → ハイライト
+    if (cid === 'welcome') {
+        renderWelcomePopularActions();
+    } else {
+        const listId = cid === 'trait' ? 'posts-list-trait' : 'cat-post-list';
+        const catFilter = cid === 'trait' ? '' : currentCategoryPage;
+        renderActionsList(listId, catFilter);
+        setTimeout(() => {
+            const newCard = document.getElementById(`post-card-${id}`);
+            if (newCard) {
+                newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                newCard.classList.add('new-post');
+            }
+        }, 60);
+    }
+}
+
+function renderActionsList(listId, catFilter) {
+    const el = document.getElementById(listId);
+    if (!el) return;
+    let acts = getActions();
+
+    // フィルタ
+    if (catFilter) acts = acts.filter(a => a.category === catFilter);
+
+    if (!acts.length) {
+        el.innerHTML = listId === 'cat-post-list'
+            ? '<div class="posts-empty">まだ投稿がありません。最初の投稿者になりましょう！✏️</div>'
+            : '';
+        return;
+    }
+
+    // ソート
+    if (sortMode === 'likes') {
+        acts = [...acts].sort((a, b) => b.likes - a.likes);
+    } else {
+        acts = [...acts].sort((a, b) => b.createdAt - a.createdAt);
+    }
+
+    if (catFilter) {
+        // カテゴリ指定時はそのまま最大5件
+        el.innerHTML = acts.slice(0, 5).map(p => renderPostCard(p)).join('');
+    } else {
+        // 全カテゴリ: カテゴリごとにグループ化して各最大5件
+        const groups = {};
+        acts.forEach(a => {
+            if (!groups[a.category]) groups[a.category] = [];
+            if (groups[a.category].length < 5) groups[a.category].push(a);
+        });
+        let html = '';
+        Object.keys(groups).forEach(cat => {
+            const cd = categoryData[cat];
+            if (!cd) return;
+            html += `
+                <div class="action-cat-group">
+                    <div class="action-cat-heading" style="color:${cd.color};border-color:${cd.color};">
+                        ${cd.label}
+                        <span class="action-cat-count">${groups[cat].length}件</span>
+                    </div>
+                    ${groups[cat].map(p => renderPostCard(p)).join('')}
+                </div>
+            `;
+        });
+        el.innerHTML = html;
+    }
+}
+
+function setSortMode(mode) {
+    sortMode = mode;
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    // 現在表示中のリストを再描画
+    const traitList = document.getElementById('posts-list-trait');
+    if (traitList) renderActionsList('posts-list-trait', '');
+    const catList = document.getElementById('cat-post-list');
+    if (catList) renderActionsList('cat-post-list', currentCategoryPage);
+}
+
+function renderPostCard(p) {
+    const cd = categoryData[p.category];
+    const badge = cd ? `<span class="post-card-cat" style="background:${cd.bg};color:${cd.color};">${cd.label}</span>` : '';
+    // ④ いいねボタン: 「👍 いいね！ N」形式、オレンジ色
+    // ⑪ 通報ボタンを3点メニュー内に移動
+    return `
+        <div class="post-card" id="post-card-${p.id}">
+            ${badge}
+            <div class="post-card-text">${escapeHtml(p.text)}</div>
+            <div class="post-card-footer">
+                <span class="post-card-time">${formatTimeAgo(p.createdAt)}</span>
+                <div class="post-card-actions">
+                    <button class="like-btn${p.liked?' liked':''}" id="like-btn-${p.id}"
+                        onclick="toggleLike('${p.id}')">
+                        👍 いいね！ <span id="like-cnt-${p.id}">${p.likes}</span>
+                    </button>
+                    <div class="post-menu" id="menu-${p.id}">
+                        <button class="post-menu-btn" onclick="togglePostMenu('${p.id}')">⋯</button>
+                        <div class="post-menu-items" style="display:none;">
+                            <button class="post-menu-item${p.reported?' reported':''}"
+                                onclick="reportPost('${p.id}'); togglePostMenu('${p.id}')"
+                                title="不適切な投稿を通報">
+                                🚩 ${p.reported ? '報告済み' : '不適切な投稿を通報'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function toggleLike(id) {
+    const btn = document.getElementById(`like-btn-${id}`);
+    const cnt = document.getElementById(`like-cnt-${id}`);
+    if (!btn || !cnt) return;
+    const acts = getActions();
+    const idx = acts.findIndex(a => a.id === id);
+    if (idx === -1) return;
+    acts[idx].liked = !acts[idx].liked;
+    acts[idx].likes = Math.max(0, acts[idx].likes + (acts[idx].liked ? 1 : -1));
+    saveActions(acts);
+    btn.classList.toggle('liked', acts[idx].liked);
+    cnt.textContent = acts[idx].likes;
+    renderWelcomePopularActions();
+    // ⑪ 押したときのアニメーション
+    btn.classList.add('pop');
+    setTimeout(() => btn.classList.remove('pop'), 400);
+}
+
+// ⑪ 3点メニュー開閉
+function togglePostMenu(id) {
+    const menu = document.querySelector(`#menu-${id} .post-menu-items`);
+    if (!menu) return;
+    // 他のメニューをすべて閉じる
+    document.querySelectorAll('.post-menu-items[style*="block"]').forEach(m => {
+        if (m !== menu) m.style.display = 'none';
+    });
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+
+// ⑪ 通報機能
+function reportPost(id) {
+    const menuItem = document.querySelector(`#menu-${id} .post-menu-item`);
+    if (!menuItem || menuItem.classList.contains('reported')) return;
+    const acts = getActions();
+    const idx = acts.findIndex(a => a.id === id);
+    if (idx === -1) return;
+    acts[idx].reported = true;
+    saveActions(acts);
+    console.log('[reportPost] 投稿を通報:', id);
+    menuItem.textContent = '🚩 報告済み';
+    menuItem.classList.add('reported');
+}
+
+function renderTraitPostSection(topCat) {
+    const sec = document.getElementById('posts-section-trait');
+    if (!sec) return;
+    sec.innerHTML = `
+        <div class="posts-section-title">📌 みんなの改善アクション</div>
+        <div class="sort-toggle">
+            <button class="sort-btn active" data-mode="new" onclick="setSortMode('new')">新着順</button>
+            <button class="sort-btn" data-mode="likes" onclick="setSortMode('likes')">いいね順</button>
+        </div>
+        <div class="post-form-card">${buildPostForm('trait', topCat)}</div>
+        <div class="post-list" id="posts-list-trait"></div>
+    `;
+    renderActionsList('posts-list-trait', '');
+}
+
+// ================================================================
+// ③ カテゴリページ
+// ================================================================
+function showCategoryPage(cat, fromScreen) {
+    catPagePrevScreen = fromScreen || 'trait-result-screen';
+    currentCategoryPage = cat;
+    const d = categoryData[cat];
+    if (!d) return;
+
+    // 全画面を非表示（welcome-screenも対象）
+    ['welcome-screen','iq-intro-screen','result-screen','trait-result-screen','trait-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
+    const screen = document.getElementById('category-screen');
+    screen.style.display = 'block';
+    window.scrollTo(0, 0);
+
+    // タイトル・説明
+    document.getElementById('cat-page-title').innerHTML =
+        `<span style="color:${d.color};">${d.label}</span>`;
+    document.getElementById('cat-page-desc').textContent = d.desc;
+
+    // ⑨ 対策リスト（直接表示）
+    const tipsStyle = document.getElementById('cat-tips-style') || (() => {
+        const s = document.createElement('style'); s.id = 'cat-tips-style'; document.head.appendChild(s); return s;
+    })();
+    tipsStyle.textContent = `.cat-tips-list li::before { color: ${d.color}; }`;
+    document.getElementById('cat-tab-tips').innerHTML = `
+        <ul class="cat-tips-list">
+            ${d.tips.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+    `;
+
+    // ⑨ ソートボタン状態を現在のsortModeに合わせる
+    document.querySelectorAll('#category-screen .sort-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.mode === sortMode);
+    });
+
+    // ⑨ 投稿一覧（直接表示）
+    renderActionsList('cat-post-list', cat);
+
+    // ⑨ 投稿フォーム（直接表示）
+    document.getElementById('cat-post-form').innerHTML = buildPostForm('cat', cat);
+}
+
+function hideCategoryPage() {
+    document.getElementById('category-screen').style.display = 'none';
+    const prev = document.getElementById(catPagePrevScreen || 'trait-result-screen');
+    if (prev) prev.style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+// ================================================================
+// ⑧ ウェルカム画面 人気アクション
+// ================================================================
+function renderWelcomePopularActions() {
+    const sec = document.getElementById('popular-actions');
+    if (!sec) return;
+    const acts = getActions();
+    const categories = Object.keys(categoryData);
+    if (!categories.length) {
+        sec.style.display = 'none';
+        return;
+    }
+
+    const counts = {};
+    categories.forEach(cat => { counts[cat] = acts.filter(a => a.category === cat).length; });
+
+    if (!welcomeBoardCategory || !categoryData[welcomeBoardCategory]) {
+        welcomeBoardCategory = categories.find(cat => counts[cat] > 0) || categories[0];
+    }
+
+    const selectedCat = welcomeBoardCategory;
+    const selectedMeta = categoryData[selectedCat];
+    const selectedPosts = acts
+        .filter(a => a.category === selectedCat)
+        .sort((a, b) => b.likes - a.likes || b.createdAt - a.createdAt)
+        .slice(0, 5);
+
+    const menuHtml = categories.map(cat => {
+        const meta = categoryData[cat];
+        const active = cat === selectedCat;
+        const style = active
+            ? `style="background:${meta.color};"`
+            : `style="border-left:4px solid ${meta.color};"`;
+        return `
+            <button class="popular-menu-btn${active ? ' active' : ''}" ${style}
+                onclick="setWelcomeCategory('${cat}')">
+                <span class="popular-menu-title">${meta.label}</span>
+                <span class="popular-menu-meta">投稿 ${counts[cat]}件</span>
+            </button>
+        `;
+    }).join('');
+
+    const postsHtml = selectedPosts.length
+        ? selectedPosts.map(p => `
+            <div class="popular-post-mini">
+                <div class="popular-post-label">みんなの投稿コメント</div>
+                <div class="post-card-text">${escapeHtml(p.text)}</div>
+                <div class="post-card-footer">
+                    <span class="post-card-time">${formatTimeAgo(p.createdAt)}</span>
+                    <span style="font-size:0.8em;color:#e65100;font-weight:600;">👍 ${p.likes}</span>
+                </div>
+            </div>
+        `).join('')
+        : `
+            <div class="popular-empty-state">
+                <strong>このカテゴリにはまだ投稿がありません</strong>
+                最初の改善アクションを投稿すると、ここに表示されます。
+            </div>
+        `;
+
+    sec.innerHTML = `
+        <div class="popular-actions-header">
+            <div>
+                <div class="popular-actions-title">📚 改善アクション投稿</div>
+                <div class="popular-actions-desc">
+                    気になる特性カテゴリを左から選ぶと、みんなの改善アクションを右側で読めます。
+                </div>
+            </div>
+        </div>
+        <div class="popular-actions-layout">
+            <div class="popular-actions-menu">${menuHtml}</div>
+            <div class="popular-actions-panel">
+                <div class="popular-panel-head">
+                    <div class="popular-panel-title" style="color:${selectedMeta.color};">${selectedMeta.label}</div>
+                    <button class="popular-more-btn" style="color:${selectedMeta.color};"
+                        onclick="showCategoryPage('${selectedCat}','welcome-screen')">このカテゴリを詳しく見る →</button>
+                </div>
+                <div class="popular-panel-desc">${selectedMeta.desc}</div>
+                ${postsHtml}
+                <div class="post-form-card popular-inline-form">${buildPostForm('welcome', selectedCat)}</div>
+            </div>
+        </div>
+    `;
+    sec.style.display = 'block';
+}
+
+function setWelcomeCategory(cat) {
+    if (!categoryData[cat]) return;
+    welcomeBoardCategory = cat;
+    renderWelcomePopularActions();
+}
+
+// ⑪ 管理者パネル
+function openAdminPanel() {
+    document.getElementById('dev-panel').style.display = 'none';
+    const overlay  = document.getElementById('admin-overlay');
+    const listEl   = document.getElementById('admin-post-list');
+    const acts     = getActions();
+
+    if (!acts.length) {
+        listEl.innerHTML = '<div style="color:#999;text-align:center;padding:24px;">投稿はまだありません。</div>';
+    } else {
+        // 新着順で全件表示（報告あり投稿を上に）
+        const sorted = [...acts].sort((a, b) => (b.reported ? 1 : 0) - (a.reported ? 1 : 0) || b.createdAt - a.createdAt);
+        listEl.innerHTML = sorted.map(a => `
+            <div class="admin-post-row" id="admin-row-${a.id}">
+                <div class="admin-post-info">
+                    <div class="admin-post-meta">
+                        [${categoryData[a.category]?.label || a.category}]
+                        👍${a.likes}
+                        ${a.reported ? '⚠️ <span style="color:#e57373;">通報あり</span>' : ''}
+                        &nbsp;${formatTimeAgo(a.createdAt)}
+                    </div>
+                    ${escapeHtml(a.text)}
+                </div>
+                <button class="admin-del-btn" onclick="adminDeletePost('${a.id}')">削除</button>
+            </div>
+        `).join('');
+    }
+    overlay.style.display = 'block';
+}
+
+function adminDeletePost(id) {
+    saveActions(getActions().filter(a => a.id !== id));
+    renderWelcomePopularActions();
+    const row = document.getElementById(`admin-row-${id}`);
+    if (row) row.remove();
+    // 現在表示中の投稿リストも更新
+    const traitList = document.getElementById('posts-list-trait');
+    if (traitList) renderActionsList('posts-list-trait', '');
+    const catList = document.getElementById('cat-post-list');
+    if (catList) renderActionsList('cat-post-list', currentCategoryPage);
+}
+
+// ================================================================
+// ユーティリティ
+// ================================================================
+function escapeHtml(s) {
+    return String(s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatTimeAgo(ds) {
+    if (!ds) return '';
+    const diff = Date.now() - new Date(ds).getTime();
+    const m = Math.floor(diff / 60000);
+    if (m < 1)  return 'たった今';
+    if (m < 60) return `${m}分前`;
+    const h = Math.floor(m / 60);
+    if (h < 24) return `${h}時間前`;
+    return `${Math.floor(h / 24)}日前`;
+}
+
+// ================================================================
+// 特性チェック
+// ================================================================
+const traitQuestions = [
+    { text:"作業中に、気が散って別のことを考えてしまうことがある",           cat:"attention", rev:false },
+    { text:"思いついたことをすぐに行動に移してしまうことがある",             cat:"impulse",   rev:false },
+    { text:"複数の指示を一度に受けると、混乱しやすい",                       cat:"memory",    rev:false },
+    { text:"相手の気持ちや意図を読み取るのが難しいと感じることがある",       cat:"social",    rev:false },
+    { text:"音や光、においなどが気になって集中できないことがある",           cat:"sensory",   rev:false },
+    { text:"予定通りに物事を進めるのが難しいと感じることがある",             cat:"planning",  rev:false },
+    { text:"最後まで集中して取り組めることが多い",                           cat:"attention", rev:true  },
+    { text:"順番を待ったり、落ち着いて判断することができる",                 cat:"impulse",   rev:true  },
+    { text:"頭の中で情報を整理しながら作業するのが得意だ",                   cat:"memory",    rev:true  },
+    { text:"やり方や順番に強いこだわりがある",                               cat:"rigidity",  rev:false },
+    { text:"環境や予定の変化にストレスを感じやすい",                         cat:"adapt",     rev:false },
+    { text:"細かい作業（字を書く、ボタンを留める等）が苦手に感じることがある", cat:"motor",   rev:false },
+    { text:"会話の流れや空気を自然に理解できる",                             cat:"social",    rev:true  },
+    { text:"状況に応じて柔軟にやり方を変えることができる",                   cat:"rigidity",  rev:true  },
+    { text:"周囲の刺激にあまり影響されずに過ごせる",                         cat:"sensory",   rev:true  },
+    { text:"やるべきことを事前に計画して行動できる",                         cat:"planning",  rev:true  },
+    { text:"新しい環境にも比較的すぐに慣れることができる",                   cat:"adapt",     rev:true  },
+    { text:"体を動かす作業や手先の作業をスムーズにこなせる",                 cat:"motor",     rev:true  }
+];
+
+const traitCatMeta = {
+    attention: { label:"注意のコントロール",          cluster:"adhd",  color:"#1a6fc4" },
+    impulse:   { label:"衝動・行動のコントロール",    cluster:"adhd",  color:"#2196f3" },
+    planning:  { label:"計画・時間管理（実行機能）",  cluster:"adhd",  color:"#03a9f4" },
+    social:    { label:"対人コミュニケーション",       cluster:"asd",   color:"#e91e63" },
+    rigidity:  { label:"こだわり・繰り返し",           cluster:"asd",   color:"#9c27b0" },
+    sensory:   { label:"感覚の特性（敏感さ・鈍麻）",  cluster:"asd",   color:"#673ab7" },
+    memory:    { label:"ワーキングメモリ",             cluster:"ld",    color:"#ff9800" },
+    adapt:     { label:"日常生活の適応力",             cluster:"adapt", color:"#4caf50" },
+    motor:     { label:"身体の不器用さ（協調運動）",   cluster:"dcd",   color:"#795548" }
+};
+
+const clusterMeta = {
+    adhd:  { label:"行動コントロール系（ADHD関連）", color:"#1a6fc4", bg:"#e3f2fd" },
+    asd:   { label:"認知スタイル系（ASD関連）",       color:"#9c27b0", bg:"#f3e5f5" },
+    ld:    { label:"学習処理系（LD関連）",             color:"#e65100", bg:"#fff3e0" },
+    adapt: { label:"日常適応系",                       color:"#2e7d32", bg:"#e8f5e9" },
+    dcd:   { label:"身体特性（DCD関連）",              color:"#4e342e", bg:"#efebe9" }
+};
+
+const LIKERT_LABELS = ["まったくない","ほとんどない","ときどきある","よくある","いつもある"];
+
+const typeComments = {
+    "バランス型":    "全体的に大きな偏りが少なく、認知面と行動特性のバランスが取れた安定したタイプです。環境や課題に応じて柔軟に対応できる力があり、極端な得意・不得意が出にくいのが特徴です。一方で突出した強みとして自覚しにくい場合もあり、自分の良さを見逃してしまうことがあります。幅広い状況に適応できる安定感が強みです。",
+    "集中・論理型":  "集中力や論理的な思考力、情報を整理する力に優れており、複雑な課題や継続的な作業に強みを発揮します。特にワーキングメモリや実行機能の高さが支えとなり、効率よく問題解決ができる傾向があります。一方で外部刺激や急な変化に対しては負荷を感じやすく、一定の環境条件が整うことで能力を最大限発揮しやすいタイプです。",
+    "発想・直感型":  "柔軟な発想やひらめきに優れており、型にはまらない考え方ができるタイプです。新しいアイデアを生み出したり、自由な視点で物事を見る力があります。一方で計画性や継続的な作業、細かな管理が必要な場面では負担を感じやすく、興味や関心によってパフォーマンスに差が出ることがあります。",
+    "マイペース型":  "外部の影響を受けにくく、自分のペースで安定して行動できるタイプです。一定のリズムで継続する力があり、環境に左右されにくい強みがあります。一方で周囲とのスピード感や期待とのズレが生じることがあり、対人場面や変化の多い環境では調整が必要になることがあります。",
+    "繊細・感覚型":  "感覚的な刺激や環境の変化に敏感で、細かな違いに気づきやすい特性があります。注意力や観察力として強みになる一方で、音・光・人の気配などによって集中が乱れたり、疲れやすさにつながることがあります。環境を整えることで能力を発揮しやすくなるタイプです。",
+    "波あり型":      "認知特性や行動特性のばらつきが大きく、得意・不得意がはっきり分かれるタイプです。特定の条件や分野では非常に高い力を発揮する一方で、苦手な場面では負荷が大きくなりやすい傾向があります。自分の特性を理解し、適した環境ややり方を選ぶことで大きく伸びる可能性があります。"
+};
+
+const traitCatComments = {
+    attention: {
+        high: "集中力を維持する力が高く、作業や学習において安定したパフォーマンスを発揮しやすい状態です。外部刺激に左右されにくく、継続的な取り組みが得意です。",
+        mid:  "集中力は状況によって異なりますが、概ね安定して取り組める傾向があります。",
+        low:  "注意が分散しやすく、周囲の刺激や思考の切り替わりによって集中が途切れやすい傾向があります。いわゆる注意の持続に関する特性が影響している可能性があります。"
+    },
+    impulse: {
+        high: "状況を見て判断し、落ち着いて行動できる力があります。衝動的な行動を抑え、順序立てて進めることができるタイプです。",
+        mid:  "行動のコントロールは概ね安定していますが、場面によって衝動的に動くことがあるかもしれません。",
+        low:  "思いついたことをすぐ行動に移しやすく、考える前に動く傾向があります。行動のブレーキよりもアクセルが強く出やすい特性が見られる可能性があります。"
+    },
+    memory: {
+        high: "複数の情報を同時に保持・処理する力が高く、思考や判断をスムーズに行うことができます。学習や問題解決において大きな強みになります。",
+        mid:  "情報の保持・処理は概ね問題なく行えますが、複雑な状況では負荷を感じることもあるでしょう。",
+        low:  "複数の情報を同時に扱うことに負担を感じやすく、指示の抜けや作業の混乱につながることがあります。情報処理の負荷に敏感な傾向があります。"
+    },
+    planning: {
+        high: "計画を立てて順序よく行動する力があり、目標に向かって効率的に進めることができます。実行機能が安定して働いています。",
+        mid:  "計画立ては概ねできていますが、複雑な場面では柔軟な対応が必要になることもあるでしょう。",
+        low:  "計画や優先順位の整理が難しく、やるべきことの実行に時間がかかることがあります。実行機能に関する特性が影響している可能性があります。"
+    },
+    social: {
+        high: "相手の意図や感情、場の空気を読み取る力があり、自然なコミュニケーションができるタイプです。",
+        mid:  "コミュニケーションは概ね問題ありませんが、複雑な社会的場面では判断に迷うことがあるかもしれません。",
+        low:  "言葉の裏の意味や空気感の理解にズレを感じることがあり、対人場面で戸惑うことがあります。社会的な理解のスタイルに特徴が見られる可能性があります。"
+    },
+    rigidity: {
+        high: "やり方やルールを一貫して守る力があり、安定した行動につながります。一定のパターンを維持することが得意です。",
+        mid:  "こだわりは適度にあり、状況に応じて柔軟さと一貫性のバランスが取れています。",
+        low:  "柔軟にやり方を変えることができる一方で、一貫性よりも変化を優先しやすい傾向があります。"
+    },
+    sensory: {
+        high: "音や光、においなどに敏感で、細かな違いに気づきやすい特性があります。集中や疲労に影響することがあります。",
+        mid:  "感覚の敏感さは中程度で、状況によって刺激の影響を受けることがあるでしょう。",
+        low:  "外部刺激の影響を受けにくく、環境に左右されにくい安定した状態です。"
+    },
+    adapt: {
+        high: "環境の変化や新しい状況にも柔軟に対応できる力があります。ストレス耐性も比較的安定しています。",
+        mid:  "適応力は概ねあります。大きな変化には時間がかかることもあるかもしれません。",
+        low:  "変化や予想外の出来事に対してストレスを感じやすく、慣れるまで時間がかかる傾向があります。"
+    },
+    motor: {
+        high: "身体の動きや手先の操作がスムーズで、日常動作や細かい作業を安定して行えます。",
+        mid:  "身体の動きは概ね問題ありませんが、細かい作業では集中が必要なことがあるかもしれません。",
+        low:  "手先の作業や身体の動きにぎこちなさを感じることがあり、協調運動に関する特性が影響している可能性があります。"
+    }
+};
+
+const iqPatternComments = {
+    1: "認知的な理解力や処理能力は高い一方で、注意の分散や衝動性の影響により、本来の力を安定して発揮しにくい場面がある可能性があります。集中環境や作業方法を工夫することで、能力をより活かしやすくなります。",
+    2: "情報処理能力とワーキングメモリがともに高く、学習・理解・応用のバランスが良い状態です。複雑な課題にも対応しやすく、認知的な強みを安定して発揮できるタイプです。",
+    3: "全体的な能力は平均的でも、特性の偏りによって得意・不得意がはっきりしやすい状態です。環境や課題によってパフォーマンスが大きく変化する可能性があります。",
+    4: "外部刺激に対する感受性が高く、周囲の影響を受けやすいことで注意の維持に影響が出ている可能性があります。環境調整が重要なポイントになります。",
+    5: "情報の整理と実行の両面で負荷がかかりやすく、複雑な作業や段取りが必要な場面で困難を感じやすい傾向があります。外部ツールの活用などが有効です。",
+    6: "認知能力と特性のバランスが良く、極端な弱点が少ない安定した状態です。幅広い状況に対応できる柔軟性があります。"
+};
+
+let traitAnswers = [];
+let traitCurrentIdx = 0;
+
+function startTraitCheck() {
+    traitAnswers = new Array(traitQuestions.length).fill(null);
+    traitCurrentIdx = 0;
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('iq-intro-screen').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'none';
+    document.getElementById('trait-result-screen').style.display = 'none';
+    document.getElementById('trait-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+    renderTraitQuestion();
+}
+
+function renderTraitQuestion() {
+    const total = traitQuestions.length;
+    document.getElementById('trait-q-header').textContent = `特性チェック ${traitCurrentIdx + 1} / ${total}`;
+    document.getElementById('trait-progress-bar').style.width = `${(traitCurrentIdx / total) * 100}%`;
+    document.getElementById('trait-question-text').textContent = traitQuestions[traitCurrentIdx].text;
+
+    const grid = document.getElementById('trait-likert-grid');
+    grid.innerHTML = '';
+    const current = traitAnswers[traitCurrentIdx];
+    [1,2,3,4,5].forEach(val => {
+        const btn = document.createElement('button');
+        btn.className = 'likert-btn' + (current === val ? ' selected' : '');
+        btn.innerHTML = `<span class="likert-num">${val}</span><span class="likert-label">${LIKERT_LABELS[val-1]}</span>`;
+        btn.onclick = () => selectTraitAnswer(val);
+        grid.appendChild(btn);
+    });
+}
+
+function selectTraitAnswer(val) {
+    traitAnswers[traitCurrentIdx] = val;
+    document.querySelectorAll('.likert-btn').forEach((b, i) => {
+        b.classList.toggle('selected', i === val - 1);
+    });
+    setTimeout(() => {
+        if (traitCurrentIdx < traitQuestions.length - 1) {
+            traitCurrentIdx++;
+            renderTraitQuestion();
+        } else {
+            calcAndDisplayTraitResults();
+        }
+    }, 280);
+}
+
+function calcTraitNorm() {
+    const TRAIT_CATS = new Set(['sensory', 'rigidity']);
+    const raw = { attention:0, impulse:0, memory:0, social:0, sensory:0, planning:0, rigidity:0, adapt:0, motor:0 };
+    traitQuestions.forEach((q, i) => {
+        const v = traitAnswers[i] || 3;
+        if (TRAIT_CATS.has(q.cat)) {
+            // HIGH = trait present: rev:false → add v (agree=trait), rev:true → add (6-v)
+            raw[q.cat] += q.rev ? (6 - v) : v;
+        } else {
+            // HIGH = good ability: rev:false → add (6-v) (agree=difficulty), rev:true → add v
+            raw[q.cat] += q.rev ? v : (6 - v);
+        }
+    });
+    const norm = {};
+    Object.keys(raw).forEach(k => { norm[k] = Math.round((raw[k] - 2) / 8 * 100); });
+    return norm;
+}
+
+function getTraitType(norm) {
+    const avg3 = (a,b,c) => (a + b + c) / 3;
+    const behavior = avg3(norm.attention, norm.impulse, norm.planning);
+    const wm = norm.memory;
+    const adapt = norm.adapt;
+    const sensory = norm.sensory;
+    const asd_like = avg3(100 - norm.social, norm.rigidity, norm.sensory);
+    // chart values: all in trait-presence direction
+    const chartVals = [
+        100-norm.attention, 100-norm.impulse, 100-norm.memory,
+        100-norm.planning, 100-norm.social, norm.rigidity,
+        norm.sensory, 100-norm.adapt, 100-norm.motor
+    ];
+    const maxVal = Math.max(...chartVals);
+    const minVal = Math.min(...chartVals);
+    if (maxVal - minVal >= 40) return "波あり型";
+    if (sensory >= 65 && asd_like >= 65) return "繊細・感覚型";
+    if (wm >= 65 && behavior >= 65) return "集中・論理型";
+    if (behavior <= 40 && wm <= 60) return "発想・直感型";
+    if (adapt <= 35 && behavior >= 50) return "マイペース型";
+    return "バランス型";
+}
+
+function getIQPattern(norm, iq) {
+    const avg3 = (a,b,c) => (a + b + c) / 3;
+    const behavior = avg3(norm.attention, norm.impulse, norm.planning);
+    const wm = norm.memory;
+    const sensory = norm.sensory;
+    const asd_like = avg3(100 - norm.social, norm.rigidity, norm.sensory);
+    const adhd_like = 100 - behavior;
+    if (iq >= 115 && behavior < 50) return 1;
+    if (iq >= 115 && wm >= 65) return 2;
+    if (sensory >= 65 && norm.attention <= 35) return 4;
+    if (behavior <= 40 && wm <= 40) return 5;
+    if (iq >= 90 && iq < 115 && (asd_like >= 65 || adhd_like >= 65)) return 3;
+    return 6;
+}
+
+function drawRadarChart(chartVals) {
+    // chartVals order: [注意,衝動,WM,計画,対人,こだわり,感覚,適応,運動] — all trait direction
+    const labels = ["注意","衝動","WM","計画","対人","こだわり","感覚","適応","運動"];
+    const colors = ["#1a6fc4","#2196f3","#ff9800","#03a9f4","#e91e63","#9c27b0","#673ab7","#4caf50","#795548"];
+    const W = 340, H = 340, cx = 170, cy = 170, R = 105, n = 9;
+    function ang(i) { return (i * 2 * Math.PI / n) - Math.PI / 2; }
+    function pt(r, i) { const a = ang(i); return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+
+    let s = '';
+    // Grid polygons
+    [25,50,75,100].forEach(pct => {
+        const ps = Array.from({length:n}, (_,i) => pt(R * pct / 100, i));
+        const d = ps.map((p,i) => `${i===0?'M':'L'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + 'Z';
+        s += `<path d="${d}" fill="none" stroke="${pct===50?'#c8c8c8':'#e4e4e4'}" stroke-width="${pct===50?1.5:0.8}"/>`;
+    });
+    // Axis lines
+    for (let i=0; i<n; i++) {
+        const [x,y] = pt(R, i);
+        s += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e0e0e0" stroke-width="1"/>`;
+    }
+    // Data polygon
+    const dps = chartVals.map((v,i) => pt(R * Math.max(0, Math.min(100, v)) / 100, i));
+    const dp = dps.map((p,i) => `${i===0?'M':'L'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + 'Z';
+    s += `<path d="${dp}" fill="rgba(26,111,196,0.18)" stroke="#1a6fc4" stroke-width="2.5" stroke-linejoin="round"/>`;
+    // Dots
+    dps.forEach((p,i) => {
+        s += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="5" fill="${colors[i]}" stroke="white" stroke-width="2"/>`;
+    });
+    // Labels
+    for (let i=0; i<n; i++) {
+        const [x,y] = pt(R + 22, i);
+        const anchor = x < cx - 8 ? 'end' : x > cx + 8 ? 'start' : 'middle';
+        s += `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle" font-size="12" font-weight="600" fill="${colors[i]}">${labels[i]}</text>`;
+    }
+    // Center reference label
+    s += `<text x="${cx}" y="${(cy + R*0.5 + 5).toFixed(1)}" text-anchor="middle" font-size="8" fill="#bbb">50</text>`;
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:360px;display:block;margin:0 auto;">${s}</svg>`;
+}
+
+function calcAndDisplayTraitResults() {
+    document.getElementById('trait-screen').style.display = 'none';
+    document.getElementById('trait-result-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+
+    const norm = calcTraitNorm();
+    // ⑧ 人気アクション用にトップ特性カテゴリを保存
+    const TRAIT_CATS_SET = new Set(['sensory','rigidity']);
+    const topCats3 = ['attention','impulse','planning','social','rigidity','sensory','memory','adapt','motor']
+        .map(c => ({ c, n: TRAIT_CATS_SET.has(c) ? norm[c] : 100 - norm[c] }))
+        .sort((a,b) => b.n - a.n).slice(0, 3).map(x => x.c);
+    localStorage.setItem('topTraitCats', JSON.stringify(topCats3));
+    const type = getTraitType(norm);
+    const iq = lastResult ? lastResult.fiq : null;
+    const pattern = iq !== null ? getIQPattern(norm, iq) : null;
+
+    // Chart values (all in trait-presence direction)
+    const chartVals = [
+        100 - norm.attention,
+        100 - norm.impulse,
+        100 - norm.memory,
+        100 - norm.planning,
+        100 - norm.social,
+        norm.rigidity,
+        norm.sensory,
+        100 - norm.adapt,
+        100 - norm.motor
+    ];
+
+    // Type card
+    document.getElementById('trait-type-card-el').innerHTML = `
+        <div class="trait-type-label">あなたの総合タイプ</div>
+        <div class="trait-type-name">${type}</div>
+        <div class="trait-type-comment">${typeComments[type]}</div>
+    `;
+
+    // Radar chart
+    document.getElementById('radar-container').innerHTML = drawRadarChart(chartVals);
+
+    // Cluster badges
+    const avg3 = (a,b,c) => (a+b+c)/3;
+    const adhdT = avg3(100-norm.attention, 100-norm.impulse, 100-norm.planning);
+    const asdT  = avg3(100-norm.social, norm.rigidity, norm.sensory);
+    const ldT   = 100 - norm.memory;
+    const motT  = 100 - norm.motor;
+    function lvl(v) { return v >= 65 ? "高" : v >= 40 ? "中" : "低"; }
+    document.getElementById('cluster-row').innerHTML = `
+        <span class="cluster-badge" style="background:${clusterMeta.adhd.bg};color:${clusterMeta.adhd.color};">行動コントロール系 ${lvl(adhdT)}</span>
+        <span class="cluster-badge" style="background:${clusterMeta.asd.bg};color:${clusterMeta.asd.color};">認知スタイル系 ${lvl(asdT)}</span>
+        <span class="cluster-badge" style="background:${clusterMeta.ld.bg};color:${clusterMeta.ld.color};">学習処理系 ${lvl(ldT)}</span>
+        <span class="cluster-badge" style="background:${clusterMeta.dcd.bg};color:${clusterMeta.dcd.color};">身体特性 ${lvl(motT)}</span>
+    `;
+
+    // Category cards
+    const catOrder = ['attention','impulse','planning','social','rigidity','sensory','memory','adapt','motor'];
+    let html = '';
+    catOrder.forEach(cat => {
+        const meta = traitCatMeta[cat];
+        const score = norm[cat];
+        const commentKey = score >= 65 ? 'high' : score <= 35 ? 'low' : 'mid';
+        const comment = traitCatComments[cat][commentKey];
+        const isTrait = cat === 'sensory' || cat === 'rigidity';
+        let barColor;
+        if (isTrait) {
+            barColor = score >= 65 ? '#9c27b0' : score >= 40 ? '#ce93d8' : '#bdbdbd';
+        } else {
+            barColor = score >= 65 ? '#4caf50' : score >= 40 ? '#ffb74d' : '#ef5350';
+        }
+        const scoreLabel = isTrait
+            ? (score >= 65 ? '高め' : score >= 40 ? '中程度' : '低め')
+            : (score >= 65 ? '高い' : score >= 40 ? '中程度' : '低い');
+        html += `
+            <div class="trait-cat-card" style="border-left-color:${meta.color};">
+                <div class="trait-cat-header">
+                    <button class="cat-name-link" style="color:${meta.color};"
+                        onclick="showCategoryPage('${cat}','trait-result-screen')">${meta.label}</button>
+                    <span class="trait-cat-score">${scoreLabel}（${score}点）</span>
+                </div>
+                <div class="trait-bar-bg">
+                    <div class="trait-bar-fill" style="width:${score}%;background:${barColor};"></div>
+                </div>
+                <div class="trait-cat-comment">${comment}</div>
+            </div>
+        `;
+    });
+    document.getElementById('trait-cat-list').innerHTML = html;
+
+    // IQ integration
+    const iqCard = document.getElementById('iq-integration-card');
+    if (pattern !== null && iq !== null) {
+        iqCard.innerHTML = `
+            <div class="iq-integration-title">🔗 IQテストとの統合コメント（全検査IQ: ${iq}）</div>
+            <div class="iq-integration-body">${iqPatternComments[pattern]}</div>
+        `;
+        iqCard.style.display = 'block';
+    } else {
+        iqCard.style.display = 'none';
+    }
+
+    // ① おすすめ対策
+    renderRecommendations(norm);
+
+    // ② 短冊投稿（最も注目度の高いカテゴリをデフォルト選択）
+    const TRAIT_CATS2 = new Set(['sensory','rigidity']);
+    const topCat = ['attention','impulse','planning','social','rigidity','sensory','memory','adapt','motor']
+        .map(c => ({ c, n: TRAIT_CATS2.has(c) ? norm[c] : 100 - norm[c] }))
+        .sort((a,b) => b.n - a.n)[0].c;
+    renderTraitPostSection(topCat);
+}
 
 // ================================================================
 // 分布チャート
@@ -1354,6 +3230,31 @@ function drawDistributionChart(iq) {
     document.getElementById('percentile-text').innerHTML =
         `赤線はあなたの全検査IQの位置。同年齢集団のうち上位 <strong>${topPct}%</strong> に相当します。`;
 }
+
 </script>
+
+<!-- ======= Dev panel（一般ユーザーには非表示）======= -->
+<div id="dev-panel" style="display:none;position:fixed;bottom:16px;right:16px;z-index:9999;">
+    <div style="background:#1a3a5c;border-radius:10px;padding:14px 16px;box-shadow:0 6px 24px rgba(0,0,0,0.55);min-width:176px;font-family:'Noto Sans JP',sans-serif;">
+        <div style="font-size:0.72em;color:#78909c;margin-bottom:10px;letter-spacing:0.05em;user-select:none;">🔧 Dev shortcuts</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+            <button onclick="devSkipIQ()"    style="background:#1e5f99;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ IQ結果へスキップ</button>
+            <button onclick="devSkipTrait()" style="background:#1e5f99;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ 特性結果へスキップ</button>
+            <button onclick="devSkipAll()"   style="background:#00695c;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ 両方スキップ（IQ→特性）</button>
+            <button onclick="openAdminPanel()" style="background:#5d4037;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">🗑️ 投稿を管理</button>
+            <button onclick="document.getElementById('dev-panel').style.display='none'" style="background:#37474f;color:#90a4ae;border:none;border-radius:6px;padding:6px 10px;font-size:0.78em;cursor:pointer;font-family:inherit;text-align:center;margin-top:2px;">✕ 閉じる</button>
+        </div>
+    </div>
+</div>
+<!-- ======= 管理者オーバーレイ ======= -->
+<div id="admin-overlay">
+    <div class="admin-inner">
+        <div class="admin-header">
+            <strong>🔧 投稿管理</strong>
+            <button class="admin-close-btn" onclick="document.getElementById('admin-overlay').style.display='none'">✕ 閉じる</button>
+        </div>
+        <div id="admin-post-list"></div>
+    </div>
+</div>
 </body>
 </html>

@@ -175,15 +175,16 @@
     }
     .welcome-hero {
         position: relative;
-        min-height: 640px;
+        min-height: 560px;
         margin: -8px -24px 28px;
         padding: 54px;
         border: 1px solid #dbe5ee;
         border-radius: 18px;
         overflow: hidden;
         background:
-            linear-gradient(90deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.84) 36%, rgba(255,255,255,0.28) 74%),
-            url("assets/hero-self-analysis-reference.png") center / cover no-repeat;
+            radial-gradient(circle at 18% 82%, rgba(174, 221, 219, 0.32), transparent 34%),
+            radial-gradient(circle at 88% 15%, rgba(188, 220, 247, 0.42), transparent 38%),
+            linear-gradient(135deg, #ffffff 0%, #f8fcff 46%, #eaf6ff 100%);
         box-shadow: 0 16px 36px rgba(28, 55, 84, 0.09);
         text-align: left;
     }
@@ -192,7 +193,7 @@
         grid-template-columns: minmax(0, 0.95fr) minmax(390px, 0.82fr);
         gap: 30px;
         align-items: center;
-        min-height: 530px;
+        min-height: 450px;
     }
     .welcome-copy {
         max-width: 640px;
@@ -232,7 +233,7 @@
         align-items: center;
         width: 100%;
         border: 1px solid rgba(121, 164, 196, 0.28);
-        background: rgba(255,255,255,0.86);
+        background: rgba(255,255,255,0.9);
         border-radius: 12px;
         padding: 16px;
         box-shadow: 0 16px 34px rgba(44, 91, 128, 0.12);
@@ -250,6 +251,26 @@
     .welcome-path.primary {
         border-color: rgba(59, 145, 124, 0.42);
         box-shadow: 0 18px 36px rgba(45, 125, 104, 0.16);
+    }
+    .welcome-hero::before {
+        content: "";
+        position: absolute;
+        inset: 42px 48px auto auto;
+        width: 230px;
+        height: 230px;
+        border: 1px solid rgba(116, 166, 200, 0.2);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .welcome-hero::after {
+        content: "";
+        position: absolute;
+        right: 110px;
+        bottom: 58px;
+        width: 170px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(116, 166, 200, 0.35), transparent);
+        pointer-events: none;
     }
     .welcome-character {
         width: 72px;
@@ -704,8 +725,9 @@
             margin: -4px -6px 24px;
             padding: 26px 16px;
             background:
-                linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.78)),
-                url("assets/hero-self-analysis-reference.png") center / cover no-repeat;
+                radial-gradient(circle at 20% 85%, rgba(174, 221, 219, 0.28), transparent 34%),
+                radial-gradient(circle at 88% 10%, rgba(188, 220, 247, 0.34), transparent 38%),
+                linear-gradient(135deg, #ffffff 0%, #f8fcff 46%, #eaf6ff 100%);
         }
         .welcome-hero-shell { grid-template-columns: 1fr; min-height: auto; }
         .welcome-title { font-size: 1.9rem; }
@@ -1095,8 +1117,9 @@
         .popular-actions-menu { display: grid; grid-template-columns: repeat(2, 1fr); }
         .welcome-hero {
             background:
-                linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.78)),
-                url("assets/hero-self-analysis-reference.png") center / cover no-repeat;
+                radial-gradient(circle at 20% 85%, rgba(174, 221, 219, 0.28), transparent 34%),
+                radial-gradient(circle at 88% 10%, rgba(188, 220, 247, 0.34), transparent 38%),
+                linear-gradient(135deg, #ffffff 0%, #f8fcff 46%, #eaf6ff 100%);
         }
         .welcome-hero-shell {
             grid-template-columns: 1fr;
@@ -1231,7 +1254,7 @@
                         <span><strong>IQテスト</strong><span>認知面のバランスを補助分析として確認します。</span></span>
                         <span class="welcome-arrow">→</span>
                     </button>
-                    <button class="welcome-path" onclick="scrollToActions()">
+                    <button class="welcome-path" onclick="startTraitCheck()">
                         <span class="welcome-character" aria-hidden="true"></span>
                         <span><strong>改善アクション</strong><span>自分に合う工夫を見つけ、投稿もできます。</span></span>
                         <span class="welcome-arrow">→</span>
@@ -1248,9 +1271,6 @@
             特性チェック・IQテストともに娯楽・自己分析目的の簡易版です。医学的診断や就学・就労判定の根拠には使用できません。
             正確な評価や支援が必要な場合は、専門機関や有資格者への相談をご検討ください。
         </p>
-        <div class="section-caption">特性チェック後に役立つ、みんなの改善アクション</div>
-        <!-- 改善アクション掲示板 -->
-        <div class="popular-actions-section" id="popular-actions" style="display:none;"></div>
     </div>
 
     <!-- ============= IQ Intro ============= -->
@@ -1793,11 +1813,6 @@ function backToWelcome() {
     window.scrollTo(0, 0);
 }
 
-function scrollToActions() {
-    const sec = document.getElementById('popular-actions');
-    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
 function startCountdown() {
     if (timerInterval) clearInterval(timerInterval);
     updateTimerDisplay();
@@ -2246,7 +2261,7 @@ function renderRanking() {
 }
 
 // ページロード時にウェルカム画面用の統計を取得
-window.addEventListener('DOMContentLoaded', () => { loadStats(); _initDev(); renderWelcomePopularActions(); });
+window.addEventListener('DOMContentLoaded', () => { loadStats(); _initDev(); });
 
 // ================================================================
 // 開発用ショートカット（🧠アイコンを 7回タップで起動）

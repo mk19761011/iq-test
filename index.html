@@ -175,9 +175,9 @@
     }
     .welcome-hero {
         position: relative;
-        min-height: 560px;
+        min-height: auto;
         margin: -8px -24px 28px;
-        padding: 54px;
+        padding: 54px 54px 30px;
         border: 1px solid #dbe5ee;
         border-radius: 18px;
         overflow: hidden;
@@ -193,7 +193,7 @@
         grid-template-columns: minmax(0, 0.95fr) minmax(390px, 0.82fr);
         gap: 30px;
         align-items: center;
-        min-height: 450px;
+        min-height: auto;
     }
     .welcome-copy {
         max-width: 640px;
@@ -225,6 +225,12 @@
     .welcome-paths {
         display: grid;
         gap: 14px;
+    }
+    .welcome-hero-footer {
+        grid-column: 1 / -1;
+        display: grid;
+        gap: 0;
+        margin-top: 24px;
     }
     .welcome-path {
         display: grid;
@@ -321,6 +327,32 @@
         font-size: 0.86rem;
         line-height: 1.7;
         text-align: left;
+    }
+    .welcome-copy .reset-note {
+        max-width: 620px;
+        margin-top: 18px;
+        background: rgba(255, 248, 225, 0.82);
+    }
+    .welcome-hero-footer .reset-note {
+        width: 100%;
+        margin-top: 0;
+        background: rgba(255, 248, 225, 0.86);
+    }
+    .welcome-hero-footer .disclaimer {
+        margin: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.68);
+        text-align: left;
+        line-height: 1.55;
+    }
+    .welcome-hero-footer .disclaimer .login-note {
+        display: block;
+        font-size: 0.76rem;
+        white-space: nowrap;
+    }
+    .welcome-hero-footer .disclaimer .simple-note {
+        display: block;
+        font-size: 0.8rem;
     }
     .intro-screen {
         display: none;
@@ -1260,17 +1292,14 @@
                         <span class="welcome-arrow">→</span>
                     </button>
                 </div>
+                <div class="welcome-hero-footer">
+                    <p class="disclaimer">
+                        <span class="login-note">ログイン機能や個人記録機能はありませんので安心してご利用ください。ただし、ページを更新すると、途中経過や結果は保持されず最初の画面に戻りますので、その点にはご注意ください。</span>
+                        <span class="simple-note">特性チェック・IQテストは自己分析用の簡易版です。診断・判定には使えません。必要に応じて専門機関へご相談ください。</span>
+                    </p>
+                </div>
             </div>
         </section>
-
-        <div class="reset-note">
-            ログイン機能や個人記録機能はありませんので安心してご利用ください。ただし、ページを更新すると、途中経過や結果は保持されず最初の画面に戻りますので、その点にはご注意ください。
-        </div>
-
-        <p class="disclaimer">
-            特性チェック・IQテストともに娯楽・自己分析目的の簡易版です。医学的診断や就学・就労判定の根拠には使用できません。
-            正確な評価や支援が必要な場合は、専門機関や有資格者への相談をご検討ください。
-        </p>
     </div>
 
     <!-- ============= IQ Intro ============= -->

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -1579,6 +1579,14 @@
         </div>
     </div>
 
+    <!-- ============= Action Board ============= -->
+    <div id="action-board-screen" style="display:none;">
+        <div class="popular-actions-section" id="popular-actions"></div>
+        <div class="return-home-wrap">
+            <button class="ghost-button" onclick="backToWelcome()">トップページに戻る</button>
+        </div>
+    </div>
+
     <!-- ============= ③ カテゴリページ ============= -->
     <div id="category-screen" style="display:none;">
         <div class="cat-nav">
@@ -1920,7 +1928,7 @@ function buildQuizOrder() {
 // 画面遷移・テスト開始
 // ================================================================
 function startTest() {
-    ['welcome-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+    ['welcome-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','action-board-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -1947,7 +1955,7 @@ function beginIqTest() {
 }
 
 function backToWelcome() {
-    ['iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+    ['iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','action-board-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2433,7 +2441,7 @@ function devSkipIQ() {
     countdown         = TOTAL_TIME_SEC;
     quizStartTime     = Date.now();
     userSubmittedPref = '（開発テスト）';   // 都道府県ゲートを自動解除
-    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','category-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','action-board-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2444,7 +2452,7 @@ function devSkipIQ() {
 function devSkipTrait() {
     // 特性チェック全問を「3（どちらでもない）」で回答した扱いにしてスキップ
     traitAnswers = new Array(traitQuestions.length).fill(3);
-    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','result-screen','trait-screen','category-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','result-screen','trait-screen','action-board-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2907,7 +2915,7 @@ function showCategoryPage(cat, fromScreen) {
     if (!d) return;
 
     // 全画面を非表示（welcome-screenも対象）
-    ['welcome-screen','iq-intro-screen','trait-intro-screen','result-screen','trait-result-screen','trait-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','result-screen','trait-result-screen','trait-screen','action-board-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2948,6 +2956,7 @@ function hideCategoryPage() {
     document.getElementById('category-screen').style.display = 'none';
     const prev = document.getElementById(catPagePrevScreen || 'trait-result-screen');
     if (prev) prev.style.display = 'block';
+    if ((catPagePrevScreen || '') === 'action-board-screen') renderWelcomePopularActions();
     window.scrollTo(0, 0);
 }
 
@@ -3026,7 +3035,7 @@ function renderWelcomePopularActions() {
                 <div class="popular-panel-head">
                     <div class="popular-panel-title" style="color:${selectedMeta.color};">${selectedMeta.label}</div>
                     <button class="popular-more-btn" style="color:${selectedMeta.color};"
-                        onclick="showCategoryPage('${selectedCat}','welcome-screen')">このカテゴリを詳しく見る →</button>
+                        onclick="showCategoryPage('${selectedCat}','action-board-screen')">このカテゴリを詳しく見る →</button>
                 </div>
                 <div class="popular-panel-desc">${selectedMeta.desc}</div>
                 ${postsHtml}
@@ -3044,14 +3053,23 @@ function setWelcomeCategory(cat) {
 }
 
 function startActionBoard() {
-    let cat = 'attention';
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','result-screen','trait-result-screen','trait-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
     try {
         const saved = JSON.parse(localStorage.getItem('topTraitCats') || '[]');
-        if (Array.isArray(saved) && saved[0] && categoryData[saved[0]]) cat = saved[0];
+        if (Array.isArray(saved) && saved[0] && categoryData[saved[0]]) {
+            welcomeBoardCategory = saved[0];
+        }
     } catch (e) {
-        cat = 'attention';
+        // 保存データが壊れていても、通常のカテゴリ一覧表示を優先する。
     }
-    showCategoryPage(cat, 'welcome-screen');
+
+    document.getElementById('action-board-screen').style.display = 'block';
+    renderWelcomePopularActions();
+    window.scrollTo(0, 0);
 }
 
 // ⑪ 管理者パネル
@@ -3232,7 +3250,7 @@ let traitAnswers = [];
 let traitCurrentIdx = 0;
 
 function startTraitCheck() {
-    ['welcome-screen','iq-intro-screen','quiz-screen','result-screen','trait-result-screen','trait-screen','category-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','quiz-screen','result-screen','trait-result-screen','trait-screen','action-board-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -3249,6 +3267,7 @@ function beginTraitCheck() {
     document.getElementById('quiz-screen').style.display = 'none';
     document.getElementById('result-screen').style.display = 'none';
     document.getElementById('trait-result-screen').style.display = 'none';
+    document.getElementById('action-board-screen').style.display = 'none';
     document.getElementById('category-screen').style.display = 'none';
     document.getElementById('trait-screen').style.display = 'block';
     window.scrollTo(0, 0);

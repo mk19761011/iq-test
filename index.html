@@ -14,6 +14,18 @@
         --bg-color: #f0f4f8;
         --text-color: #2c3e50;
         --white: #ffffff;
+        --trait-main: #2f9e8f;
+        --trait-deep: #227a70;
+        --trait-soft: #e8f7f4;
+        --trait-border: #9fd8cf;
+        --iq-main: #2f6fb3;
+        --iq-deep: #1d5794;
+        --iq-soft: #eaf3ff;
+        --iq-border: #a8c9ee;
+        --action-main: #f2994a;
+        --action-deep: #d8751d;
+        --action-soft: #fff4e6;
+        --action-border: #f4c28b;
     }
 
     body {
@@ -254,10 +266,21 @@
         border-color: rgba(67, 139, 190, 0.42);
         box-shadow: 0 20px 38px rgba(44, 91, 128, 0.16);
     }
-    .welcome-path.primary {
-        border-color: rgba(59, 145, 124, 0.42);
-        box-shadow: 0 18px 36px rgba(45, 125, 104, 0.16);
+    .welcome-path.feature-trait {
+        border-color: var(--trait-border);
+        box-shadow: 0 18px 36px rgba(47, 158, 143, 0.16);
     }
+    .welcome-path.feature-iq {
+        border-color: var(--iq-border);
+        box-shadow: 0 18px 36px rgba(47, 111, 179, 0.14);
+    }
+    .welcome-path.feature-action {
+        border-color: var(--action-border);
+        box-shadow: 0 18px 36px rgba(242, 153, 74, 0.14);
+    }
+    .welcome-path.feature-trait:hover { border-color: var(--trait-main); }
+    .welcome-path.feature-iq:hover { border-color: var(--iq-main); }
+    .welcome-path.feature-action:hover { border-color: var(--action-main); }
     .welcome-hero::before {
         content: "";
         position: absolute;
@@ -282,23 +305,23 @@
         width: 72px;
         height: 72px;
         border-radius: 14px;
-        background-color: #edf7f2;
+        background-color: var(--trait-soft);
         background-image: url("assets/card-character-set.png");
         background-size: 300% 100%;
         background-position: left center;
         background-repeat: no-repeat;
-        border: 1px dashed #b9d7ca;
+        border: 1px dashed var(--trait-border);
         overflow: hidden;
     }
-    .welcome-path:nth-child(2) .welcome-character {
-        background-color: #edf5ff;
+    .welcome-path.feature-iq .welcome-character {
+        background-color: var(--iq-soft);
         background-position: center center;
-        border-color: #bed4ea;
+        border-color: var(--iq-border);
     }
-    .welcome-path:nth-child(3) .welcome-character {
-        background-color: #fff7e5;
+    .welcome-path.feature-action .welcome-character {
+        background-color: var(--action-soft);
         background-position: right center;
-        border-color: #e8d6a8;
+        border-color: var(--action-border);
     }
     .welcome-path strong {
         display: block;
@@ -317,6 +340,9 @@
         font-weight: 800;
         font-size: 1.3rem;
     }
+    .welcome-path.feature-trait .welcome-arrow { color: var(--trait-main); }
+    .welcome-path.feature-iq .welcome-arrow { color: var(--iq-main); }
+    .welcome-path.feature-action .welcome-arrow { color: var(--action-main); }
     .reset-note {
         margin-top: 14px;
         padding: 12px 14px;
@@ -365,9 +391,19 @@
         padding: 24px 24px 22px;
         box-shadow: 0 10px 24px rgba(18, 56, 96, 0.06);
     }
+    #trait-intro-screen .intro-card {
+        background: linear-gradient(180deg, #ffffff 0%, var(--trait-soft) 100%);
+        border-color: var(--trait-border);
+    }
+    #iq-intro-screen .intro-card {
+        background: linear-gradient(180deg, #ffffff 0%, var(--iq-soft) 100%);
+        border-color: var(--iq-border);
+    }
     .intro-card h2 {
         margin: 0 0 12px;
     }
+    #trait-intro-screen .intro-card h2 { color: var(--trait-deep); }
+    #iq-intro-screen .intro-card h2 { color: var(--iq-deep); }
     .intro-lead {
         color: #546e7a;
         line-height: 1.8;
@@ -411,6 +447,8 @@
         border-radius: 10px; font-size: 0.85rem;
         border-top: 3px solid var(--primary-color);
     }
+    #trait-intro-screen .index-card { background: rgba(255,255,255,0.72); }
+    #iq-intro-screen .index-card { background: rgba(255,255,255,0.78); }
     .index-card strong { display: block; font-size: 1.0rem; margin-bottom: 4px; color: var(--secondary-color); }
     .index-card small { display: block; color: #777; font-size: 0.75rem; }
 
@@ -433,13 +471,39 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(26, 111, 196, 0.4);
     }
+    #trait-intro-screen .cta-button {
+        background: linear-gradient(135deg, var(--trait-main) 0%, var(--trait-deep) 100%);
+        box-shadow: 0 4px 15px rgba(47, 158, 143, 0.3);
+    }
+    #trait-intro-screen .cta-button:hover {
+        box-shadow: 0 6px 20px rgba(47, 158, 143, 0.4);
+    }
+    #iq-intro-screen .cta-button {
+        background: linear-gradient(135deg, var(--iq-main) 0%, var(--iq-deep) 100%);
+        box-shadow: 0 4px 15px rgba(47, 111, 179, 0.3);
+    }
+    #iq-intro-screen .cta-button:hover {
+        box-shadow: 0 6px 20px rgba(47, 111, 179, 0.4);
+    }
     .cta-pulse {
         animation: ctaPulse 2.5s infinite;
     }
+    #trait-intro-screen .cta-pulse { animation: traitCtaPulse 2.5s infinite; }
+    #iq-intro-screen .cta-pulse { animation: iqCtaPulse 2.5s infinite; }
     @keyframes ctaPulse {
         0% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
         50% { box-shadow: 0 4px 25px rgba(26, 111, 196, 0.6); }
         100% { box-shadow: 0 4px 15px rgba(26, 111, 196, 0.3); }
+    }
+    @keyframes traitCtaPulse {
+        0% { box-shadow: 0 4px 15px rgba(47, 158, 143, 0.3); }
+        50% { box-shadow: 0 4px 25px rgba(47, 158, 143, 0.55); }
+        100% { box-shadow: 0 4px 15px rgba(47, 158, 143, 0.3); }
+    }
+    @keyframes iqCtaPulse {
+        0% { box-shadow: 0 4px 15px rgba(47, 111, 179, 0.3); }
+        50% { box-shadow: 0 4px 25px rgba(47, 111, 179, 0.55); }
+        100% { box-shadow: 0 4px 15px rgba(47, 111, 179, 0.3); }
     }
 
     /* ===== Quiz ===== */
@@ -455,7 +519,7 @@
     }
     .timer-display {
         font-size: 1.05em; font-variant-numeric: tabular-nums;
-        color: #1a6fc4; font-weight: bold;
+        color: var(--iq-main); font-weight: bold;
     }
     .timer-display.warn  { color: #e67e22; }
     .timer-display.danger { color: #e74c3c; animation: blink 0.7s infinite; }
@@ -465,7 +529,8 @@
         width: 100%; background: #e0e0e0; border-radius: 10px;
         margin-bottom: 20px; overflow: hidden; height: 6px;
     }
-    .progress-bar { height: 100%; background: #1a6fc4; width: 0%; transition: width 0.3s; }
+    .progress-bar { height: 100%; background: var(--iq-main); width: 0%; transition: width 0.3s; }
+    #trait-progress-bar { background: var(--trait-main); }
 
     .question-content {
         font-size: 1.18em; font-weight: bold;
@@ -493,16 +558,16 @@
     }
     .memory-numbers {
         font-size: 2.2em; letter-spacing: 0.35em;
-        font-weight: bold; color: #1a6fc4;
+        font-weight: bold; color: var(--iq-main);
         margin: 20px 0; padding: 18px;
-        background: #e3f2fd; border-radius: 10px;
+        background: var(--iq-soft); border-radius: 10px;
         text-align: center;
     }
     .memory-text {
         font-size: 1.4em; font-weight: bold;
-        color: #1a6fc4; line-height: 1.7;
+        color: var(--iq-main); line-height: 1.7;
         margin: 20px 0; padding: 20px;
-        background: #e3f2fd; border-radius: 10px;
+        background: var(--iq-soft); border-radius: 10px;
         text-align: center;
     }
 
@@ -532,7 +597,7 @@
         margin-bottom: 10px;
     }
     .option-btn {
-        background: #e0f2f1; padding: 14px 10px; border-radius: 8px;
+        background: var(--iq-soft); padding: 14px 10px; border-radius: 8px;
         cursor: pointer; transition: all 0.15s;
         border: 2px solid transparent;
         font-size: 0.98em; text-align: center;
@@ -540,10 +605,10 @@
         display: flex; align-items: center; justify-content: center;
         color: #2c3e50; font-family: inherit; word-break: break-word;
     }
-    .option-btn:hover:not(:disabled) { background: #b2dfdb; transform: translateY(-1px); }
+    .option-btn:hover:not(:disabled) { background: #d8eaff; transform: translateY(-1px); }
     .option-btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .option-btn.selected {
-        background: #1a6fc4 !important; border-color: #1558a0 !important;
+        background: var(--iq-main) !important; border-color: var(--iq-deep) !important;
         color: white; font-weight: bold;
     }
 
@@ -573,7 +638,7 @@
     .result-table th {
         background: #f5f7fa; color: #1a3a5c; padding: 10px 8px;
         text-align: center; font-weight: 600;
-        border-bottom: 2px solid #1a6fc4;
+        border-bottom: 2px solid var(--iq-main);
         font-size: 0.88em;
     }
     .result-table td {
@@ -589,10 +654,10 @@
         font-variant-numeric: tabular-nums;
     }
     .result-table tr.fsiq-row td {
-        background: #eaf3fb; font-weight: bold;
-        border-bottom: 2px solid #1a6fc4;
+        background: var(--iq-soft); font-weight: bold;
+        border-bottom: 2px solid var(--iq-main);
     }
-    .result-table tr.fsiq-row td.score { font-size: 1.35em; color: #1558a0; }
+    .result-table tr.fsiq-row td.score { font-size: 1.35em; color: var(--iq-deep); }
     .class-pill {
         display: inline-block; padding: 2px 8px;
         border-radius: 10px; font-size: 0.82em;
@@ -601,21 +666,21 @@
     }
 
     .dist-box {
-        background: #f8f9fa; border-radius: 8px;
+        background: linear-gradient(180deg, #ffffff 0%, var(--iq-soft) 100%); border-radius: 8px;
         padding: 16px 20px; margin: 16px auto; max-width: 560px;
-        border: 1px solid #eee;
+        border: 1px solid var(--iq-border);
     }
     .dist-title { font-weight: bold; color: #1a3a5c; margin-bottom: 10px; font-size: 0.95em; }
     .percentile-text { font-size: 0.9em; color: #546e7a; margin-top: 10px; }
 
     .start-btn {
         display: block; width: 100%; padding: 15px;
-        background: #1a6fc4; color: white;
+        background: var(--iq-main); color: white;
         border: none; border-radius: 8px;
         font-size: 1.1em; cursor: pointer;
         transition: background 0.2s; font-family: inherit;
     }
-    .start-btn:hover { background: #1558a0; }
+    .start-btn:hover { background: var(--iq-deep); }
 
     .disclaimer {
         font-size: 0.78em; color: #888;
@@ -627,7 +692,7 @@
     .submit-box {
         margin: 24px auto 0; max-width: 620px;
         padding: 18px 20px;
-        background: #f5f9ff; border: 1px solid #d4e4f5;
+        background: var(--iq-soft); border: 1px solid var(--iq-border);
         border-radius: 10px; text-align: left;
     }
     .submit-title {
@@ -651,13 +716,13 @@
     }
     .submit-btn {
         padding: 10px 22px; font-size: 0.95em;
-        background: #1a6fc4; color: #fff;
+        background: var(--iq-main); color: #fff;
         border: none; border-radius: 6px;
         cursor: pointer; font-family: inherit;
         font-weight: 600;
         transition: background 0.15s;
     }
-    .submit-btn:hover:not(:disabled) { background: #1558a0; }
+    .submit-btn:hover:not(:disabled) { background: var(--iq-deep); }
     .submit-btn:disabled { background: #b0bec5; cursor: not-allowed; }
     .submit-status {
         font-size: 0.85em; margin-top: 10px;
@@ -670,12 +735,12 @@
     .stats-badge {
         display: inline-block;
         padding: 8px 18px; margin: 0 0 18px;
-        background: #eef6ff; border: 1px solid #cfe2f6;
+        background: var(--iq-soft); border: 1px solid var(--iq-border);
         border-radius: 999px; font-size: 0.92em;
         color: #1a3a5c;
     }
     .stats-badge strong {
-        color: #1a6fc4; font-size: 1.15em;
+        color: var(--iq-main); font-size: 1.15em;
         font-variant-numeric: tabular-nums;
         margin: 0 2px;
     }
@@ -703,7 +768,7 @@
         transition: all 0.15s;
     }
     .ranking-tab.active {
-        background: #1a6fc4; color: #fff; border-color: #1558a0;
+        background: var(--iq-main); color: #fff; border-color: var(--iq-deep);
         font-weight: 600;
     }
     .ranking-table {
@@ -721,7 +786,7 @@
         border-bottom: 1px solid #eceff1;
         font-variant-numeric: tabular-nums;
     }
-    .ranking-table td.rank { font-weight: 700; color: #1a6fc4; }
+    .ranking-table td.rank { font-weight: 700; color: var(--iq-main); }
     .ranking-table td.pref { text-align: left; font-weight: 500; }
     .ranking-table tr.user-row td {
         background: #fff8e1; font-weight: 700;
@@ -738,7 +803,7 @@
         border-radius: 8px;
         border: 1px dashed #c5d4e3;
     }
-    .ranking-teaser strong { color: #1a6fc4; }
+    .ranking-teaser strong { color: var(--iq-main); }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
@@ -777,21 +842,21 @@
     }
     .likert-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
     .likert-btn {
-        padding: 14px 4px; background: #e0f2f1;
+        padding: 14px 4px; background: var(--trait-soft);
         border: 2px solid transparent; border-radius: 8px;
         cursor: pointer; font-size: 0.8em; text-align: center;
         font-family: inherit; transition: all 0.15s;
         display: flex; flex-direction: column; align-items: center; gap: 4px;
     }
-    .likert-btn:hover { background: #b2dfdb; transform: translateY(-1px); }
-    .likert-btn.selected { background: #1a6fc4; color: white; border-color: #1558a0; font-weight: bold; }
+    .likert-btn:hover { background: #c9eee8; transform: translateY(-1px); }
+    .likert-btn.selected { background: var(--trait-main); color: white; border-color: var(--trait-deep); font-weight: bold; }
     .likert-num { font-size: 1.4em; font-weight: bold; }
     .likert-label { font-size: 0.76em; line-height: 1.3; }
 
     /* ===== Trait Result Screen ===== */
     #trait-result-screen { text-align: center; }
     .trait-type-card {
-        background: linear-gradient(135deg, #1a6fc4 0%, #1558a0 100%);
+        background: linear-gradient(135deg, var(--trait-main) 0%, var(--trait-deep) 100%);
         color: #fff; border-radius: 14px; padding: 24px 22px;
         margin: 16px auto; max-width: 560px; text-align: left;
     }
@@ -830,7 +895,7 @@
     .tips-section { margin: 20px auto; max-width: 560px; }
     .tips-section-title { font-weight: 700; color: #1a3a5c; margin-bottom: 12px; font-size: 1em; }
     .tip-cat-card {
-        background: #f0faf7; border-left: 4px solid #00897b;
+        background: var(--trait-soft); border-left: 4px solid var(--trait-main);
         border-radius: 8px; padding: 12px 16px; margin-bottom: 10px;
     }
     .tip-cat-name { font-weight: 700; font-size: 0.88em; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
@@ -843,16 +908,16 @@
 
     /* ===== Posts (② 短冊投稿) ===== */
     .posts-section { margin: 20px auto; max-width: 560px; }
-    .posts-section-title { font-weight: 700; color: #1a3a5c; margin-bottom: 10px; font-size: 1em; }
-    .post-form-card { background: #f5f9ff; border: 1px solid #d4e4f5; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .posts-section-title { font-weight: 700; color: var(--action-deep); margin-bottom: 10px; font-size: 1em; }
+    .post-form-card { background: var(--action-soft); border: 1px solid var(--action-border); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
     .post-form-label { font-weight: 700; color: #1a3a5c; font-size: 0.9em; margin-bottom: 8px; }
     .post-textarea { width: 100%; padding: 10px; font-size: 0.9em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; resize: none; box-sizing: border-box; line-height: 1.5; }
-    .post-textarea:focus { outline: none; border-color: #1a6fc4; }
+    .post-textarea:focus { outline: none; border-color: var(--action-main); box-shadow: 0 0 0 3px rgba(242, 153, 74, 0.12); }
     .post-char-count { font-size: 0.76em; color: #90a4ae; text-align: right; margin-top: 3px; }
     .post-form-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
     .post-cat-select { flex: 1; min-width: 130px; padding: 8px 10px; font-size: 0.85em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; background: #fff; }
-    .post-submit-btn { padding: 9px 20px; background: #1a6fc4; color: #fff; border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
-    .post-submit-btn:hover:not(:disabled) { background: #1558a0; }
+    .post-submit-btn { padding: 9px 20px; background: var(--action-main); color: #fff; border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
+    .post-submit-btn:hover:not(:disabled) { background: var(--action-deep); }
     .post-submit-btn:disabled { background: #b0bec5; cursor: not-allowed; }
     .post-status { font-size: 0.82em; margin-top: 6px; min-height: 1.1em; }
     .post-status.ok  { color: #2e7d32; }
@@ -885,14 +950,14 @@
         font-size: 0.9em;
         color: #78909c;
         padding: 26px 18px;
-        background: linear-gradient(180deg, #fbfdff 0%, #f5f9fd 100%);
-        border: 1px dashed #c8d8e8;
+        background: linear-gradient(180deg, #ffffff 0%, var(--action-soft) 100%);
+        border: 1px dashed var(--action-border);
         border-radius: 14px;
     }
     .posts-loading { text-align: center; font-size: 0.85em; color: #90a4ae; padding: 16px 0; }
     .sort-toggle { display:flex; gap:6px; margin-bottom:14px; }
     .sort-btn { padding:5px 16px; background:#f5f5f5; border:1px solid #e0e0e0; border-radius:20px; cursor:pointer; font-size:0.82em; color:#546e7a; font-family:inherit; transition:all 0.15s; }
-    .sort-btn.active { background:#1a6fc4; border-color:#1a6fc4; color:#fff; font-weight:600; }
+    .sort-btn.active { background:var(--action-main); border-color:var(--action-main); color:#fff; font-weight:600; }
     .action-cat-group { margin-bottom:22px; }
     .action-cat-heading { font-weight:600; font-size:0.82em; color:#90a4ae; padding-bottom:5px; border-bottom:2px solid; margin-bottom:10px; display:flex; justify-content:space-between; }
     .action-cat-count { font-weight:400; font-size:0.85em; }
@@ -900,27 +965,27 @@
     /* ===== Category Page (③ カテゴリページ) ===== */
     #category-screen { text-align: left; }
     .cat-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-    .back-btn { background: #fff; border: 1px solid #c5d4e3; border-radius: 6px; padding: 7px 14px; font-size: 0.85em; color: #546e7a; cursor: pointer; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
-    .back-btn:hover { background: #f0f4f8; border-color: #aec4d8; }
-    .cat-page-title { font-size: 1.25em; font-weight: 700; color: #1a3a5c; }
+    .back-btn { background: #fff; border: 1px solid var(--action-border); border-radius: 6px; padding: 7px 14px; font-size: 0.85em; color: var(--action-deep); cursor: pointer; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
+    .back-btn:hover { background: var(--action-soft); border-color: var(--action-main); }
+    .cat-page-title { font-size: 1.25em; font-weight: 700; color: var(--action-deep); }
     .cat-desc-card {
-        background: linear-gradient(135deg, #f8fbff 0%, #f4f8fc 100%);
+        background: linear-gradient(135deg, #ffffff 0%, var(--action-soft) 100%);
         border-radius: 14px;
         padding: 18px 20px;
         margin-bottom: 20px;
         font-size: 0.96em;
         color: #445b72;
         line-height: 1.95;
-        border-left: 5px solid #1a6fc4;
-        box-shadow: 0 6px 18px rgba(21, 53, 89, 0.05);
+        border-left: 5px solid var(--action-main);
+        box-shadow: 0 6px 18px rgba(151, 90, 36, 0.05);
     }
     .cat-content-card {
         background: #fff;
-        border: 1px solid #e1e8f0;
+        border: 1px solid var(--action-border);
         border-radius: 16px;
         padding: 18px 18px 16px;
         margin-bottom: 20px;
-        box-shadow: 0 8px 24px rgba(18, 56, 96, 0.05);
+        box-shadow: 0 8px 24px rgba(151, 90, 36, 0.06);
     }
     .cat-tips-list { list-style: none; padding: 0; margin: 0; }
     .cat-tips-list li {
@@ -932,7 +997,7 @@
         border-bottom: 1px solid #edf2f7;
     }
     .cat-tips-list li:last-child { border-bottom: none; }
-    .cat-tips-list li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: #00897b; }
+    .cat-tips-list li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: var(--action-main); }
 
     /* ===== カテゴリカードのクリック導線 ===== */
     .cat-name-link { background: none; border: none; font-size: inherit; font-weight: 700; color: inherit; cursor: pointer; font-family: inherit; padding: 0; text-align: left; text-decoration: underline dotted; }
@@ -945,10 +1010,10 @@
     .cat-section-label {
         font-weight: 700;
         font-size: 1.05em;
-        color: #1a3a5c;
+        color: var(--action-deep);
         margin: 0 0 14px;
         padding-bottom: 10px;
-        border-bottom: 2px solid #e6edf5;
+        border-bottom: 2px solid var(--action-border);
         display: flex;
         align-items: center;
         gap: 8px;
@@ -1276,17 +1341,17 @@
                     </div>
                 </div>
                 <div class="welcome-paths">
-                    <button class="welcome-path primary" onclick="startTraitCheck()">
+                    <button class="welcome-path feature-trait primary" onclick="startTraitCheck()">
                         <span class="welcome-character" aria-hidden="true"></span>
                         <span><strong>特性チェック</strong><span>まずは18問で、いまの傾向を整理します。</span></span>
                         <span class="welcome-arrow">→</span>
                     </button>
-                    <button class="welcome-path" onclick="startTest()">
+                    <button class="welcome-path feature-iq" onclick="startTest()">
                         <span class="welcome-character" aria-hidden="true"></span>
                         <span><strong>IQテスト</strong><span>認知面のバランスを補助分析として確認します。</span></span>
                         <span class="welcome-arrow">→</span>
                     </button>
-                    <button class="welcome-path" onclick="startTraitCheck()">
+                    <button class="welcome-path feature-action" onclick="startActionBoard()">
                         <span class="welcome-character" aria-hidden="true"></span>
                         <span><strong>改善アクション</strong><span>自分に合う工夫を見つけ、投稿もできます。</span></span>
                         <span class="welcome-arrow">→</span>
@@ -1313,19 +1378,19 @@
 
             <div class="section-caption">IQテストで分かる4つの認知指標</div>
             <div class="index-grid">
-                <div class="index-card" style="border-top-color:#1a6fc4;">
+                <div class="index-card" style="border-top-color:var(--iq-main);">
                     <strong>言語思考力</strong>
                     <small>言葉の理解と表現</small>
                 </div>
-                <div class="index-card" style="border-top-color:#00897b;">
+                <div class="index-card" style="border-top-color:#5e91c9;">
                     <strong>空間・パターン認識</strong>
                     <small>図形と規則の発見</small>
                 </div>
-                <div class="index-card" style="border-top-color:#fb8c00;">
+                <div class="index-card" style="border-top-color:#7fb0dd;">
                     <strong>記憶と処理</strong>
                     <small>情報の保持と操作</small>
                 </div>
-                <div class="index-card" style="border-top-color:#8e24aa;">
+                <div class="index-card" style="border-top-color:var(--iq-deep);">
                     <strong>スピード認知</strong>
                     <small>素早い識別と判断</small>
                 </div>
@@ -1344,6 +1409,53 @@
 
             <div class="intro-actions">
                 <button class="cta-button cta-pulse" onclick="beginIqTest()">このままIQテストを始める</button>
+                <button class="ghost-button" onclick="backToWelcome()">トップに戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============= Trait Intro ============= -->
+    <div id="trait-intro-screen" class="intro-screen">
+        <div class="intro-card">
+            <h2>特性チェックの案内</h2>
+            <div class="intro-lead">
+                特性チェックでは、注意・行動・計画・対人・感覚など、生活や仕事に関わる傾向を簡易的に確認します。
+                結果では、あなたの総合タイプ、カテゴリ別の傾向、おすすめ対策、改善アクション投稿を確認できます。
+            </div>
+
+            <div class="section-caption">特性チェックで分かる主なカテゴリ</div>
+            <div class="index-grid">
+                <div class="index-card" style="border-top-color:var(--trait-main);">
+                    <strong>注意・行動のコントロール</strong>
+                    <small>集中や衝動の傾向</small>
+                </div>
+                <div class="index-card" style="border-top-color:#62b8aa;">
+                    <strong>計画・時間管理</strong>
+                    <small>段取りや先延ばしの傾向</small>
+                </div>
+                <div class="index-card" style="border-top-color:#84cbbf;">
+                    <strong>対人コミュニケーション</strong>
+                    <small>人との関わり方の傾向</small>
+                </div>
+                <div class="index-card" style="border-top-color:var(--trait-deep);">
+                    <strong>感覚の特性</strong>
+                    <small>音・光・刺激への反応</small>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>🌱 特性チェックについて</strong><br>
+                <strong>全 18 問</strong>の質問に、1〜5 の選択肢で回答します。正解・不正解はありません。<br><br>
+                <strong>所要時間の目安：3〜5 分</strong><br>
+                深く考えすぎず、今の自分に近いものを選んでください。
+            </div>
+
+            <div class="reset-note">
+                ログイン機能や個人記録機能はありません。ページを更新すると、チェック中でも最初の画面からやり直しになります。
+            </div>
+
+            <div class="intro-actions">
+                <button class="cta-button cta-pulse" onclick="beginTraitCheck()">このまま特性チェックを始める</button>
                 <button class="ghost-button" onclick="backToWelcome()">トップに戻る</button>
             </div>
         </div>
@@ -1808,7 +1920,7 @@ function buildQuizOrder() {
 // 画面遷移・テスト開始
 // ================================================================
 function startTest() {
-    ['welcome-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+    ['welcome-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -1827,6 +1939,7 @@ function beginIqTest() {
     quizSubmitted = false;
 
     document.getElementById('iq-intro-screen').style.display = 'none';
+    document.getElementById('trait-intro-screen').style.display = 'none';
     document.getElementById('quiz-screen').style.display = 'block';
 
     startCountdown();
@@ -1834,7 +1947,7 @@ function beginIqTest() {
 }
 
 function backToWelcome() {
-    ['iq-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
+    ['iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','result-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2320,7 +2433,7 @@ function devSkipIQ() {
     countdown         = TOTAL_TIME_SEC;
     quizStartTime     = Date.now();
     userSubmittedPref = '（開発テスト）';   // 都道府県ゲートを自動解除
-    ['welcome-screen','quiz-screen','trait-screen','trait-result-screen','category-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','trait-screen','trait-result-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2331,7 +2444,7 @@ function devSkipIQ() {
 function devSkipTrait() {
     // 特性チェック全問を「3（どちらでもない）」で回答した扱いにしてスキップ
     traitAnswers = new Array(traitQuestions.length).fill(3);
-    ['welcome-screen','quiz-screen','result-screen','trait-screen','category-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','result-screen','trait-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2794,7 +2907,7 @@ function showCategoryPage(cat, fromScreen) {
     if (!d) return;
 
     // 全画面を非表示（welcome-screenも対象）
-    ['welcome-screen','iq-intro-screen','result-screen','trait-result-screen','trait-screen'].forEach(id => {
+    ['welcome-screen','iq-intro-screen','trait-intro-screen','result-screen','trait-result-screen','trait-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -2928,6 +3041,17 @@ function setWelcomeCategory(cat) {
     if (!categoryData[cat]) return;
     welcomeBoardCategory = cat;
     renderWelcomePopularActions();
+}
+
+function startActionBoard() {
+    let cat = 'attention';
+    try {
+        const saved = JSON.parse(localStorage.getItem('topTraitCats') || '[]');
+        if (Array.isArray(saved) && saved[0] && categoryData[saved[0]]) cat = saved[0];
+    } catch (e) {
+        cat = 'attention';
+    }
+    showCategoryPage(cat, 'welcome-screen');
 }
 
 // ⑪ 管理者パネル
@@ -3108,12 +3232,24 @@ let traitAnswers = [];
 let traitCurrentIdx = 0;
 
 function startTraitCheck() {
+    ['welcome-screen','iq-intro-screen','quiz-screen','result-screen','trait-result-screen','trait-screen','category-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    document.getElementById('trait-intro-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function beginTraitCheck() {
     traitAnswers = new Array(traitQuestions.length).fill(null);
     traitCurrentIdx = 0;
     document.getElementById('welcome-screen').style.display = 'none';
     document.getElementById('iq-intro-screen').style.display = 'none';
+    document.getElementById('trait-intro-screen').style.display = 'none';
+    document.getElementById('quiz-screen').style.display = 'none';
     document.getElementById('result-screen').style.display = 'none';
     document.getElementById('trait-result-screen').style.display = 'none';
+    document.getElementById('category-screen').style.display = 'none';
     document.getElementById('trait-screen').style.display = 'block';
     window.scrollTo(0, 0);
     renderTraitQuestion();

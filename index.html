@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -32,7 +32,7 @@
         font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
         background: var(--bg-color);
         color: var(--text-color);
-        font-size: 17px;
+        font-size: 18px;
         line-height: 1.6;
         padding: 0;
         margin: 0;
@@ -41,14 +41,14 @@
         min-height: 100vh;
     }
     .container {
-        max-width: 1280px;
-        width: calc(100% - 48px);
+        max-width: 1440px;
+        width: calc(100% - 32px);
         box-sizing: border-box;
         background: var(--white);
-        padding: 34px 52px;
+        padding: 40px 64px;
         border-radius: 14px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        margin: 24px auto;
+        margin: 16px auto;
         align-self: flex-start;
         overflow: hidden;
     }
@@ -1074,6 +1074,22 @@
         background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
         box-shadow: 0 10px 30px rgba(18, 56, 96, 0.06);
         text-align: left;
+    }
+    body:has(#action-board-screen[style*="block"]) .container {
+        max-width: 1480px;
+        width: calc(100% - 24px);
+        margin-top: 8px;
+        margin-bottom: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    #action-board-screen .popular-actions-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    #action-board-screen .return-home-wrap {
+        margin-top: 10px;
+        margin-bottom: 0;
     }
     .popular-actions-header {
         display: flex;

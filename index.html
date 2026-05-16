@@ -32,7 +32,7 @@
         font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
         background: var(--bg-color);
         color: var(--text-color);
-        font-size: 18px;
+        font-size: 19px;
         line-height: 1.6;
         padding: 0;
         margin: 0;
@@ -41,20 +41,42 @@
         min-height: 100vh;
     }
     .container {
-        max-width: 1440px;
-        width: calc(100% - 32px);
+        max-width: 1540px;
+        width: calc(100% - 20px);
         box-sizing: border-box;
         background: var(--white);
-        padding: 40px 64px;
+        padding: 36px 72px 28px;
         border-radius: 14px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         margin: 16px auto;
+        min-height: calc(100vh - 32px);
         align-self: flex-start;
         overflow: hidden;
     }
 
     /* ===== Welcome ===== */
     #welcome-screen { text-align: center; animation: fadeIn 0.8s ease-out; }
+    body:has(#welcome-screen:not([style*="none"])) .container {
+        padding-top: 28px;
+        padding-bottom: 14px;
+        margin-bottom: 16px;
+        min-height: auto;
+    }
+    body:has(#welcome-screen:not([style*="none"])) #welcome-screen {
+        min-height: auto;
+    }
+    #welcome-screen,
+    #iq-intro-screen,
+    #trait-intro-screen,
+    #quiz-screen,
+    #result-screen,
+    #trait-screen,
+    #trait-result-screen,
+    #action-board-screen,
+    #category-screen {
+        min-height: calc(100vh - 104px);
+        box-sizing: border-box;
+    }
     .hero-icon {
         font-size: 5rem; margin-bottom: 20px;
         display: inline-block; animation: pulse 2s infinite;
@@ -190,8 +212,8 @@
     .welcome-hero {
         position: relative;
         min-height: auto;
-        margin: -8px -24px 28px;
-        padding: 54px 54px 30px;
+        margin: -8px -24px 0;
+        padding: 48px 62px 16px;
         border: 1px solid #dbe5ee;
         border-radius: 18px;
         overflow: hidden;
@@ -205,7 +227,7 @@
     .welcome-hero-shell {
         display: grid;
         grid-template-columns: minmax(0, 0.95fr) minmax(390px, 0.82fr);
-        gap: 30px;
+        gap: 34px;
         align-items: center;
         min-height: auto;
     }
@@ -214,7 +236,7 @@
     }
     .welcome-note {
         display: inline-block;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
         padding: 9px 13px;
         border: 1px solid rgba(61,125,166,0.18);
         background: rgba(255,255,255,0.76);
@@ -224,27 +246,27 @@
         font-weight: 800;
     }
     .welcome-title {
-        margin: 0 0 18px;
+        margin: 0 0 20px;
         color: #1f557f;
         font-size: 3.05rem;
         line-height: 1.28;
         letter-spacing: 0;
     }
     .welcome-lead {
-        margin: 0 0 22px;
+        margin: 0 0 26px;
         color: #294963;
         font-size: 1.08rem;
         line-height: 1.95;
     }
     .welcome-paths {
         display: grid;
-        gap: 14px;
+        gap: 18px;
     }
     .welcome-hero-footer {
         grid-column: 1 / -1;
         display: grid;
         gap: 0;
-        margin-top: 24px;
+        margin-top: 28px;
     }
     .welcome-path {
         display: grid;
@@ -255,7 +277,7 @@
         border: 1px solid rgba(121, 164, 196, 0.28);
         background: rgba(255,255,255,0.9);
         border-radius: 12px;
-        padding: 16px;
+        padding: 20px 18px;
         box-shadow: 0 16px 34px rgba(44, 91, 128, 0.12);
         backdrop-filter: blur(6px);
         text-align: left;
@@ -297,15 +319,15 @@
         content: "";
         position: absolute;
         right: 110px;
-        bottom: 58px;
+        bottom: 34px;
         width: 170px;
         height: 1px;
         background: linear-gradient(90deg, transparent, rgba(116, 166, 200, 0.35), transparent);
         pointer-events: none;
     }
     .welcome-character {
-        width: 72px;
-        height: 72px;
+        width: 78px;
+        height: 78px;
         border-radius: 14px;
         background-color: var(--trait-soft);
         background-image: url("assets/card-character-set.png");
@@ -372,6 +394,8 @@
         background: rgba(255,255,255,0.68);
         text-align: left;
         line-height: 1.55;
+        padding: 10px 12px;
+        box-sizing: border-box;
     }
     .welcome-hero-footer .disclaimer .login-note {
         display: block;
@@ -392,6 +416,8 @@
         border-radius: 18px;
         padding: 24px 24px 22px;
         box-shadow: 0 10px 24px rgba(18, 56, 96, 0.06);
+        min-height: calc(100vh - 166px);
+        box-sizing: border-box;
     }
     #trait-intro-screen .intro-card {
         background: linear-gradient(180deg, #ffffff 0%, var(--trait-soft) 100%);
@@ -453,6 +479,36 @@
     #iq-intro-screen .index-card { background: rgba(255,255,255,0.78); }
     .index-card strong { display: block; font-size: 1.0rem; margin-bottom: 4px; color: var(--secondary-color); }
     .index-card small { display: block; color: #777; font-size: 0.75rem; }
+    .intro-category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+    .intro-category-card {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid var(--card-color);
+        border-left: 6px solid var(--card-color);
+        border-radius: 14px;
+        padding: 14px 14px 13px;
+        box-shadow: 0 8px 20px rgba(18, 56, 96, 0.05);
+    }
+    .intro-category-card strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--card-color);
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+    .intro-category-card small {
+        display: block;
+        color: #66788a;
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+    .intro-category-card.iq-card {
+        border-left-width: 5px;
+    }
 
     .warning-box {
         background: #fff8e1; border-left: 4px solid #ffc107;
@@ -511,6 +567,14 @@
     /* ===== Quiz ===== */
     h1 { text-align: center; color: #1a3a5c; margin-bottom: 16px; font-size: 1.5em; }
     h2 { color: #1a3a5c; text-align: center; }
+
+    #quiz-screen,
+    #trait-screen,
+    #result-screen,
+    #trait-result-screen,
+    #category-screen {
+        padding-bottom: 28px;
+    }
 
     .quiz-header {
         display: flex; justify-content: space-between; align-items: center;
@@ -912,19 +976,19 @@
     .posts-section { margin: 20px auto; max-width: 560px; }
     .posts-section-title { font-weight: 700; color: var(--action-deep); margin-bottom: 10px; font-size: 1em; }
     .post-form-card { background: var(--action-soft); border: 1px solid var(--action-border); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
-    .post-form-label { font-weight: 700; color: #1a3a5c; font-size: 0.9em; margin-bottom: 8px; }
+    .post-form-label { font-weight: 700; color: #1a3a5c; font-size: 0.9em; margin-bottom: 6px; }
     .post-form-note {
         margin: -2px 0 10px;
         color: #8a5a2b;
         font-size: 0.76em;
         line-height: 1.55;
     }
-    .post-textarea { width: 100%; padding: 10px; font-size: 0.9em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; resize: none; box-sizing: border-box; line-height: 1.5; }
+    .post-textarea { width: 100%; padding: 8px 10px; font-size: 0.9em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; resize: none; box-sizing: border-box; line-height: 1.45; }
     .post-textarea:focus { outline: none; border-color: var(--action-main); box-shadow: 0 0 0 3px rgba(242, 153, 74, 0.12); }
     .post-char-count { font-size: 0.76em; color: #90a4ae; text-align: right; margin-top: 3px; }
-    .post-form-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
-    .post-cat-select { flex: 1; min-width: 130px; padding: 8px 10px; font-size: 0.85em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; background: #fff; }
-    .post-submit-btn { padding: 9px 20px; background: var(--action-main); color: #fff; border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
+    .post-form-row { display: flex; gap: 8px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
+    .post-cat-select { flex: 1; min-width: 130px; padding: 7px 10px; font-size: 0.85em; border: 1px solid #c5d4e3; border-radius: 6px; font-family: inherit; background: #fff; }
+    .post-submit-btn { padding: 8px 20px; background: var(--action-main); color: #fff; border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
     .post-submit-btn:hover:not(:disabled) { background: var(--action-deep); }
     .post-submit-btn:disabled { background: #b0bec5; cursor: not-allowed; }
     .post-status { font-size: 0.82em; margin-top: 6px; min-height: 1.1em; }
@@ -962,6 +1026,58 @@
         color: #8a6b4c;
         font-size: 0.82em;
         font-weight: 700;
+    }
+    .post-list-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin: 12px 0 14px;
+        padding: 10px 12px;
+        background: #fffaf3;
+        border: 1px solid var(--action-border);
+        border-radius: 10px;
+        color: #7b5734;
+        font-size: 0.84em;
+        font-weight: 700;
+        flex-wrap: wrap;
+    }
+    .post-list-summary.bottom-pager {
+        margin: 14px 0 0;
+    }
+    .post-page-links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .post-page-link {
+        min-width: 28px;
+        height: 28px;
+        padding: 0 8px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: #6a4b2d;
+        border-radius: 999px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 800;
+    }
+    .post-page-link:hover:not(:disabled) {
+        background: #fff;
+        border-color: var(--action-border);
+    }
+    .post-page-link.active {
+        background: var(--action-main);
+        color: #fff;
+    }
+    .post-page-link:disabled {
+        color: #b59d86;
+        cursor: default;
+    }
+    .post-page-ellipsis {
+        padding: 0 4px;
+        color: #9a8067;
     }
     .post-card { background: #fff; border: 1px solid #e8edf2; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: box-shadow 0.2s, transform 0.15s; }
     .post-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); transform: translateY(-1px); }
@@ -1027,6 +1143,9 @@
         margin-bottom: 20px;
         box-shadow: 0 8px 24px rgba(151, 90, 36, 0.06);
     }
+    #category-screen .cat-content-card:last-of-type {
+        min-height: min(360px, calc(100vh - 430px));
+    }
     .cat-tips-list { list-style: none; padding: 0; margin: 0; }
     .cat-tips-list li {
         padding: 14px 0 14px 28px;
@@ -1076,20 +1195,45 @@
         text-align: left;
     }
     body:has(#action-board-screen[style*="block"]) .container {
-        max-width: 1480px;
-        width: calc(100% - 24px);
-        margin-top: 8px;
-        margin-bottom: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        max-width: 1560px;
+        width: calc(100% - 16px);
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 28px 48px 18px;
     }
     #action-board-screen .popular-actions-section {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 16px 24px;
+        min-height: calc(100vh - 164px);
     }
+    #action-board-screen .popular-actions-header { margin-bottom: 16px; }
+    #action-board-screen .popular-actions-layout { gap: 18px; }
+    #action-board-screen .popular-actions-menu { gap: 7px; }
+    #action-board-screen .popular-menu-btn { padding: 10px 14px; }
+    #action-board-screen .popular-actions-panel { padding: 18px 20px 18px; }
+    #action-board-screen .popular-panel-head { margin-bottom: 10px; padding-bottom: 10px; }
+    #action-board-screen .popular-panel-desc { margin-bottom: 14px; line-height: 1.65; }
+    #action-board-screen .popular-empty-state { padding: 24px 14px; }
+    #action-board-screen .popular-inline-form { margin-top: 18px; }
+    #action-board-screen .post-form-card { padding: 14px 16px; }
+    #action-board-screen .post-form-note { margin-bottom: 8px; line-height: 1.45; }
+    #action-board-screen .post-textarea { min-height: 52px; }
     #action-board-screen .return-home-wrap {
-        margin-top: 10px;
-        margin-bottom: 0;
+        margin: 20px auto 0;
+    }
+    .action-board-top-link {
+        text-align: right;
+        margin: 0 0 10px;
+        font-weight: 800;
+    }
+    .action-board-top-link button {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1.05em;
+        font-weight: 800;
+        text-decoration: underline;
     }
     .popular-actions-header {
         display: flex;
@@ -1102,7 +1246,7 @@
         font-weight: 700;
         color: #1a3a5c;
         margin-bottom: 6px;
-        font-size: 1.2em;
+        font-size: 1.45em;
     }
     .popular-actions-desc {
         font-size: 0.9em;
@@ -1125,7 +1269,7 @@
         border: 1px solid #d9e4ef;
         background: #fff;
         border-radius: 12px;
-        padding: 12px 14px;
+        padding: 13px 14px;
         text-align: left;
         cursor: pointer;
         font-family: inherit;
@@ -1157,13 +1301,13 @@
     }
     .popular-menu-title {
         display: block;
-        font-size: 0.93em;
-        font-weight: 700;
+        font-size: 1.14em;
+        font-weight: 800;
         margin-bottom: 4px;
     }
     .popular-menu-meta {
         display: block;
-        font-size: 0.75em;
+        font-size: 0.92em;
         opacity: 0.82;
     }
     .popular-actions-panel {
@@ -1289,9 +1433,17 @@
 
     /* ===== 管理者パネル（⑪）===== */
     #admin-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:10000; overflow-y:auto; padding:20px; box-sizing:border-box; }
-    .admin-inner { background:#fff; border-radius:12px; max-width:620px; margin:0 auto; padding:20px; }
+    .admin-inner { background:#fff; border-radius:12px; max-width:920px; margin:0 auto; padding:20px; }
     .admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #eee; padding-bottom:10px; }
     .admin-close-btn { background:#546e7a; color:#fff; border:none; border-radius:6px; padding:5px 14px; cursor:pointer; font-size:0.85em; font-family:inherit; }
+    .admin-section { margin: 18px 0 22px; }
+    .admin-section-title { font-weight:800; color:#1a3a5c; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #edf2f7; }
+    .admin-summary-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .admin-summary-card { background:#f8fbff; border:1px solid #dbe7f3; border-radius:10px; padding:10px 12px; color:#37474f; }
+    .admin-summary-card strong { display:block; color:#1a6fc4; font-size:1.25em; margin-top:2px; }
+    .admin-log-row { padding:10px 0; border-bottom:1px solid #f0f0f0; }
+    .admin-log-meta { font-size:0.78em; color:#78909c; margin-bottom:5px; }
+    .admin-answer-list { max-height:160px; overflow:auto; background:#fafafa; border:1px solid #eee; border-radius:8px; padding:8px 10px; font-size:0.78em; line-height:1.7; }
     .admin-post-row { display:flex; gap:8px; align-items:flex-start; padding:8px 0; border-bottom:1px solid #f0f0f0; }
     .admin-post-row:last-child { border-bottom:none; }
     .admin-post-info { flex:1; font-size:0.82em; line-height:1.55; color:#37474f; }
@@ -1387,7 +1539,7 @@
             <div class="welcome-hero-shell">
                 <div class="welcome-copy">
                     <span class="welcome-note">ひとりで落ち着いて使える自己分析サイト</span>
-                    <h1 class="welcome-title">いまの自分を知るための自己分析サイト</h1>
+                    <h1 class="welcome-title">いまの自分を知る 🔎</h1>
                     <p class="welcome-lead">
                         特性チェックで生活面・対人面・感覚面などの傾向を知り、自分に合う工夫や改善アクションにつなげます。
                         IQテストは認知面の得意・不得意を知る補助分析として使えます。
@@ -1433,22 +1585,22 @@
             </div>
 
             <div class="section-caption">IQテストで分かる4つの認知指標</div>
-            <div class="index-grid">
-                <div class="index-card" style="border-top-color:var(--iq-main);">
+            <div class="intro-category-grid">
+                <div class="intro-category-card iq-card" style="--card-color:var(--iq-main);">
                     <strong>言語思考力</strong>
-                    <small>言葉の理解と表現</small>
+                    <small>言葉の理解、文章の読み取り、表現のしやすさ</small>
                 </div>
-                <div class="index-card" style="border-top-color:#5e91c9;">
+                <div class="intro-category-card iq-card" style="--card-color:#5e91c9;">
                     <strong>空間・パターン認識</strong>
-                    <small>図形と規則の発見</small>
+                    <small>図形、並び、規則性を見つける力</small>
                 </div>
-                <div class="index-card" style="border-top-color:#7fb0dd;">
+                <div class="intro-category-card iq-card" style="--card-color:#7fb0dd;">
                     <strong>記憶と処理</strong>
-                    <small>情報の保持と操作</small>
+                    <small>情報を一時的に覚え、頭の中で扱う力</small>
                 </div>
-                <div class="index-card" style="border-top-color:var(--iq-deep);">
+                <div class="intro-category-card iq-card" style="--card-color:var(--iq-deep);">
                     <strong>スピード認知</strong>
-                    <small>素早い識別と判断</small>
+                    <small>素早く見分け、判断して進める力</small>
                 </div>
             </div>
 
@@ -1479,23 +1631,43 @@
                 結果では、あなたの総合タイプ、カテゴリ別の傾向、おすすめ対策、改善アクション投稿を確認できます。
             </div>
 
-            <div class="section-caption">特性チェックで分かる主なカテゴリ</div>
-            <div class="index-grid">
-                <div class="index-card" style="border-top-color:var(--trait-main);">
-                    <strong>注意・行動のコントロール</strong>
-                    <small>集中や衝動の傾向</small>
+            <div class="section-caption">特性チェックで分かる9つのカテゴリ</div>
+            <div class="intro-category-grid">
+                <div class="intro-category-card" style="--card-color:#1a6fc4;">
+                    <strong>注意のコントロール</strong>
+                    <small>集中を続ける、気が散りにくくする傾向</small>
                 </div>
-                <div class="index-card" style="border-top-color:#62b8aa;">
+                <div class="intro-category-card" style="--card-color:#2196f3;">
+                    <strong>衝動・行動のコントロール</strong>
+                    <small>思いつきで動かず、落ち着いて判断する傾向</small>
+                </div>
+                <div class="intro-category-card" style="--card-color:#ff9800;">
+                    <strong>ワーキングメモリ</strong>
+                    <small>情報を覚えながら作業を進める傾向</small>
+                </div>
+                <div class="intro-category-card" style="--card-color:#03a9f4;">
                     <strong>計画・時間管理</strong>
-                    <small>段取りや先延ばしの傾向</small>
+                    <small>段取り、準備、締切前に動く傾向</small>
                 </div>
-                <div class="index-card" style="border-top-color:#84cbbf;">
+                <div class="intro-category-card" style="--card-color:#e91e63;">
                     <strong>対人コミュニケーション</strong>
-                    <small>人との関わり方の傾向</small>
+                    <small>相手の意図や場の空気を読み取る傾向</small>
                 </div>
-                <div class="index-card" style="border-top-color:var(--trait-deep);">
+                <div class="intro-category-card" style="--card-color:#673ab7;">
                     <strong>感覚の特性</strong>
-                    <small>音・光・刺激への反応</small>
+                    <small>音・光・においなど刺激への反応</small>
+                </div>
+                <div class="intro-category-card" style="--card-color:#4caf50;">
+                    <strong>日常生活の適応力</strong>
+                    <small>新しい場所や予定変更に慣れる傾向</small>
+                </div>
+                <div class="intro-category-card" style="--card-color:#795548;">
+                    <strong>身体の不器用さ</strong>
+                    <small>手先や体の動かし方、協調運動の傾向</small>
+                </div>
+                <div class="intro-category-card" style="--card-color:#9c27b0;">
+                    <strong>こだわり・繰り返し</strong>
+                    <small>やり方や予定へのこだわり、切り替えの傾向</small>
                 </div>
             </div>
 
@@ -1637,9 +1809,12 @@
 
     <!-- ============= Action Board ============= -->
     <div id="action-board-screen" style="display:none;">
+        <div class="action-board-top-link">
+            <button onclick="backToWelcome()">トップに戻る</button>
+        </div>
         <div class="popular-actions-section" id="popular-actions"></div>
         <div class="return-home-wrap">
-            <button class="ghost-button" onclick="backToWelcome()">トップページに戻る</button>
+            <button class="ghost-button" onclick="backToWelcome()">トップに戻る</button>
         </div>
     </div>
 
@@ -1953,6 +2128,7 @@ let quizStartTime = 0;
 let quizSubmitted = false;
 let answerLocked = false;
 let quizQuestions = []; // 実際の出題順（難易度ブロック内でシャッフル）
+const ADMIN_LOG_KEY = 'adminAnswerLogs';
 
 // ================================================================
 // ユーティリティ
@@ -1964,6 +2140,16 @@ function shuffle(arr) {
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+}
+
+function getAdminLogs() {
+    try { return JSON.parse(localStorage.getItem(ADMIN_LOG_KEY) || '[]'); } catch(e) { return []; }
+}
+
+function saveAdminLog(type, payload) {
+    const logs = getAdminLogs();
+    logs.unshift({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), type, createdAt: Date.now(), ...payload });
+    localStorage.setItem(ADMIN_LOG_KEY, JSON.stringify(logs.slice(0, 100)));
 }
 
 // 出題順は固定。難易度を E/M/H で散らしつつ、各下位検査の 3 レベルが
@@ -2287,6 +2473,18 @@ function displayResults(fsiq, indexScores, subtestScaled, subtestRaw) {
     drawDistributionChart(fsiq);
 
     lastResult = { fiq: fsiq, vc: indexScores.VC, pr: indexScores.PR, wm: indexScores.WM, ps: indexScores.PS };
+    saveAdminLog('iq', {
+        result: lastResult,
+        answers: quizQuestions.map((q, i) => ({
+            no: i + 1,
+            id: q.id,
+            group: q.subtest,
+            question: q.q.replace(/<[^>]*>/g, ''),
+            answer: userAnswers[i]?.answer ?? '未回答',
+            correct: answerKey[q.id],
+            elapsedMs: userAnswers[i]?.elapsedMs ?? null
+        }))
+    });
     populatePrefectureSelect();
 
     // 都道府県を未送信なら結果はゲート（伏せた状態）にする
@@ -2418,9 +2616,11 @@ async function loadStats() {
         // ウェルカム画面のバッジ更新
         const badge = document.getElementById('stats-badge');
         const total = document.getElementById('stats-total');
-        if (badge && total && typeof data.total === 'number' && data.total > 0) {
+        if (badge && total && typeof data.total === 'number' && data.total >= 100) {
             total.textContent = data.total.toLocaleString();
             badge.style.display = 'inline-block';
+        } else if (badge) {
+            badge.style.display = 'none';
         }
         return data;
     } catch (err) {
@@ -2467,7 +2667,7 @@ function renderRanking() {
 }
 
 // ページロード時にウェルカム画面用の統計を取得
-window.addEventListener('DOMContentLoaded', () => { loadStats(); _initDev(); });
+window.addEventListener('DOMContentLoaded', () => { seedTestPosts(); loadStats(); _initDev(); });
 
 // ================================================================
 // 開発用ショートカット（🧠アイコンを 7回タップで起動）
@@ -2659,6 +2859,75 @@ function saveActions(acts) {
     localStorage.setItem('actions', JSON.stringify(acts));
 }
 
+function seedTestPosts() {
+    const seedMarker = 'iq-test-seed-posts-v1';
+    if (localStorage.getItem(seedMarker) === 'done') return;
+
+    const now = Date.now();
+    const attentionPosts = [
+        '朝いちばんに今日やることを3つだけ紙に書く',
+        '作業前にスマホを別の部屋へ置く',
+        '25分作業したら5分休むようにタイマーを使う',
+        '机の上に今使うものだけ置く',
+        '通知を切ってから作業を始める',
+        '作業メモを1枚だけ目の前に置く',
+        '気が散ったら深呼吸して元の作業名を声に出す',
+        '午前中はメールを見る時間を決めておく',
+        '作業場所を毎回同じ席にする',
+        '集中したい日は音の少ない場所を選ぶ'
+    ];
+    const socialPosts = [
+        '返信前に一度読み返してから送る',
+        '相手の話を要約して確認する',
+        'わからない時は「どういう意味ですか」と聞く',
+        '会話前に伝えたいことをメモする',
+        'きつい言い方になっていないか最後に確認する',
+        '予定変更は早めに短く伝える',
+        '相手の表情だけで判断せず言葉でも確認する',
+        '雑談が苦手な日は無理に長く話さない',
+        'お願いするときは期限と理由を一緒に伝える',
+        '会話後に気になった点をメモして次に活かす'
+    ];
+    const rigidityPosts = [
+        '違う道を試す',
+        '予定を一つ変える',
+        '手順をメモする',
+        '別案を持っておく',
+        '休む選択も入れる',
+        '変更がありそうな日は、朝のうちに代替案を二つだけ書いておく',
+        'いつもの手順が使えない時のために、最低限やることを決めておく',
+        'こだわりたい部分と手放してよい部分を、作業前に短く分けておく',
+        '予定が崩れた時は、まず深呼吸して次の一手だけを選ぶ',
+        '完璧に同じでなくても大丈夫だった経験を、あとでメモして残す',
+        'いつもの方法が使えない時は、まず一番近い代替手段を選び、終わった後に困った点だけ振り返る',
+        '予定変更が苦手な日は、最初から余白時間を入れておき、変更が起きても全部をやり直さず一部だけ調整する',
+        '自分のこだわりが役立つ場面と負担になる場面を分け、必要な場面だけ丁寧に使うよう意識する',
+        '急な変更を聞いたらすぐ反応せず、確認したいことを一つだけ質問してから次の行動を決める',
+        '新しいやり方を試す時は、全部変えずに一部分だけ変えるようにして、不安を小さくして進める'
+    ];
+    const rigidityAll = Array.from({ length: 50 }, (_, i) => rigidityPosts[i % rigidityPosts.length]);
+    const makePost = (category, text, offset) => ({
+        id: `seed-${category}-${offset}`,
+        text,
+        category,
+        likes: 0,
+        liked: false,
+        reported: false,
+        createdAt: now - offset * 60000
+    });
+
+    const seeds = [
+        ...attentionPosts.map((text, i) => makePost('attention', text, i + 1)),
+        ...socialPosts.map((text, i) => makePost('social', text, i + 101)),
+        ...rigidityAll.map((text, i) => makePost('rigidity', text, i + 201))
+    ];
+    const existing = getActions();
+    const existingIds = new Set(existing.map(a => a.id));
+    const merged = [...seeds.filter(p => !existingIds.has(p.id)), ...existing];
+    saveActions(merged);
+    localStorage.setItem(seedMarker, 'done');
+}
+
 function clampPage(page, total, pageSize = POSTS_PAGE_SIZE) {
     const maxPage = Math.max(1, Math.ceil(total / pageSize));
     return Math.min(Math.max(1, Number(page) || 1), maxPage);
@@ -2674,6 +2943,42 @@ function renderPagination(total, page, callbackName) {
             <button class="post-page-btn" onclick="${callbackName}(${page + 1})" ${page >= maxPage ? 'disabled' : ''}>次へ</button>
         </div>
     `;
+}
+
+function getPaginationPages(current, maxPage) {
+    const pages = new Set([1, maxPage, current, current - 1, current + 1]);
+    if (current <= 4) [2,3,4,5].forEach(p => pages.add(p));
+    if (current >= maxPage - 3) [maxPage - 4, maxPage - 3, maxPage - 2, maxPage - 1].forEach(p => pages.add(p));
+    return [...pages].filter(p => p >= 1 && p <= maxPage).sort((a, b) => a - b);
+}
+
+function renderPostListSummary(total, page, callbackName) {
+    if (!total) return '';
+    const maxPage = Math.max(1, Math.ceil(total / POSTS_PAGE_SIZE));
+    const start = (page - 1) * POSTS_PAGE_SIZE + 1;
+    const end = Math.min(total, page * POSTS_PAGE_SIZE);
+    const pages = getPaginationPages(page, maxPage);
+    let last = 0;
+    const pageLinks = pages.map(p => {
+        const gap = p - last > 1 ? '<span class="post-page-ellipsis">...</span>' : '';
+        last = p;
+        return `${gap}<button class="post-page-link${p === page ? ' active' : ''}" onclick="${callbackName}(${p})">${p}</button>`;
+    }).join('');
+    return `
+        <div class="post-list-summary">
+            <span>${total}件中 ${start}〜${end}件を表示（全${maxPage}ページ）</span>
+            <span class="post-page-links">
+                <button class="post-page-link" onclick="${callbackName}(${page - 1})" ${page <= 1 ? 'disabled' : ''}>前</button>
+                ${pageLinks}
+                <button class="post-page-link" onclick="${callbackName}(${page + 1})" ${page >= maxPage ? 'disabled' : ''}>次</button>
+            </span>
+        </div>
+    `;
+}
+
+function renderPostListPager(total, page, callbackName) {
+    if (total <= POSTS_PAGE_SIZE) return '';
+    return renderPostListSummary(total, page, callbackName).replace('post-list-summary', 'post-list-summary bottom-pager');
 }
 
 function setListPostPage(key, page) {
@@ -2871,7 +3176,10 @@ function renderActionsList(listId, catFilter) {
         postPageByKey[pageKey] = page;
         const start = (page - 1) * POSTS_PAGE_SIZE;
         const pageItems = acts.slice(start, start + POSTS_PAGE_SIZE);
-        el.innerHTML = pageItems.map(p => renderPostCard(p)).join('') + renderPagination(acts.length, page, `setListPostPage.bind(null,'${pageKey}')`);
+        const cb = `setListPostPage.bind(null,'${pageKey}')`;
+        el.innerHTML = renderPostListSummary(acts.length, page, cb) +
+            pageItems.map(p => renderPostCard(p)).join('') +
+            renderPostListPager(acts.length, page, cb);
     } else {
         // 全カテゴリ: カテゴリごとにグループ化して各最大5件
         const groups = {};
@@ -2954,10 +3262,12 @@ function toggleLike(id) {
     saveActions(acts);
     btn.classList.toggle('liked', acts[idx].liked);
     cnt.textContent = acts[idx].likes;
-    renderWelcomePopularActions();
+    const boardVisible = document.getElementById('action-board-screen')?.style.display === 'block';
+    if (boardVisible) renderWelcomePopularActions();
     // ⑪ 押したときのアニメーション
-    btn.classList.add('pop');
-    setTimeout(() => btn.classList.remove('pop'), 400);
+    const newBtn = document.getElementById(`like-btn-${id}`) || btn;
+    newBtn.classList.add('pop');
+    setTimeout(() => newBtn.classList.remove('pop'), 400);
 }
 
 // ⑪ 3点メニュー開閉
@@ -3101,16 +3411,9 @@ function renderWelcomePopularActions() {
     }).join('');
 
     const postsHtml = selectedPosts.length
-        ? welcomePagePosts.map(p => `
-            <div class="popular-post-mini">
-                <div class="popular-post-label">みんなの投稿コメント</div>
-                <div class="post-card-text">${escapeHtml(p.text)}</div>
-                <div class="post-card-footer">
-                    <span class="post-card-time">${formatTimeAgo(p.createdAt)}</span>
-                    <span style="font-size:0.8em;color:#e65100;font-weight:600;">👍 ${p.likes}</span>
-                </div>
-            </div>
-        `).join('') + renderPagination(selectedPosts.length, welcomeBoardPage, 'setWelcomePostPage')
+        ? renderPostListSummary(selectedPosts.length, welcomeBoardPage, 'setWelcomePostPage') +
+            welcomePagePosts.map(p => renderPostCard(p)).join('') +
+            renderPostListPager(selectedPosts.length, welcomeBoardPage, 'setWelcomePostPage')
         : `
             <div class="popular-empty-state">
                 <strong>このカテゴリにはまだ投稿がありません</strong>
@@ -3171,33 +3474,90 @@ function startActionBoard() {
     window.scrollTo(0, 0);
 }
 
+function renderAdminStats(stats) {
+    if (!stats || !stats.ok) {
+        return '<div style="color:#78909c;">参加者集計はまだ取得できていません。</div>';
+    }
+    const prefs = Object.entries(stats.byPref || {})
+        .sort((a, b) => b[1].count - a[1].count)
+        .slice(0, 8)
+        .map(([pref, v]) => `${escapeHtml(pref)} ${v.count}人${v.avgFiq ? ` / 平均IQ ${v.avgFiq}` : ''}`)
+        .join('<br>');
+    return `
+        <div class="admin-summary-grid">
+            <div class="admin-summary-card">IQ結果送信数<strong>${Number(stats.total || 0).toLocaleString()}人</strong></div>
+            <div class="admin-summary-card">投稿数<strong>${getActions().length.toLocaleString()}件</strong></div>
+            <div class="admin-summary-card">この端末の回答記録<strong>${getAdminLogs().length.toLocaleString()}件</strong></div>
+        </div>
+        <div style="margin-top:10px;font-size:0.86em;color:#546e7a;line-height:1.7;">${prefs || '都道府県別データはまだありません。'}</div>
+    `;
+}
+
+function renderAdminAnswerLogs() {
+    const logs = getAdminLogs();
+    if (!logs.length) return '<div style="color:#999;text-align:center;padding:18px;">この端末の回答記録はまだありません。</div>';
+    return logs.slice(0, 20).map(log => {
+        const title = log.type === 'iq'
+            ? `IQテスト FIQ ${log.result?.fiq ?? '-'} / VC ${log.result?.vc ?? '-'} / PR ${log.result?.pr ?? '-'} / WM ${log.result?.wm ?? '-'} / PS ${log.result?.ps ?? '-'}`
+            : `特性チェック ${Object.entries(log.scores || {}).map(([k,v]) => `${traitCatMeta[k]?.label || k}:${v}`).slice(0, 4).join(' / ')}`;
+        const answers = (log.answers || []).map(a => {
+            if (log.type === 'iq') {
+                return `${a.no}. [${a.group}] ${escapeHtml(a.answer)} / 正答: ${escapeHtml(a.correct)}`;
+            }
+            return `${a.no}. [${escapeHtml(a.category)}] ${a.answer} ${escapeHtml(a.label)} : ${escapeHtml(a.question)}`;
+        }).join('<br>');
+        return `
+            <div class="admin-log-row">
+                <div class="admin-log-meta">${new Date(log.createdAt).toLocaleString()} / ${log.type === 'iq' ? 'IQテスト' : '特性チェック'}</div>
+                <strong>${escapeHtml(title)}</strong>
+                <div class="admin-answer-list">${answers}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function renderAdminPosts() {
+    const acts = getActions();
+    if (!acts.length) {
+        return '<div style="color:#999;text-align:center;padding:24px;">投稿はまだありません。</div>';
+    }
+    const sorted = [...acts].sort((a, b) => (b.reported ? 1 : 0) - (a.reported ? 1 : 0) || b.createdAt - a.createdAt);
+    return sorted.map(a => `
+        <div class="admin-post-row" id="admin-row-${a.id}">
+            <div class="admin-post-info">
+                <div class="admin-post-meta">
+                    [${categoryData[a.category]?.label || a.category}]
+                    👍${a.likes}
+                    ${a.reported ? '⚠️ <span style="color:#e57373;">通報あり</span>' : ''}
+                    &nbsp;${formatTimeAgo(a.createdAt)}
+                </div>
+                ${escapeHtml(a.text)}
+            </div>
+            <button class="admin-del-btn" onclick="adminDeletePost('${a.id}')">削除</button>
+        </div>
+    `).join('');
+}
+
 // ⑪ 管理者パネル
-function openAdminPanel() {
+async function openAdminPanel() {
     document.getElementById('dev-panel').style.display = 'none';
     const overlay  = document.getElementById('admin-overlay');
-    const listEl   = document.getElementById('admin-post-list');
-    const acts     = getActions();
-
-    if (!acts.length) {
-        listEl.innerHTML = '<div style="color:#999;text-align:center;padding:24px;">投稿はまだありません。</div>';
-    } else {
-        // 新着順で全件表示（報告あり投稿を上に）
-        const sorted = [...acts].sort((a, b) => (b.reported ? 1 : 0) - (a.reported ? 1 : 0) || b.createdAt - a.createdAt);
-        listEl.innerHTML = sorted.map(a => `
-            <div class="admin-post-row" id="admin-row-${a.id}">
-                <div class="admin-post-info">
-                    <div class="admin-post-meta">
-                        [${categoryData[a.category]?.label || a.category}]
-                        👍${a.likes}
-                        ${a.reported ? '⚠️ <span style="color:#e57373;">通報あり</span>' : ''}
-                        &nbsp;${formatTimeAgo(a.createdAt)}
-                    </div>
-                    ${escapeHtml(a.text)}
-                </div>
-                <button class="admin-del-btn" onclick="adminDeletePost('${a.id}')">削除</button>
-            </div>
-        `).join('');
-    }
+    const bodyEl   = document.getElementById('admin-body');
+    const stats = cachedStats || await loadStats();
+    bodyEl.innerHTML = `
+        <div class="admin-section">
+            <div class="admin-section-title">参加・投稿の集計</div>
+            ${renderAdminStats(stats)}
+        </div>
+        <div class="admin-section">
+            <div class="admin-section-title">回答記録（この端末に保存されたもの）</div>
+            ${renderAdminAnswerLogs()}
+        </div>
+        <div class="admin-section">
+            <div class="admin-section-title">投稿管理</div>
+            <div id="admin-post-list">${renderAdminPosts()}</div>
+        </div>
+    `;
     overlay.style.display = 'block';
 }
 
@@ -3526,6 +3886,16 @@ function calcAndDisplayTraitResults() {
     window.scrollTo(0, 0);
 
     const norm = calcTraitNorm();
+    saveAdminLog('trait', {
+        scores: norm,
+        answers: traitQuestions.map((q, i) => ({
+            no: i + 1,
+            category: traitCatMeta[q.cat]?.label || q.cat,
+            question: q.text,
+            answer: traitAnswers[i] || 3,
+            label: LIKERT_LABELS[(traitAnswers[i] || 3) - 1]
+        }))
+    });
     // ⑧ 人気アクション用にトップ特性カテゴリを保存
     const TRAIT_CATS_SET = new Set(['sensory','rigidity']);
     const topCats3 = ['attention','impulse','planning','social','rigidity','sensory','memory','adapt','motor']
@@ -3689,7 +4059,7 @@ function drawDistributionChart(iq) {
             <button onclick="devSkipIQ()"    style="background:#1e5f99;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ IQ結果へスキップ</button>
             <button onclick="devSkipTrait()" style="background:#1e5f99;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ 特性結果へスキップ</button>
             <button onclick="devSkipAll()"   style="background:#00695c;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">⏭ 両方スキップ（IQ→特性）</button>
-            <button onclick="openAdminPanel()" style="background:#5d4037;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">🗑️ 投稿を管理</button>
+            <button onclick="openAdminPanel()" style="background:#5d4037;color:#fff;border:none;border-radius:6px;padding:9px 12px;font-size:0.83em;cursor:pointer;font-family:inherit;text-align:left;">🔧 管理情報を見る</button>
             <button onclick="document.getElementById('dev-panel').style.display='none'" style="background:#37474f;color:#90a4ae;border:none;border-radius:6px;padding:6px 10px;font-size:0.78em;cursor:pointer;font-family:inherit;text-align:center;margin-top:2px;">✕ 閉じる</button>
         </div>
     </div>
@@ -3698,10 +4068,10 @@ function drawDistributionChart(iq) {
 <div id="admin-overlay">
     <div class="admin-inner">
         <div class="admin-header">
-            <strong>🔧 投稿管理</strong>
+            <strong>🔧 管理情報</strong>
             <button class="admin-close-btn" onclick="document.getElementById('admin-overlay').style.display='none'">✕ 閉じる</button>
         </div>
-        <div id="admin-post-list"></div>
+        <div id="admin-body"></div>
     </div>
 </div>
 </body>

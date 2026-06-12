@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -1559,7 +1559,7 @@
                         <span><strong>IQテスト</strong><span>認知面のバランスを補助分析として確認します。</span></span>
                         <span class="welcome-arrow">→</span>
                     </button>
-                    <button class="welcome-path feature-action" onclick="startActionBoard()">
+                    <button class="welcome-path feature-action" onclick="startActionBoard('top')">
                         <span class="welcome-character" aria-hidden="true"></span>
                         <span><strong>改善アクション</strong><span>自分に合う工夫を見つけ、投稿もできます。</span></span>
                         <span class="welcome-arrow">→</span>
@@ -1612,7 +1612,7 @@
             </div>
 
             <div class="reset-note">
-                ログイン機能や個人記録機能はありません。ページを更新すると、テスト中でも最初の画面からやり直しになります。
+                ログイン機能や個人記録機能はありません。ページを更新すると、テスト中でも最初の画面からやり直しになります。診断・判定には使えません。必要に応じて専門機関へご相談ください。
             </div>
 
             <div class="intro-actions">
@@ -1679,7 +1679,7 @@
             </div>
 
             <div class="reset-note">
-                ログイン機能や個人記録機能はありません。ページを更新すると、チェック中でも最初の画面からやり直しになります。
+                ログイン機能や個人記録機能はありません。ページを更新すると、チェック中でも最初の画面からやり直しになります。診断・判定には使えません。必要に応じて専門機関へご相談ください。
             </div>
 
             <div class="intro-actions">
@@ -3426,7 +3426,7 @@ function renderWelcomePopularActions() {
             <div>
                 <div class="popular-actions-title">📚 改善アクション投稿</div>
                 <div class="popular-actions-desc">
-                    気になる特性カテゴリを左から選ぶと、みんなの改善アクションを右側で読めます。
+                    気になる特性カテゴリを左から選ぶと、みんなの改善アクションを右側で読めます。自分にも参考になりそうな工夫を探してみてください。
                 </div>
             </div>
         </div>
@@ -3454,20 +3454,32 @@ function setWelcomeCategory(cat) {
     renderWelcomePopularActions();
 }
 
-function startActionBoard() {
+function getDefaultActionBoardCategory(useTraitResult) {
+    const categories = Object.keys(categoryData);
+    if (useTraitResult) {
+        try {
+            const saved = JSON.parse(localStorage.getItem('topTraitCats') || '[]');
+            if (Array.isArray(saved) && saved[0] && categoryData[saved[0]]) return saved[0];
+        } catch (e) {
+            // 保存データが壊れていても通常表示に戻す。
+        }
+    }
+    const counts = {};
+    const acts = getActions();
+    categories.forEach(cat => { counts[cat] = acts.filter(a => a.category === cat).length; });
+    return categoryData.attention
+        ? 'attention'
+        : (categories.find(cat => counts[cat] > 0) || categories[0]);
+}
+
+function startActionBoard(source) {
     ['welcome-screen','iq-intro-screen','trait-intro-screen','quiz-screen','result-screen','trait-result-screen','trait-screen','category-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
 
-    try {
-        const saved = JSON.parse(localStorage.getItem('topTraitCats') || '[]');
-        if (Array.isArray(saved) && saved[0] && categoryData[saved[0]]) {
-            welcomeBoardCategory = saved[0];
-        }
-    } catch (e) {
-        // 保存データが壊れていても、通常のカテゴリ一覧表示を優先する。
-    }
+    welcomeBoardCategory = getDefaultActionBoardCategory(source === 'trait-result');
+    welcomeBoardPage = 1;
 
     document.getElementById('action-board-screen').style.display = 'block';
     renderWelcomePopularActions();
